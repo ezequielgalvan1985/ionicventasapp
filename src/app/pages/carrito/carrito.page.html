@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <h1 class="title">Carrito </h1>
+  <b *ngIf="!pedido.items"> El carrito esta vacio.</b>
+  <div class="cart-items">
+    <ion-item-sliding *ngFor="let item of pedido.items" >
+     
+    <ion-card mode="ios">
+      <ion-item>
+      <ion-card-content>
+        <div class="item-img">
+          <img src="../../assets/cart/cart1.png" />
+        </div>
+
+        <div class="item-info">
+          <p>{{ item.producto.nombre }}</p>
+          <p>Lotto.LTD</p>
+          <p>{{ item.producto.precio | number : '1.2-2'}}</p>
+
+          <div class="qty-selector">
+            <ion-button fill="clear" (click)="fnRestar(item)">-</ion-button>
+            <ion-label>{{ item.cantidad | number : '1.0-0'}}</ion-label>
+            <ion-button fill="clear" (click)="fnSumar(item)">+</ion-button>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-item>
+    <ion-item-options side="end">
+         
+      <ion-item-option color="danger" (click)="fnRemoveItem(item)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+    </ion-card>
+ 
+    
+    
+  </ion-item-sliding>
+
+
+  </div>
+</ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+    <ion-button expand="block" class="main-button" routerLink="/check-pedido" routerDirection="forward">Continuar</ion-button>
+  </ion-toolbar>
+</ion-footer>

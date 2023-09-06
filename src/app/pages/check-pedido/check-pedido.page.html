@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <h1 class="title">Checkout</h1>
+
+  <div class="cart-items" *ngFor="let item of pedido.items" >
+   
+    
+    <ion-card mode="ios">
+      <ion-card-content>
+        <div class="item-img">
+          <img src="../../assets/cart/cart1.png" />
+        </div>
+
+        <div class="item-info">
+          <p>{{ item.producto.nombre }}</p>
+          <p>Lotto.LTD </p>
+        
+          <h4 class="price" *ngIf="item.producto.precioOferta">
+            ${{ item.producto.precioOferta  | number : '1.2-2'}}
+            <span class="real-price" >${{item.producto.precio | number : '1.2-2'}}</span>
+          </h4>
+
+          <h4 class="price" *ngIf="item.producto.precioOferta==0">
+            ${{ item.producto.precio  | number : '1.2-2'}}
+          </h4>
+
+          <div class="qty-selector">
+           
+            <ion-label>{{ item.cantidad | number : '1.0-0'}}</ion-label>
+            
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    
+  </div>
+
+  <div class="address">
+    <ion-item lines="none">
+      37/6 A, Moratuwa, Sri Lanka
+      <ion-badge slot="end">&nbsp;</ion-badge>
+    </ion-item>
+  </div>
+
+  <hr>
+
+  <div class="cart-total">
+    <ion-item lines="none">
+      <ion-label>Sub Total</ion-label>
+      <ion-label slot="end" class="ion-text-right">${{ pedidoImporteSubtotal | number : '1.2-2'}} </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Descuento</ion-label>
+      <ion-label slot="end" class="ion-text-right">${{ pedidoImporteDescuento | number : '1.2-2'}} </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Envio</ion-label>
+      <ion-label slot="end" class="ion-text-right">${{ pedidoImporteEnvio | number : '1.2-2'}}</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Total</ion-label>
+      <ion-label slot="end" class="ion-text-right">${{ pedidoImporteTotal | number : '1.2-2'}}</ion-label>
+    </ion-item>
+  </div>
+</ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+    <ion-button expand="block" class="main-button" (click)="fnPedidoConfirmado()">Realizar Compra</ion-button>
+  </ion-toolbar>
+</ion-footer>

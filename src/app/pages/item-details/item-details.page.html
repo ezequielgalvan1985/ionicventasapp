@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <span>&nbsp;</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-vertical">
+    <h1 class="item-name">{{productoSelected.nombre}}</h1>
+  </div>
+  <div class="review">
+    <ion-row>
+      <ion-col size="6">
+        <div class="rating">
+          4.5
+        </div>
+
+        Very Good
+      </ion-col>
+      <ion-col size="6">
+        <div class="count">49 Reviews</div>
+      </ion-col>
+    </ion-row>
+  </div>
+  <swiper-container pager="true" class="product-slider">
+     <swiper-slide>
+      <img src="../../assets/product-slider/prod-slide1.png" />
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../assets/product-slider/prod-slide1.png" />
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../../assets/product-slider/prod-slide1.png" />
+    </swiper-slide>
+  </swiper-container>
+
+  <div class="ion-padding-vertical">
+   
+    <h1 class="price">
+      ${{productoSelected.precioOferta}}
+      <span class="real-price">${{productoSelected.precio}}</span>
+    </h1>
+  </div>
+
+
+  
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="description">
+    <h5>Descripcion</h5>
+
+    <p>
+      {{productoSelected.descripcion}} 
+    </p>
+
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+
+
+  <div class="variation-selector">
+    <div class="cantidades" [class.active-variation]="activeVariation == 'cantidad'">
+      <ion-item>
+        <form [formGroup]="itemPedidoForm" >
+        <ion-input label="Ingresar Cantidad" type="number" id="cantidad" placeholder="1" formControlName="cantidad"></ion-input>
+        <ion-input type="text" id="productoId" formControlName="productoId"  hidden></ion-input>
+        
+      </form>
+      </ion-item>
+    </div> 
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" color="light"  (click)="fnAgregarAlCarrito()" >Agregar al Carrito</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full">Buy now</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

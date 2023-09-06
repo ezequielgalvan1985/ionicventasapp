@@ -10,7 +10,39 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+  },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'item-details',
+    loadChildren: () => import('./pages/item-details/item-details.module').then( m => m.ItemDetailsPageModule)
+  },
+  {
+    path: 'pedidos',
+    loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'carrito',
+    loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
+  },
+  {
+    path: 'check-pedido',
+    loadChildren: () => import('./pages/check-pedido/check-pedido.module').then( m => m.CheckPedidoPageModule)
+  },
+  {
+    path: 'confirmacion',
+    loadChildren: () => import('./pages/confirmacion/confirmacion.module').then( m => m.ConfirmacionPageModule)
+  },
 ];
 
 @NgModule({
