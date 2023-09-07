@@ -57,6 +57,6 @@
 </ion-content>
 <ion-footer translucent="true" class="ion-no-border" mode="md">
   <ion-toolbar color="translucent">
-    <ion-button expand="block" class="main-button" routerLink="/check-pedido" routerDirection="forward">Continuar</ion-button>
+    <ion-button *ngIf="pedido.items" expand="block" class="main-button" routerLink="/check-pedido" routerDirection="forward">Continuar</ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mi Cuenta</ion-card-title>
+      <ion-card-subtitle>Datos Personales</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <form [formGroup]="micuentaForm" >
+      <ion-list>
+        <ion-list>
+          <ion-item>
+            <ion-input placeholder="Nombre" formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input  placeholder="Apellido" formControlName="apellido"></ion-input>
+          </ion-item>
+      
+     
+          <ion-item>
+            <ion-input placeholder="Direccion" formControlName="direccion"></ion-input>
+          </ion-item>
+          
+
+          <ion-item>
+            <ion-input placeholder="Ciudad" formControlName="ciudad"></ion-input>
+          </ion-item>
+
+          
+          <ion-item>
+            <ion-input type="tel" placeholder="Telefono" formControlName="telefono"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+      <ion-button >Guardar</ion-button>
+      </form>
+    </ion-card-content>
+  
+   
+    
+  </ion-card>
+</ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+   
+  </ion-toolbar>
+</ion-footer>

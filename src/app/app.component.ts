@@ -8,17 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Welcome', url: '/welcome', icon: 'home' },
     { title: 'Inicio', url: '/home', icon: 'home' },
-    { title: 'Iniciar Sesion', url: '/login', icon: 'user' },
-    
+    { title: 'Mi Carrito', url: '/carrito', icon: 'cart' },
     { title: 'Mis Pedidos', url: '/pedidos', icon: 'archive' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
     { title: 'Favoritos', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+    { title: 'Mi Cuenta', url: '/micuenta', icon: 'person' },
+   
+    
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = [ 'Pedidos Pendientes','Mis Ventas', 'Publicar Producto', 'Mis Productos',  , 'Travel', 'Reminders'];
   constructor() {}
 }

@@ -50,10 +50,12 @@ export class LoginPage implements OnInit {
         console.log("Resultado: "+ r);
         console.log("fnLogin - response subscribe");
         console.log("Bienvenido: "+r.token);
+
         localStorage.setItem("token",r.token);
         localStorage.setItem("login", r.login);
         localStorage.setItem("UserId", r.userId);
         console.log("Usuario Logueado: "+ r.login);
+        
         this.fnCargarUltimoPedidoPendiente(r.userId);
         this.route.navigate(['/home']);
       }, 
@@ -64,8 +66,13 @@ export class LoginPage implements OnInit {
       }
       );
   }
-
-
+/*
+  fnGetDatosPersonalesId(userid:number){
+    this.userService.findIdDatosPersonalesByUserId(userid).subscribe(r=>{
+      localStorage.setItem("datos_personales_id",String(r));
+    });
+  }
+*/
   fnCargarUltimoPedidoPendiente(userId:string){
      
     var userId= String(localStorage.getItem("UserId"));
