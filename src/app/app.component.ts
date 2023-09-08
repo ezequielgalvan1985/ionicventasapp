@@ -13,9 +13,16 @@ export class AppComponent {
     { title: 'Mis Pedidos', url: '/pedidos', icon: 'archive' },
     { title: 'Favoritos', url: '/folder/favorites', icon: 'heart' },
     { title: 'Mi Cuenta', url: '/micuenta', icon: 'person' },
-   
-    
+    { title: 'MI TIENDA', url: '/tiendas', icon: 'home' },
   ];
-  public labels = [ 'Pedidos Pendientes','Mis Ventas', 'Publicar Producto', 'Mis Productos',  , 'Travel', 'Reminders'];
+
+  public menuAdmin = [
+    
+    { title: 'Pedido para Preparar', url: '/pedidos-preparar', icon: 'archive' },
+    { title: 'Mis Ventas', url: '/misventas', icon: 'heart' },
+    { title: 'Publicar Producto', url: '/productos/add', icon: 'person' },
+    { title: 'Mis Productos', url: '/productos', icon: 'person' },
+   
+  ];
   constructor() {}
 }

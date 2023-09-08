@@ -19,8 +19,8 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Mi Cuenta</ion-card-title>
-      <ion-card-subtitle>Datos Personales</ion-card-subtitle>
+      <ion-card-title>Mi Tienda</ion-card-title>
+      <ion-card-subtitle>Datos de la Empresa</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
@@ -28,13 +28,19 @@
       <ion-list>
         <ion-list>
           <ion-item>
-            <ion-input placeholder="Nombre" formControlName="nombre"></ion-input>
+            <ion-input placeholder="Nombre de la Empresa" formControlName="nombre"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-input placeholder="Rubro" formControlName="rubro"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input  placeholder="Apellido" formControlName="apellido"></ion-input>
+            <ion-input placeholder="Slogan " formControlName="slogan"></ion-input>
           </ion-item>
-      
-     
+          <ion-item>
+            <ion-input placeholder="Descripcion " formControlName="descripcion"></ion-input>
+          </ion-item>
+
           <ion-item>
             <ion-input placeholder="Direccion" formControlName="direccion"></ion-input>
           </ion-item>
@@ -48,6 +54,7 @@
           <ion-item>
             <ion-input type="tel" placeholder="Telefono" formControlName="telefono"></ion-input>
           </ion-item>
+
         </ion-list>
       </ion-list>
       <ion-button (click)="fnGuardar()">Guardar</ion-button>

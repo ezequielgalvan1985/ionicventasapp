@@ -47,6 +47,24 @@ const routes: Routes = [
     path: 'micuenta',
     loadChildren: () => import('./pages/micuenta/micuenta.module').then( m => m.MicuentaPageModule)
   },
+  
+  
+  {
+    path: 'misventas',
+    loadChildren: () => import('./pages/misventas/misventas.module').then( m => m.MisventasPageModule)
+  },
+  {
+    path: 'productos',
+    loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
+  },
+  {
+    path: 'pedidos-preparar',
+    loadChildren: () => import('./pages/pedidos-preparar/pedidos-preparar.module').then( m => m.PedidosPrepararPageModule)
+  },
+  {
+    path: 'tiendas',
+    loadChildren: () => import('./pages/tiendas/tiendas.module').then( m => m.TiendasPageModule)
+  },
 ];
 
 @NgModule({
