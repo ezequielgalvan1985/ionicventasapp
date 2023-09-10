@@ -21,6 +21,15 @@ export class HomePage implements OnInit {
   public productosResult =[] as Array<Producto>;
   public categoriasResult =[] as  Array<Categoria>;
 
+
+
+  isToastOpen = false;
+  mensajeToast= '';
+
+  isAlertOpen = false;
+  public alertButtons = ['OK'];
+  messageAlert = '';
+
   constructor(
     private data: DataService,
     private productoService:ProductoService,
@@ -50,15 +59,20 @@ export class HomePage implements OnInit {
     this.productoService.findAll().subscribe(dataResponse=>
       {
         this.productosResult = dataResponse;
+      },e=>{
+        this.mensajeToast=e.message;
+        this.isToastOpen = true;
       }
       );
   }
 
-  /*
-  onClickItem(producto:Producto){
-    
-    console.log("click producto:" +producto.productoId);
-    this.router.navigate(['../item-details/',producto.productoId],{relativeTo: this.activeRoute});
+  setOpenToast(isOpen: boolean) {
+    this.isToastOpen = isOpen;
   }
-  */
+
+  
+  setOpenAlert(isOpen: boolean) {
+    this.isAlertOpen = isOpen;
+  }
+  
 }

@@ -45,14 +45,15 @@ export class UserService {
   }
 
   findDatosPersonalesByUserId(userid:Number){
-    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'v1/datospersonales/consultas/findbyuser/'+userid).pipe(
-      catchError(this.handleError)  
-    );
+    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'v1/datospersonales/consultas/findbyuser/'+userid).pipe(catchError(this.handleError));
   }
 
 
   handleError(error:HttpErrorResponse){
-    var m = "ResponseError:  status ("+error.status+ ") - message ("+  error.error.message+")" ;
-    return throwError(()=>new Error(m));
+    
+    var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
+    console.error(m);
+    
+    return throwError(()=>new Error(error.error.message));
   }
 }

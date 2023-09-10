@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Producto</ion-card-title>
+      <ion-card-subtitle>Detalle</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <form [formGroup]="productoForm" >
+      <ion-list>
+        <ion-list>
+          <ion-item>
+            <ion-input label="Nombre" labelPlacement="floating"  formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-textarea  label="Descripcion" labelPlacement="floating"formControlName="descripcion"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Precio" labelPlacement="floating" formControlName="precio"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Precio Oferta" labelPlacement="floating" formControlName="preciooferta"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-select label="Categoria" label-placement="floating" formControlName="categoria">
+              <ion-select-option *ngFor="let c of categoriasList" [value]="c.id">{{c.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-select label="Marca" label-placement="floating" formControlName="marca">
+              <ion-select-option *ngFor="let r of marcasList" [value]="r.id">{{r.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          
+        </ion-list>
+      </ion-list>
+      <ion-button (click)="fnGuardar()">Guardar</ion-button>
+     
+     
+      </form>
+
+
+
+
+
+    </ion-card-content>
+  
+    <ion-toast
+      [isOpen]="isToastOpen"
+      [message]="mensajeToast"
+      [duration]="3000"
+      (didDismiss)="setOpenToast(false)"
+        ></ion-toast>
+    
+    
+        <ion-alert
+        [isOpen]="isAlertOpen"
+        header="Atencion"
+        subHeader="Mensaje Importante"
+        [message]="messageAlert"
+        [buttons]="alertButtons"
+        (didDismiss)="setOpenAlert(false)"
+      ></ion-alert>
+    
+  </ion-card>
+</ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+   
+  </ion-toolbar>
+</ion-footer>

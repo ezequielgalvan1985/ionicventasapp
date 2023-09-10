@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Producto } from '../models/producto';
 import { catchError, map } from 'rxjs/operators';
 
@@ -18,56 +18,43 @@ export class ProductoService {
   
   /** GET heroes from the server */
   findAll(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.productosUrl)
-    .pipe(catchError(this.handleError<Producto[]>('findAll', []))
-    );
+    return this.http.get<Producto[]>(this.productosUrl).pipe(catchError(this.handleError));
   }
+
 
   add(p: Producto): Observable<Producto> {
-    return this.http.post<Producto>(this.productosUrl, p, this.httpOptions)
-    .pipe(  catchError(this.handleError<Producto>('error al crear el producto')));
+    return this.http.post<Producto>(this.productosUrl, p, this.httpOptions).pipe(catchError(this.handleError));
   }
 
 
-  /** GET hero by id. Will 404 if id not found */
   get(id: number): Observable<Producto> {
     const url = `${this.productosUrl}/${id}`;
-    return this.http.get<Producto>(url)
-    .pipe(catchError(this.handleError<Producto>(`getProducto id=${id}`)));
+    return this.http.get<Producto>(url).pipe(catchError(this.handleError));
   }
 
 
   update(producto: Producto): Observable<any> {
-    return this.http.patch(this.productosUrl, producto, this.httpOptions)
-    .pipe(catchError(this.handleError<any>('updateProducto')));
+    return this.http.patch(this.productosUrl, producto, this.httpOptions).pipe(catchError(this.handleError));
   }
+
 
   delete(id: number): Observable<Producto> {
     const url = `${this.productosUrl}/${id}`;
+    return this.http.delete<Producto>(url, this.httpOptions).pipe(catchError(this.handleError));
+  }
 
-    return this.http.delete<Producto>(url, this.httpOptions)
-    //.pipe(catchError(this.handleError<Producto>('deleteProducto')));
+
+  findByEmpresa(empresaId:number){
+    const url = `${this.productosUrl}/consultas/findbyempresa/${empresaId}`;
+    return this.http.get<Producto[]>(this.productosUrl).pipe(catchError(this.handleError));
   }
 
   
-  /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      debugger;
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.error(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+ 
+  handleError(error:HttpErrorResponse){
+    var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
+    console.error(m);
+    return throwError(()=>new Error(error.error.message));
   }
 
   

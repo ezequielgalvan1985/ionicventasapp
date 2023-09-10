@@ -24,7 +24,7 @@
     </ion-card-header>
   
     <ion-card-content>
-      <form [formGroup]="micuentaForm" >
+      <form [formGroup]="mitiendaForm" >
       <ion-list>
         <ion-list>
           <ion-item>
@@ -35,7 +35,7 @@
             <ion-input placeholder="Rubro" formControlName="rubro"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="Slogan " formControlName="slogan"></ion-input>
+            <ion-input placeholder="Frase de la Empresa " formControlName="frase"></ion-input>
           </ion-item>
           <ion-item>
             <ion-input placeholder="Descripcion " formControlName="descripcion"></ion-input>
@@ -58,16 +58,7 @@
         </ion-list>
       </ion-list>
       <ion-button (click)="fnGuardar()">Guardar</ion-button>
-      <!--
-      <ion-alert
-        [isOpen]="isAlertOpen"
-        header=""
-        subHeader="Aviso"
-        message="Datos Guardado Correctamente"
-        [buttons]="alertButtons"
-        (didDismiss)="setOpen(false)"
-      ></ion-alert>
-      -->
+    
       <ion-toast
       [isOpen]="isToastOpen"
       [message]="mensajeToast"

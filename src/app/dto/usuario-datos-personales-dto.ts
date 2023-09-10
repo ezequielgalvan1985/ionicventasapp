@@ -1,3 +1,5 @@
+import { Usuario } from "../models/usuario";
+
 export interface UsuarioDatosPersonalesDto {
     id:number;
     nombre:string;
@@ -5,4 +7,5 @@ export interface UsuarioDatosPersonalesDto {
     direccion:string;
     ciudad:string;
     telefono:string;
+    usuario:Usuario;
 }

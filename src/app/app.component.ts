@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inicio', url: '/home', icon: 'home' },
+
+    { title: 'Inicio', url: '/home', icon: 'desktop' },
     { title: 'Mi Carrito', url: '/carrito', icon: 'cart' },
     { title: 'Mis Pedidos', url: '/pedidos', icon: 'archive' },
     { title: 'Favoritos', url: '/folder/favorites', icon: 'heart' },
@@ -18,10 +19,10 @@ export class AppComponent {
 
   public menuAdmin = [
     
-    { title: 'Pedido para Preparar', url: '/pedidos-preparar', icon: 'archive' },
-    { title: 'Mis Ventas', url: '/misventas', icon: 'heart' },
-    { title: 'Publicar Producto', url: '/productos/add', icon: 'person' },
-    { title: 'Mis Productos', url: '/productos', icon: 'person' },
+    { title: 'Pedido para Preparar', url: '/pedidos-preparar', icon: 'notifications' },
+    { title: 'Mis Ventas', url: '/misventas', icon: 'bar-chart' },
+    { title: 'Publicar Producto', url: '/productos-publicar', icon: 'cloud-upload' },
+    { title: 'Mis Productos', url: '/productos', icon: 'file-tray-full' },
    
   ];
   constructor() {}

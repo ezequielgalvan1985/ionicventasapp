@@ -86,5 +86,20 @@
     </ion-slides>
   </div>
 -->
+<ion-toast
+[isOpen]="isToastOpen"
+[message]="mensajeToast"
+[duration]="3000"
+(didDismiss)="setOpenToast(false)"
+  ></ion-toast>
 
+
+  <ion-alert
+  [isOpen]="isAlertOpen"
+  header="Atencion"
+  subHeader="Mensaje Importante"
+  [message]="messageAlert"
+  [buttons]="alertButtons"
+  (didDismiss)="setOpenAlert(false)"
+></ion-alert>
 </ion-content>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExceptionResponseDto } from 'src/app/dto/exception-response-dto';
 import { UsuarioDatosPersonalesDto } from 'src/app/dto/usuario-datos-personales-dto';
+import { Usuario } from 'src/app/models/usuario';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -44,12 +45,23 @@ export class MicuentaPage implements OnInit {
         telefono: r.telefono,
         ciudad:r.ciudad
       });
+    },
+    e=>{
+     debugger; 
+      this.mensajeToast =e.message,
+      this.isToastOpen = true;
     });
 
   }
 
   fnGuardar(){
-    this.userSrv.updDatosPersonales(this.micuentaForm.value).subscribe(r=>{
+    
+    this.entityUsuarioDatosPersonalesDto = this.micuentaForm.value;
+    this.entityUsuarioDatosPersonalesDto.usuario = {} as Usuario;
+    this.entityUsuarioDatosPersonalesDto.usuario.id =Number(localStorage.getItem("UserId"));
+    
+
+    this.userSrv.updDatosPersonales(this.entityUsuarioDatosPersonalesDto).subscribe(r=>{
       console.log("fnGuardarOK");
       this.mensajeToast = "Datos Actualizados Ok"
       this.isToastOpen = true;
@@ -60,4 +72,5 @@ export class MicuentaPage implements OnInit {
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
   }
+  
 }

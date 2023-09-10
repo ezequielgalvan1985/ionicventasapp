@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { Pedido } from 'src/app/models/pedido';
 import { ToastController } from '@ionic/angular';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +27,15 @@ export class LoginPage implements OnInit {
     private userService:UserService,
     private route: Router,
     private pedidoService:PedidoService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private empresaService:EmpresaService
     ) { }
 
   ngOnInit() {
    
   }
+
+
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Usuario o Contraseña incorrecto.',
@@ -39,6 +43,8 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
+
+
   fnLogin(){
     console.warn(this.loginForm.value);
     this.userLoginDto.username = String(this.loginForm.controls['username'].value);
@@ -57,6 +63,7 @@ export class LoginPage implements OnInit {
         console.log("Usuario Logueado: "+ r.login);
         
         this.fnCargarUltimoPedidoPendiente(r.userId);
+        this.fnFindEmpresaDatosByUserId(r.userId);
         this.route.navigate(['/home']);
       }, 
       e=> {
@@ -66,6 +73,8 @@ export class LoginPage implements OnInit {
       }
       );
   }
+
+
 /*
   fnGetDatosPersonalesId(userid:number){
     this.userService.findIdDatosPersonalesByUserId(userid).subscribe(r=>{
@@ -100,6 +109,21 @@ export class LoginPage implements OnInit {
       this.route.navigate(['/home']);
     })
 
+  }
+
+
+
+  fnFindEmpresaDatosByUserId(userId:string){
+    localStorage.setItem("EmpresaId", String(0));
+    this.empresaService.findEmpresaDatosByUserId(Number(userId))
+      .subscribe(response=>{
+        console.log("fnGetEmpresa: "+ response);
+        if (response!=null){
+          localStorage.setItem("EmpresaId", String(response.id));
+          console.log("login.fnGetEmpresa.response"+ response.id);
+        }
+          
+    })
   }
 
 
