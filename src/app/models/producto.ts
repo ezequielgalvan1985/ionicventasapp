@@ -8,8 +8,8 @@ export interface Producto {
     descripcion?: string;
     precio?: string;
     marcaId?: string;
-    marca?: Marca;
-    categoria?:Categoria;
+    marca:Marca;
+    categoria:Categoria;
     estado?: string;
     precioOferta?: number;
     fechaDesdeDescuento?:string;

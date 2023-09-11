@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Categoria } from 'src/app/models/categoria';
 import { Marca } from 'src/app/models/marca';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -11,20 +12,19 @@ import { ProductoService } from 'src/app/services/producto.service';
   styleUrls: ['./productos.page.scss'],
 })
 export class ProductosPage implements OnInit {
+  
+  isToastOpen = false;
+  mensajeToast= '';
+  isAlertOpen = false;
+  public alertButtons = ['OK'];
+  messageAlert = '';
+  
+  productoId = 0;
   productoForm={}as FormGroup;
   entityProducto = {} as Producto;
   categoriasList = [] as Categoria[];
   marcasList = [] as Marca[];
-
-  isToastOpen = false;
-  mensajeToast= '';
-
-  isAlertOpen = false;
-  public alertButtons = ['OK'];
-  messageAlert = '';
-
-
-  productoId = 0;
+  productosList = [] as Producto[];
 
   constructor(private productoService:ProductoService) { 
 
@@ -32,10 +32,15 @@ export class ProductosPage implements OnInit {
 
 
   ngOnInit() {
+  
+    this.fnLoadProductosByEmpresa(Number(localStorage.getItem("EmpresaId")));
+
   }
 
   fnLoadProductosByEmpresa(empresaId:number){
-    this.productoService.
+    this.productoService.findByEmpresa(empresaId).subscribe(r=> {
+      this.productosList = r;
+    });
   }
 
 
@@ -48,4 +53,14 @@ export class ProductosPage implements OnInit {
     this.isAlertOpen = isOpen;
   }
   
+  fnRemoveItem(producto:Producto){
+    debugger;
+    console.log("producto eliminado:" + JSON.stringify(producto));
+    this.productoService.delete(producto.id).subscribe(r=> 
+    {
+      console.log("Item Pedido Eliminado: "+ producto.id);
+      this.fnLoadProductosByEmpresa(Number(localStorage.getItem("EmpresaId")));
+    });
+    
+  }
 }

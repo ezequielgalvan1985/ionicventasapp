@@ -65,6 +65,7 @@ const routes: Routes = [
     path: 'productos-publicar',
     loadChildren: () => import('./pages/productos-publicar/productos-publicar.module').then( m => m.ProductosPublicarPageModule)
   },
+  
 ];
 
 @NgModule({

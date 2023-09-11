@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioDatosPersonalesDto } from 'src/app/dto/usuario-datos-personales-dto';
 import { Categoria } from 'src/app/models/categoria';
@@ -8,6 +8,8 @@ import { Producto } from 'src/app/models/producto';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { MarcaService } from 'src/app/services/marca.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-productos-publicar',
@@ -15,7 +17,7 @@ import { ProductoService } from 'src/app/services/producto.service';
   styleUrls: ['./productos-publicar.page.scss'],
 })
 export class ProductosPublicarPage implements OnInit {
-
+  private activatedRoute = inject(ActivatedRoute);
   productoForm={}as FormGroup;
   entityProducto = {} as Producto;
   categoriasList = [] as Categoria[];
@@ -30,7 +32,7 @@ export class ProductosPublicarPage implements OnInit {
 
 
   productoId = 0;
-
+  empresaId = 0;
 
   constructor( private productoService:ProductoService,
     private marcaService:MarcaService,
@@ -53,10 +55,11 @@ export class ProductosPublicarPage implements OnInit {
       preciooferta:new FormControl("", Validators.required),
       oferta:new FormControl("", Validators.required)
     });
-    //this.fnGetDataForm();
+    
   
-
-
+    this.productoId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.empresaId = Number(localStorage.getItem("EmpresaId"));
+    this.fnGetDataForm();
   }
 
   
@@ -70,11 +73,15 @@ export class ProductosPublicarPage implements OnInit {
 
 
   fnGetDataForm(){
-    if ( this.productoId == 0) {
-      this.messageAlert = 'Usuario No tiene Tienda Creada.'
-      this.isAlertOpen = true;
+    if ( this.empresaId == 0) {
+      this.mensajeToast = "Usuario no tiene Tienda Creada.";
+      this.isToastOpen = true;
       return ;
     }
+    if ( this.productoId == 0) {
+      return ;
+    }
+    
 
     this.productoService.get(this.productoId).subscribe(r=>{
       this.entityProducto = r;
@@ -109,12 +116,22 @@ export class ProductosPublicarPage implements OnInit {
     this.entityProducto.marca.id = this.productoForm.get("marca")?.value;
     
     console.log(this.productoForm.value);
-    this.productoService.add(this.entityProducto).subscribe(r=>{
-      console.log("fnGuardarOK");
-      this.mensajeToast = "Datos Actualizados Ok"
-      this.isToastOpen = true;
-    });
 
+    if (this.productoId == 0 ){
+      this.productoService.add(this.entityProducto).subscribe(r=>{
+        console.log("fnGuardarOK");
+        this.mensajeToast = "Producto Creado Ok"
+        this.isToastOpen = true;
+      });
+    }else{
+      this.productoService.update(this.entityProducto).subscribe(r=>{
+        console.log("fnGuardarOK");
+        this.mensajeToast = "Datos Actualizados Ok"
+        this.isToastOpen = true;
+      });
+    }
+    
+   
   }
 
 
