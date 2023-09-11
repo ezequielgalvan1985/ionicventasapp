@@ -27,12 +27,17 @@ export class ProductosPage implements OnInit {
   productosList = [] as Producto[];
 
   constructor(private productoService:ProductoService) { 
-
+    this.fnRefresh();
   }
 
 
   ngOnInit() {
   
+    this.fnRefresh();
+
+  }
+  
+  fnRefresh(){
     this.fnLoadProductosByEmpresa(Number(localStorage.getItem("EmpresaId")));
 
   }

@@ -1,9 +1,10 @@
+import { Rubro } from "./rubro";
 import { Usuario } from "./usuario";
 
 export interface Empresa {
     id:number;
     nombre:string;
-    rubro:string;
+    rubro:Rubro;
     frase:string;
     descripcion:string;
     direccion:string;

@@ -37,11 +37,13 @@ export class ProductosPublicarPage implements OnInit {
   constructor( private productoService:ProductoService,
     private marcaService:MarcaService,
     private categoriaService:CategoriaService) { 
-   
+     
   }
 
 
   ngOnInit() {
+   
+
     this.fnLoadCategorias();
     this.fnLoadMarcas();
     
@@ -52,7 +54,7 @@ export class ProductosPublicarPage implements OnInit {
       precio: new FormControl("", Validators.required),
       categoria: new FormControl("", Validators.required),
       marca: new FormControl("", Validators.required),
-      preciooferta:new FormControl("", Validators.required),
+      precioOferta:new FormControl("", Validators.required),
       oferta:new FormControl("", Validators.required)
     });
     
@@ -90,9 +92,9 @@ export class ProductosPublicarPage implements OnInit {
         nombre: r.nombre,
         descripcion:r.descripcion,
         precio: r.precio,
-        categoria: r.categoria,
-        marca:r.marca,
-        preciooferta:r.precioOferta
+        categoria: r.categoria.id,
+        marca:r.marca.id,
+        precioOferta:r.precioOferta
       });
        
     },
@@ -105,17 +107,16 @@ export class ProductosPublicarPage implements OnInit {
   }
 
   fnGuardar(){
-    
     this.entityProducto = this.productoForm.value;
     this.entityProducto.empresa = {} as Empresa;
     this.entityProducto.categoria = {} as Categoria;
     this.entityProducto.marca = {} as Marca;
-
     this.entityProducto.empresa.id =Number(localStorage.getItem("EmpresaId"));
     this.entityProducto.categoria.id = this.productoForm.get("categoria")?.value;
     this.entityProducto.marca.id = this.productoForm.get("marca")?.value;
     
-    console.log(this.productoForm.value);
+    console.log("ContenidoJson: "+ JSON.stringify(this.entityProducto));
+    console.log("ContenidoForm: " + JSON.stringify(this.productoForm.value));
 
     if (this.productoId == 0 ){
       this.productoService.add(this.entityProducto).subscribe(r=>{

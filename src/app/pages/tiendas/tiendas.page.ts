@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioDatosPersonalesDto } from 'src/app/dto/usuario-datos-personales-dto';
 import { Empresa } from 'src/app/models/empresa';
+import { Rubro } from 'src/app/models/rubro';
 import { Usuario } from 'src/app/models/usuario';
 import { EmpresaService } from 'src/app/services/empresa.service';
+import { RubroService } from 'src/app/services/rubro.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,7 +20,9 @@ export class TiendasPage implements OnInit {
   isToastOpen = false;
   mensajeToast= '';
   
-  constructor(private empresaService:EmpresaService) { }
+  rubrosList = [] as Rubro[];
+
+  constructor(private empresaService:EmpresaService, private rubroService:RubroService) { }
 
   ngOnInit() {
     this.mitiendaForm = new FormGroup({
@@ -32,6 +36,8 @@ export class TiendasPage implements OnInit {
       telefono: new FormControl("", Validators.required),
     });
     this.fnLoadFormData();
+    this.fnLoadRubros();
+
   }
 
 
@@ -41,7 +47,7 @@ export class TiendasPage implements OnInit {
       this.mitiendaForm.patchValue({
         id:r.id,
         nombre: r.nombre,
-        rubro:r.rubro,
+        rubro:r.rubro.id,
         frase:r.frase,
         descripcion:r.descripcion,
         direccion: r.direccion,
@@ -51,10 +57,19 @@ export class TiendasPage implements OnInit {
     });
 
   }
+  
+  
+  fnLoadRubros(){
+    this.rubroService.findAll().subscribe(r=> this.rubrosList = r);
+  }
+
 
   fnGuardar(){
     this.entityEmpresa = this.mitiendaForm.value;
     this.entityEmpresa.usuario = {} as Usuario;
+    this.entityEmpresa.rubro = {} as Rubro;
+    this.entityEmpresa.rubro.id = Number(this.mitiendaForm.get("rubro")?.value);
+    
     this.entityEmpresa.usuario.id =Number(localStorage.getItem("UserId"));
 
     this.empresaService.update(this.mitiendaForm.value).subscribe(r=>{

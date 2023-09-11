@@ -15,8 +15,12 @@
 </ion-header>
 <ion-content fullscreen="true">
   <h1 class="title">Productos </h1>
-  
+ 
   <div class="cart-items">
+    <ion-button (click)="fnRefresh()" fill="outline"> Refrescar
+      <ion-icon name="reload-outline" slot="end"></ion-icon> 
+     
+    </ion-button>
     <ion-item-sliding *ngFor="let producto of productosList" >
      
     <ion-card mode="ios">

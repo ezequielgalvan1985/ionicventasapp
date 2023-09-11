@@ -37,17 +37,17 @@
             <ion-input label="Precio" labelPlacement="floating" formControlName="precio"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Precio Oferta" labelPlacement="floating" formControlName="preciooferta"></ion-input>
+            <ion-input label="Precio Oferta" labelPlacement="floating" formControlName="precioOferta"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-select label="Categoria" label-placement="floating" formControlName="categoria">
-              <ion-select-option *ngFor="let c of categoriasList" [value]="c.id">{{c.nombre}}</ion-select-option>
+            <ion-select label="Categoria" label-placement="floating" formControlName="categoria" >
+              <ion-select-option *ngFor="let c of categoriasList" [value]="c.id" >{{c.nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-            <ion-select label="Marca" label-placement="floating" formControlName="marca">
-              <ion-select-option *ngFor="let r of marcasList" [value]="r.id">{{r.nombre}}</ion-select-option>
+            <ion-select label="Marca" label-placement="floating" formControlName="marca" >
+              <ion-select-option *ngFor="let r of marcasList" [value]="r.id" >{{r.nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
 

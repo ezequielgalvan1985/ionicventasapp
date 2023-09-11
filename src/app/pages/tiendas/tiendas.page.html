@@ -32,7 +32,9 @@
           </ion-item>
           
           <ion-item>
-            <ion-input placeholder="Rubro" formControlName="rubro"></ion-input>
+            <ion-select label="Rubro" label-placement="floating" formControlName="rubro" >
+              <ion-select-option *ngFor="let r of rubrosList" [value]="r.id" >{{r.nombre}}</ion-select-option>
+            </ion-select>
           </ion-item>
           <ion-item>
             <ion-input placeholder="Frase de la Empresa " formControlName="frase"></ion-input>
