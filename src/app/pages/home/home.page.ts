@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { Producto } from 'src/app/models/producto';
+import { Rubro } from 'src/app/models/rubro';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { DataService } from 'src/app/services/data.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { RubroService } from 'src/app/services/rubro.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +22,8 @@ export class HomePage implements OnInit {
   public results = [];
   public productosResult =[] as Array<Producto>;
   public categoriasResult =[] as  Array<Categoria>;
-
+  public rubrosResult =[] as  Array<Rubro>;
+  
 
 
   isToastOpen = false;
@@ -34,6 +37,7 @@ export class HomePage implements OnInit {
     private data: DataService,
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
+    private rubroService:RubroService,
     private activeRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -41,12 +45,19 @@ export class HomePage implements OnInit {
   ngOnInit() {
     //this.categories = this.data.getCategories();
     //this.featuredProducts = this.data.getFeaturedProducts();
-    this.fnGetAllCategorias();
-    this.fnGetAllProductos();
+    this.fnFindAllCategorias();
+    this.fnFindAllProductos();
+    this.fnFindAllRubros();
     //this.bestSellProducts = this.data.getBestSellProducts();
   }
 
-  fnGetAllCategorias(){
+
+  fnFindAllRubros(){
+    this.rubroService.findAll().subscribe(r=> this.rubrosResult = r);
+  }
+
+
+  fnFindAllCategorias(){
     this.categoriaService.findAll().subscribe(dataResponse=>
       {
         this.categoriasResult = dataResponse;
@@ -55,7 +66,7 @@ export class HomePage implements OnInit {
 
   }
 
-  fnGetAllProductos(){
+  fnFindAllProductos(){
     this.productoService.findAll().subscribe(dataResponse=>
       {
         this.productosResult = dataResponse;

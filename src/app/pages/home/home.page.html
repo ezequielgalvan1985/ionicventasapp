@@ -36,14 +36,14 @@
 <ion-content>
   
   <div class="title ion-padding">
-    <h2>Categorias</h2>
+    <h2>Rubros</h2>
     <p>Ver todo</p>
   </div>
   <div class="category-slider ion-padding-start">
   <swiper-container [slidesPerView]="3" [loop]="false">
-    <swiper-slide *ngFor="let category of categoriasResult">
-    <ion-col>
-      <h4>{{ category.nombre }}</h4>
+    <swiper-slide *ngFor="let r of rubrosResult">
+    <ion-col routerLink="/comercios/{{ r.id}}" routerDirection="forward">
+      <h4>{{ r.nombre }}</h4>
       <img src="../../assets/categories/category-1.png" />
     </ion-col>
     </swiper-slide>
@@ -57,7 +57,7 @@
     <p>See all</p>
   </div>
 <div class="product-slider ion-padding-start">
-    <swiper-container [slidesPerView]="3" [loop]="false">
+    <swiper-container [slidesPerView]="4" [loop]="false">
       <swiper-slide *ngFor="let product of productosResult">
         <ion-col class="ion-text-left" routerLink="/item-details/{{ product.id}}" routerDirection="forward">
           <img src="../../assets/product-slider/prod-slide1.png" />

@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen="true">
+  <ion-card>
+    <ion-thumbnail>
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+    </ion-thumbnail>
+    <ion-card-header>
+      
+      <ion-card-title>{{empresaEntity.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{empresaEntity.descripcion}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Entrega <ion-icon name="stopwatch"  color="primary"></ion-icon></p> 
+            <b>25 min</b>
+          </ion-col>
+          <ion-col>
+            <p>Envio <ion-icon name="bicycle"  color="primary"></ion-icon></p>   
+            <b>Gratis</b>
+          </ion-col>
+          <ion-col><p>Calificacion <ion-icon name="star"  color="primary"></ion-icon></p>   
+            <b>Gratis</b></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
+  
+  <h1>Los mas Pedidos...</h1>
+  <swiper-container [slidesPerView]="2" [loop]="false">
+    <swiper-slide *ngFor="let r of productosList">
+    <ion-col routerLink="/items-details/{{ r.id}}" routerDirection="forward">
+            
+      <ion-card>
+        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+        <ion-card-header>
+          <ion-card-title>{{r.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{r.descripcion}}</ion-card-subtitle>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <h2><b> ${{r.precio}}</b></h2>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    </swiper-slide>
+  </swiper-container>
+  
+
+  <h1>Elegi lo que quieras...</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let r of productosList; let index=index" >
+        <ion-card >
+          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+          <ion-card-header>
+            <ion-card-title>{{r.nombre}}</ion-card-title>
+            <ion-card-subtitle>{{r.descripcion}}</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <h2><b> ${{r.precio}}</b></h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+     
+    </ion-row>
+  </ion-grid>
+
+   
+</ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  
+</ion-footer>

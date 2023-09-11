@@ -65,6 +65,14 @@ const routes: Routes = [
     path: 'productos-publicar',
     loadChildren: () => import('./pages/productos-publicar/productos-publicar.module').then( m => m.ProductosPublicarPageModule)
   },
+  {
+    path: 'comercios',
+    loadChildren: () => import('./pages/comercios/comercios.module').then( m => m.ComerciosPageModule)
+  },
+  {
+    path: 'comercio-galeria',
+    loadChildren: () => import('./pages/comercio-galeria/comercio-galeria.module').then( m => m.ComercioGaleriaPageModule)
+  },
   
 ];
 

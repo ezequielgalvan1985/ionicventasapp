@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen="true">
+  <h1>{{rubroEntity.nombre}}</h1>
+  <swiper-container [slidesPerView]="4" [loop]="false">
+    <swiper-slide *ngFor="let r of comerciosList">
+    <ion-col routerLink="/comercio-galeria/{{ r.id}}" routerDirection="forward">
+            
+      <ion-card>
+        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+        <ion-card-header>
+          <ion-card-title>{{r.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{r.descripcion}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+         
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    </swiper-slide>
+  </swiper-container>
+  
+
+
+</ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  
+</ion-footer>
+
