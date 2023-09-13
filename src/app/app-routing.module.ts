@@ -73,6 +73,14 @@ const routes: Routes = [
     path: 'comercio-galeria',
     loadChildren: () => import('./pages/comercio-galeria/comercio-galeria.module').then( m => m.ComercioGaleriaPageModule)
   },
+  {
+    path: 'publicidad',
+    loadChildren: () => import('./pages/publicidad-form/publicidad-form.module').then( m => m.PublicidadFormPageModule)
+  },
+  {
+    path: 'publicidades',
+    loadChildren: () => import('./pages/publicidad-listado/publicidad-listado.module').then( m => m.PublicidadListadoPageModule)
+  },
   
 ];
 

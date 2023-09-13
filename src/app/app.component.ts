@@ -23,7 +23,7 @@ export class AppComponent {
     { title: 'Mis Ventas', url: '/misventas', icon: 'bar-chart' },
     { title: 'Publicar Producto', url: '/productos-publicar', icon: 'cloud-upload' },
     { title: 'Mis Productos', url: '/productos', icon: 'file-tray-full' },
-    { title: 'Contratar Publicidad', url: '/publicidades', icon: 'file-tray-full' },
+    { title: 'Contratar Publicidad', url: '/publicidad', icon: 'file-tray-full' },
   ];
   constructor() {}
 }
