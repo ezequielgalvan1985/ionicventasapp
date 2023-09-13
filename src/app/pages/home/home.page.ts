@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { Producto } from 'src/app/models/producto';
+import { Publicidad } from 'src/app/models/publicidad';
 import { Rubro } from 'src/app/models/rubro';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { DataService } from 'src/app/services/data.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { PublicidadService } from 'src/app/services/publicidad.service';
 import { RubroService } from 'src/app/services/rubro.service';
 
 @Component({
@@ -23,7 +25,7 @@ export class HomePage implements OnInit {
   public productosResult =[] as Array<Producto>;
   public categoriasResult =[] as  Array<Categoria>;
   public rubrosResult =[] as  Array<Rubro>;
-  
+  public publicidadesResult = [] as Publicidad[];
 
 
   isToastOpen = false;
@@ -37,6 +39,7 @@ export class HomePage implements OnInit {
     private data: DataService,
     private productoService:ProductoService,
     private categoriaService:CategoriaService,
+    private publicidadService:PublicidadService,
     private rubroService:RubroService,
     private activeRoute: ActivatedRoute,
     private router: Router
@@ -48,9 +51,13 @@ export class HomePage implements OnInit {
     this.fnFindAllCategorias();
     this.fnFindAllProductos();
     this.fnFindAllRubros();
+    this.fnFindAllPublicidades();
     //this.bestSellProducts = this.data.getBestSellProducts();
   }
 
+  fnFindAllPublicidades(){
+    this.publicidadService.findAll().subscribe(r=> this.publicidadesResult = r)
+  }
 
   fnFindAllRubros(){
     this.rubroService.findAll().subscribe(r=> this.rubrosResult = r);

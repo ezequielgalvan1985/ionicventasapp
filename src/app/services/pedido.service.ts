@@ -1,7 +1,7 @@
 import { PedidoItem } from 'src/app/models/pedido-item';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Producto } from '../models/producto';
 import { catchError, map } from 'rxjs/operators';
 import { Pedido } from '../models/pedido';
@@ -24,14 +24,13 @@ export class PedidoService {
   constructor(private http: HttpClient) { }
 
     insert(pedido: Pedido): Observable<Pedido> {
-      return this.http.post<Pedido>(this.urlBase+'/pedidos', pedido, this.httpOptions);
-      
+      return this.http.post<Pedido>(this.urlBase+'/pedidos', pedido, this.httpOptions).pipe(catchError(this.handleError));;  
     }
 
     insertItemPedido(item:PedidoItemDto):Observable<PedidoItemDto>{
       var uri='http://localhost:8050/v1/pedidoitems'
       console.log("insertItemPedido: "+ JSON.stringify(item));
-      return this.http.post<PedidoItemDto>(uri,item);
+      return this.http.post<PedidoItemDto>(uri,item).pipe(catchError(this.handleError));;
         
     }
 
@@ -39,31 +38,38 @@ export class PedidoService {
     console.log("pedido.service.getultimopedido");
     const uri = this.urlBase+'/pedidos/consultas/getultimopendiente/'+ userId;
     
-    return this.http.get<Pedido>(uri);
+    return this.http.get<Pedido>(uri).pipe(catchError(this.handleError));;
+  }
+
+  getPedidosPendientes(userId:string):Observable<Pedido[]>{
+    console.log("pedido.service.getPedidosPendientes");
+    const uri = this.urlBase+'/pedidos/consultas/getultimopendiente/'+ userId;
+    
+    return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
 
   getByUserId(userId:string):Observable<Pedido[]>{
     console.log("pedido.service.getByUserId");
     const uri = this.urlBase+'/pedidos/consultas/getbyuser/'+ userId;
     
-    return this.http.get<Pedido[]>(uri);
+    return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
 
   updateItemPedido(item:PedidoItem){
     console.log("pedido.service.getultimopedido");
     const uri = 'http://localhost:8050/v1/pedidoitems';
-    return this.http.patch<any>(uri,item);
+    return this.http.patch<any>(uri,item).pipe(catchError(this.handleError));;
   }
 
   updItemPedidoCantidad(item:PedidoItemUpdCantidadDto){
     console.log("pedido.service.updItemPedidoCantidad: "+ JSON.stringify(item));
     const uri = 'http://localhost:8050/v1/pedidoitems/accion/upd/cantidad';
-    return this.http.post<any>(uri,item);
+    return this.http.post<any>(uri,item).pipe(catchError(this.handleError));;
   }
 
   eliminarPedidoItem(item:PedidoItem):Observable<any>{
     const uri = 'http://localhost:8050/v1/pedidoitems/'+ item.id;
-    return this.http.delete(uri, this.httpOptions);
+    return this.http.delete(uri, this.httpOptions).pipe(catchError(this.handleError));;
     
   }
 
@@ -71,23 +77,28 @@ export class PedidoService {
     console.log("pedido.service.updatePedido");
     const uri = 'https://localhost:5001/api/pedidos';
 
-    return this.http.patch<Pedido>(uri,pedido);
+    return this.http.patch<Pedido>(uri,pedido).pipe(catchError(this.handleError));;
   }
 
   updEstadoPedido(pedido:PedidoUpdEstadoDto):Observable<any>{
     console.log("pedido.service.confirmarPedido");
     const uri = 'http://localhost:8050/v1/pedidos/accion/upd/estado' ;
 
-    return this.http.patch(uri,pedido);
+    return this.http.patch(uri,pedido).pipe(catchError(this.handleError));;
   }
 
   postReplicarCompra(pedidoId:number):Observable<Pedido>{
     console.log("pedido.service.postReplicarCompra");
-    
     const uri = this.urlBase+'/pedidos/comandos/ReplicarCompra';
-    return this.http.post<Pedido>(uri,pedidoId);
+    return this.http.post<Pedido>(uri,pedidoId).pipe(catchError(this.handleError));;
   }
   
  
+  handleError(error:HttpErrorResponse){
+    var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
+    console.error(m);
+    return throwError(()=>new Error(error.error.message));
+  }
+
 
 }

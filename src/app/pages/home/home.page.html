@@ -35,25 +35,69 @@
 
 <ion-content>
   
-  <div class="title ion-padding">
-    <h2>Rubros</h2>
-    <p>Ver todo</p>
-  </div>
-  <div class="category-slider ion-padding-start">
-  <swiper-container [slidesPerView]="3" [loop]="false">
-    <swiper-slide *ngFor="let r of rubrosResult">
-    <ion-col routerLink="/comercios/{{ r.id}}" routerDirection="forward">
-      <h4>{{ r.nombre }}</h4>
-      <img src="../../assets/categories/category-1.png" />
+
+
+<!-- SECCION PUBLICIDADES-->
+<h1>Seccion Publicidades</h1>
+<swiper-container [slidesPerView]="3" [loop]="false">
+  <swiper-slide *ngFor="let r of publicidadesResult">
+  <ion-col routerLink="/comercios/{{ r.id}}" routerDirection="forward">    
+    <ion-card color="primary">
+      <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+      <ion-card-header>
+        <ion-card-title >{{r.titulo}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-col>
+
+  </swiper-slide>
+</swiper-container>
+<!-- FIN SECCION PUBLICIDADES-->
+
+
+
+
+<!-- SECCION Rubros-->
+<h1>Seccion Rubros</h1>
+<ion-grid>
+  <ion-row>
+    <ion-col size="3" *ngFor="let r of rubrosResult; let index=index" >
+      <figure>
+        <img src="https://picsum.photos/id/287/250/300" alt="Mountains">
+        <figcaption>{{r.nombre}}</figcaption>
+      </figure>
     </ion-col>
+  </ion-row>
+</ion-grid>
+
+  
+  
+<!-- FIN SECCION rubros -->
+
+
+<!-- SECCION Populares--> 
+<div class="title ion-padding">
+  <h2 class="font-bold">Mis Favoritos</h2>
+  <p>See all</p>
+</div>
+<div class="product-slider ion-padding-start">
+  <swiper-container [slidesPerView]="4" [loop]="false">
+    <swiper-slide *ngFor="let product of productosResult">
+      <ion-col class="ion-text-left" routerLink="/item-details/{{ product.id}}" routerDirection="forward">
+        <img src="../../assets/product-slider/prod-slide1.png" />
+        <p>${{ product.precio }}</p>
+        <h6>{{ product.nombre }}</h6>
+      </ion-col>
     </swiper-slide>
   </swiper-container>
-  </div>    
+</div>
+
+<!-- FIN SECCION Populares -->
 
 
- 
+<!-- SECCION Populares--> 
   <div class="title ion-padding">
-    <h2 class="font-bold">Productos</h2>
+    <h2 class="font-bold">Populares</h2>
     <p>See all</p>
   </div>
 <div class="product-slider ion-padding-start">
@@ -68,6 +112,13 @@
     </swiper-container>
   </div>
 
+<!-- FIN SECCION Populares -->
+
+
+
+<!-- SECCION Populares--> 
+
+<!-- SECCION Populares--> 
  <!--
   <div class="title ion-padding">
     <h2 class="font-bold">Best Sell</h2>

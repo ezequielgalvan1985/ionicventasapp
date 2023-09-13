@@ -45,22 +45,20 @@ export class CarritoPage implements OnInit {
     this.fnUpdatePedidoItem(item);
   }
 
+
   fnUpdatePedidoItem(item:PedidoItem){
-  
-  
     console.log("carrito.fnUpdatePedidoItem.pre: "+ item.id + " - "+ item.cantidad);
     this.pedidoItemUpdCantidadDto.id = item.id;
     this.pedidoItemUpdCantidadDto.cantidad = item.cantidad;
-
-
     this.pedidoService.updItemPedidoCantidad(this.pedidoItemUpdCantidadDto).subscribe(r=> {
       console.log("carrito.fnUpdatePedidoItem.responseOk");
     })
-
   }
+
 
   fnRefreshPedido(){
     var userId = String(localStorage.getItem("UserId"));
+   
     this.pedidoService.getUltimoPedidoPendiente(userId)
     .subscribe(response=>{
       console.log("carrito.fnrefreshpedido.response: "+ userId + " - " +response.id );
