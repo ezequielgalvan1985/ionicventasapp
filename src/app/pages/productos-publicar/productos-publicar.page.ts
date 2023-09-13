@@ -44,7 +44,7 @@ export class ProductosPublicarPage implements OnInit {
   ngOnInit() {
    
 
-    this.fnLoadCategorias();
+    this.fnFindCategoriasByRubroId(String(localStorage.getItem("RubroId")));
     this.fnLoadMarcas();
     
     this.productoForm = new FormGroup({
@@ -65,8 +65,12 @@ export class ProductosPublicarPage implements OnInit {
   }
 
   
-  fnLoadCategorias(){
-    this.categoriaService.findAll().subscribe(r=> this.categoriasList = r )
+  fnFindCategoriasByRubroId(rubroId:string){
+    console.log("fnFindCategoriasByRubroId: "+ rubroId);
+    this.categoriaService.findByRubroId(rubroId).subscribe(r=> {
+      debugger;
+    
+      this.categoriasList = r} )
   }
 
   fnLoadMarcas(){

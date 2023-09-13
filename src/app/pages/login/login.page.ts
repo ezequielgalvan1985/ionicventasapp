@@ -120,9 +120,10 @@ export class LoginPage implements OnInit {
         console.log("fnGetEmpresa: "+ response);
         if (response!=null){
           localStorage.setItem("EmpresaId", String(response.id));
+          localStorage.setItem("RubroId", String(response.rubro.id));
+        
           console.log("login.fnGetEmpresa.response"+ response.id);
         }
-          
     })
   }
 
