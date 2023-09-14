@@ -1,13 +1,92 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>publicidad-listado</ion-title>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">publicidad-listado</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1 class="title">{{tituloFormulario}} </h1>
+  <h2>{{subtituloFormulario}}</h2>
+
+  
+        <ion-item-sliding *ngFor="let r of entityList" >
+          <ion-card>
+          <ion-item>
+            <ion-card-content >
+          
+              <ion-thumbnail slot="start" routerLink="/publicidad/{{ r.id}}" routerDirection="forward">
+                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              </ion-thumbnail>
+              <ion-label>
+              
+              
+                <ion-grid>
+                  <ion-row>
+                    <ion-col >{{ r.titulo }}</ion-col>
+                    <ion-col >
+                      <ion-chip>
+                        <ion-icon name="calendar" color="primary"></ion-icon>
+                        <ion-label>Desde: dd-mm-yyyy</ion-label>
+                      </ion-chip>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-chip>
+                        <ion-icon name="calendar" color="primary"></ion-icon>
+                        <ion-label>Desde: dd-mm-yyyy</ion-label>
+                      </ion-chip>
+                    </ion-col>
+                    
+                  </ion-row>
+                
+                  <ion-row>
+                    <ion-col>"%{{r.porcentaje}} de descuento en {{r.producto.nombre }}  
+                      llevando {{r.cantidad}} paga solo ${{r.precio}}"
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-label>
+
+        </ion-card-content>
+      </ion-item>
+       
+      <ion-item-options side="end">   
+            <ion-item-option color="danger" (click)="fnRemoveItem(r)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-card>
+        </ion-item-sliding>
+      
+      
+  <ion-toast
+  [isOpen]="isToastOpen"
+  [message]="mensajeToast"
+  [duration]="3000"
+  (didDismiss)="setOpenToast(false)"
+    ></ion-toast>
+
+
+    <ion-alert
+    [isOpen]="isAlertOpen"
+    header="Atencion"
+    subHeader="Mensaje Importante"
+    [message]="messageAlert"
+    [buttons]="alertButtons"
+    (didDismiss)="setOpenAlert(false)"
+  ></ion-alert>
 </ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+   
+  </ion-toolbar>
+</ion-footer>

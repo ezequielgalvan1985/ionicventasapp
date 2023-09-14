@@ -9,6 +9,7 @@ import { PedidoItemDto } from '../dto/pedido-item-dto';
 
 import { PedidoItemUpdCantidadDto } from '../dto/pedido-item-upd-cantidad-dto';
 import { PedidoUpdEstadoDto } from '../dto/pedido-upd-estado-dto';
+import { PedidoFindByUserEmpresaRequestDto } from '../dto/request/PedidoFindByUserEmpresaRequestDto';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,12 @@ export class PedidoService {
     return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
 
+  findUltimoPendienteByUserIdAndEmpresaId(item:PedidoFindByUserEmpresaRequestDto):Observable<Pedido>{
+    console.log("pedido.service.findUltimoPendienteByUserIdAndEmpresaId");
+    const uri = this.urlBase+'/pedidos/consultas/findultimopendientebyuserandempresa';
+    
+    return this.http.post<Pedido>(uri,item).pipe(catchError(this.handleError));;
+  }
   updateItemPedido(item:PedidoItem){
     console.log("pedido.service.getultimopedido");
     const uri = 'http://localhost:8050/v1/pedidoitems';

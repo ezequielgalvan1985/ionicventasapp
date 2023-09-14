@@ -42,6 +42,13 @@ export class PublicidadService {
     return this.http.delete<Publicidad>(url, this.httpOptions).pipe(catchError(this.handleError));
 
   }
+
+  findByEmpresaId(id:number): Observable<Publicidad[]> {
+    const url = `${this.baseUrl}/consultas/findbyempresa/${id}`;
+    return this.http.get<Publicidad[]>(url).pipe(catchError(this.handleError));;
+  }
+
+
   handleError(error:HttpErrorResponse){
     var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
     console.error(m);

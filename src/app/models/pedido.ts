@@ -1,3 +1,4 @@
+import { Empresa } from "./empresa";
 import { PedidoItem } from "./pedido-item";
 import { Usuario } from "./usuario";
 
@@ -8,4 +9,5 @@ export interface Pedido {
     items:PedidoItem[];
     estado:string;
     importeEnvio:number;
+    empresa:Empresa;
 }

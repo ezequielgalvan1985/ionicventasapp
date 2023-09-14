@@ -107,17 +107,20 @@
     <h2 class="font-bold">Populares</h2>
     <p>See all</p>
   </div>
-<div class="product-slider ion-padding-start">
-    <swiper-container [slidesPerView]="4" [loop]="false">
-      <swiper-slide *ngFor="let product of productosResult">
-        <ion-col class="ion-text-left" routerLink="/item-details/{{ product.id}}" routerDirection="forward">
-          <img src="../../assets/product-slider/prod-slide1.png" />
-          <p>${{ product.precio }}</p>
-          <h6>{{ product.nombre }}</h6>
-        </ion-col>
-      </swiper-slide>
-    </swiper-container>
-  </div>
+   
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3"*ngFor="let product of productosResult">
+      <ion-card class="card" >
+        <img src="../../assets/product-slider/prod-slide1.png" />
+        <h2>{{ product.nombre }}</h2>
+        <p>
+          Here's a small text description for the card content. Nothing more, nothing less.
+        </p>
+      </ion-card>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
 
 <!-- FIN SECCION Populares -->
 

@@ -11,6 +11,7 @@ import { PedidoService } from 'src/app/services/pedido.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
+import { PedidoFindByUserEmpresaRequestDto } from 'src/app/dto/request/PedidoFindByUserEmpresaRequestDto';
 
 @Component({
   selector: 'app-item-details',
@@ -25,10 +26,13 @@ export class ItemDetailsPage implements OnInit {
   productoSelected={}as Producto;
   itemPedidoForm={}as FormGroup;
   cantidad = 0 as number;
-  pedidoId = 0 as number;
+  
   productoId = 0 as number;
   itemPedido={} as PedidoItemDto;
   pedidoTmp ={} as Pedido;
+  pedidoFindByUserEmpresaRequestDto = {} as PedidoFindByUserEmpresaRequestDto; 
+
+
   async presentAlert(titulo:string, subTitulo:string, mensaje:string) {
     
     const alert = await this.alertController.create({
@@ -59,26 +63,41 @@ export class ItemDetailsPage implements OnInit {
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
     console.log("ngOnInit");
     
+
     this.itemPedidoForm = new FormGroup({
       pedidoId: new FormControl(0, Validators.required),
       productoId: new FormControl(this.productoId, Validators.required),
       cantidad: new FormControl(1, Validators.required)
     });
     
+    this.fnLoadDataForm();
     
     
-    this.productoService.get(this.productoId).subscribe
-      (
-        response=>{
-          console.log("Producto leido: "+ response);
-          this.productoSelected = response;
-          var a = this.itemPedidoForm.get("productoId");
-
-          console.log(a?.value);
-      }
-    );
   }
 
+
+  fnLoadDataForm(){
+    this.productoService.get(this.productoId).subscribe
+    (
+      response=>{
+        console.log("Producto leido: "+ response);
+        this.productoSelected = response;
+        var a = this.itemPedidoForm.get("productoId");
+        
+        console.log(a?.value);
+        this.pedidoFindByUserEmpresaRequestDto.empresaId =this.productoSelected.empresa.id;
+        this.pedidoFindByUserEmpresaRequestDto.userId = Number(localStorage.getItem("UserId"));
+        this.fnFindUltimoPedidoByEmpresaId(this.pedidoFindByUserEmpresaRequestDto);
+    });
+  }
+
+  fnFindUltimoPedidoByEmpresaId(item:PedidoFindByUserEmpresaRequestDto){
+    
+    this.pedidoService.findUltimoPendienteByUserIdAndEmpresaId(item).subscribe(r=>{
+      this.pedidoTmp   = r;
+    });
+
+  }
 
   fnAgregarAlCarrito(){ 
     console.log(this.itemPedidoForm.value);
@@ -88,29 +107,31 @@ export class ItemDetailsPage implements OnInit {
       return false;
     }
     
-    this.pedidoId = Number(localStorage.getItem("UltimoPedidoId"));
-    this.itemPedido.pedido.id= this.pedidoId;
+    this.itemPedido.pedido.id= this.pedidoTmp.id;
     this.itemPedido.cantidad = this.itemPedidoForm.get("cantidad")?.value;
     this.itemPedido.producto.id = this.productoId;
-    console.log("fnAgregarAlCarrito: "+ this.pedidoId);
+    this.pedidoTmp.usuario = {} as Usuario;
+    this.pedidoTmp.usuario.id = Number(localStorage.getItem("UserId"));
+
+    console.log("fnAgregarAlCarrito: "+ JSON.stringify(this.pedidoTmp));
 
     //Si no existe un pedido en estado pendiente, se debe crear uno y leerlo
-    if (Number(this.pedidoId)< 1){
-      this.pedidoTmp.usuario = {} as Usuario;
-      this.pedidoTmp.usuario.id = Number(localStorage.getItem("UserId"));
-      
-      this.pedidoService.insert(this.pedidoTmp).subscribe(pedidoid=>{
-          console.log("pedidoService.insert: "+ pedidoid);
-          this.pedidoId = Number(pedidoid);
-          localStorage.setItem("UltimoPedidoId", String(pedidoid));
-          this.itemPedido.pedido.id= this.pedidoId;
-          this.fnAgregarItemPedido();
-      });
-    }else{
+    if (this.pedidoTmp){
       this.fnAgregarItemPedido();
+    
+    }else{
+      this.fnCrearNuevoPedido(this.pedidoTmp);
     }
     
     return true;
+  }
+
+  fnCrearNuevoPedido(item:Pedido){
+    this.pedidoService.insert(item).subscribe(pedidoid=>{
+      console.log("pedidoService.insert: "+ pedidoid);
+      localStorage.setItem("UltimoPedidoId", String(pedidoid));
+      this.fnAgregarItemPedido();
+  });
   }
 
   fnAgregarItemPedido(){

@@ -14,5 +14,5 @@ export interface Producto {
     precioOferta?: number;
     fechaDesdeDescuento?:string;
     fechaHastaDescuento?:string;
-    empresa?:Empresa;
+    empresa:Empresa;
 }

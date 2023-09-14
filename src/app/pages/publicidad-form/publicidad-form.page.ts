@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Empresa } from 'src/app/models/empresa';
 import { Producto } from 'src/app/models/producto';
 import { Publicidad } from 'src/app/models/publicidad';
@@ -14,18 +14,20 @@ import { PublicidadService } from 'src/app/services/publicidad.service';
 })
 export class PublicidadFormPage implements OnInit {
 
-  tituloFormulario = 'Publicidad'
+
+  isToastOpen = false;
+  mensajeToast= '';
+  isAlertOpen = false;
+  public alertButtons = ['OK'];
+  messageAlert = '';
+
+
+  tituloFormulario = 'Publicidad';
+  subtituloFormulario = 'Detalle';
   entityForm={}as FormGroup;
   entityModel = {} as Publicidad;
   productosList = [] as Producto[];
   
-
-  isToastOpen = false;
-  mensajeToast= '';
-
-  isAlertOpen = false;
-  public alertButtons = ['OK'];
-  messageAlert = '';
 
 
   publicidadId = 0;
@@ -35,6 +37,7 @@ export class PublicidadFormPage implements OnInit {
     private entityService:PublicidadService,
     private productoService:ProductoService,
     private activatedRoute:ActivatedRoute,
+    private route: Router,
     ) { 
      
   }
@@ -141,5 +144,7 @@ export class PublicidadFormPage implements OnInit {
     this.isAlertOpen = isOpen;
   }
   
-
+  fnListado(){
+    this.route.navigate(['/publicidades']);
+  }
 }

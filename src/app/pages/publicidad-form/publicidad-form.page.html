@@ -20,7 +20,7 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>{{tituloFormulario}}</ion-card-title>
-      <ion-card-subtitle>Detalle</ion-card-subtitle>
+      <ion-card-subtitle>{{subtituloFormulario}}</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
@@ -52,8 +52,8 @@
           
         </ion-list>
       </ion-list>
-      <ion-button (click)="fnGuardar()">Guardar</ion-button>
-         
+      <ion-button fill="outline" (click)="fnGuardar()">Guardar</ion-button>
+      <ion-button fill="outline" (click)="fnListado()">Ver Todas las Publicaciones</ion-button>
       </form>
 
     </ion-card-content>
