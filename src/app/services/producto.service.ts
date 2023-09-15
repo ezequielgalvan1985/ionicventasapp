@@ -45,8 +45,10 @@ export class ProductoService {
 
 
   findByEmpresa(empresaId:number){
+    console.log("empresaid:"+ empresaId);
     const url = `${this.productosUrl}/consultas/findbyempresa/${empresaId}`;
-    return this.http.get<Producto[]>(this.productosUrl).pipe(catchError(this.handleError));
+
+    return this.http.get<Producto[]>(url).pipe(catchError(this.handleError));
   }
 
   

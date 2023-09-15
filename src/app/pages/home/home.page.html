@@ -123,30 +123,28 @@
   </ion-grid>
 
 <!-- FIN SECCION Populares -->
-
-
-
+<div class="product-card">
+  <div class="badge">Hot</div>
+  <div class="product-tumb">
+    <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+  </div>
+  <div class="product-details">
+    <span class="product-catagory">Women,bag</span>
+    <h4><a href="">Women leather bag</a></h4>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+    <div class="product-bottom-details">
+      <div class="product-price"><small>$96.00</small>$230.99</div>
+      <div class="product-links">
+        <a href=""><i class="fa fa-heart"></i></a>
+        <a href=""><i class="fa fa-shopping-cart"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- SECCION Populares--> 
 
 <!-- SECCION Populares--> 
- <!--
-  <div class="title ion-padding">
-    <h2 class="font-bold">Best Sell</h2>
-    <p>See all</p>
-  </div>
-
-  <div class="product-slider ion-padding-start">
-    <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
-      <ion-slide *ngFor="let product of bestSellProducts">
-        <ion-col class="ion-text-left" routerLink="/item-details" routerDirection="forward">
-          <img src="{{ product.image }}" />
-          <p>${{ product.price }}</p>
-          <h6>{{ product.name }}</h6>
-        </ion-col>
-      </ion-slide>
-    </ion-slides>
-  </div>
--->
+ 
 <ion-toast
 [isOpen]="isToastOpen"
 [message]="mensajeToast"

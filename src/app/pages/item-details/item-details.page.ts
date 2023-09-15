@@ -12,6 +12,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { PedidoFindByUserEmpresaRequestDto } from 'src/app/dto/request/PedidoFindByUserEmpresaRequestDto';
+import { Empresa } from 'src/app/models/empresa';
 
 @Component({
   selector: 'app-item-details',
@@ -28,6 +29,8 @@ export class ItemDetailsPage implements OnInit {
   cantidad = 0 as number;
   
   productoId = 0 as number;
+  userId = 0 as number;
+  empresaId = 0 as number;
   itemPedido={} as PedidoItemDto;
   pedidoTmp ={} as Pedido;
   pedidoFindByUserEmpresaRequestDto = {} as PedidoFindByUserEmpresaRequestDto; 
@@ -57,86 +60,97 @@ export class ItemDetailsPage implements OnInit {
 
 
   ngOnInit() {
-    this.itemPedido.pedido = {} as Pedido;
-    this.itemPedido.producto = {} as Producto;
+
+    
     this.activeVariation = 'cantidad';
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log("ngOnInit");
-    
-
+    this.userId = Number(localStorage.getItem("UserId"));
+   
     this.itemPedidoForm = new FormGroup({
       pedidoId: new FormControl(0, Validators.required),
       productoId: new FormControl(this.productoId, Validators.required),
       cantidad: new FormControl(1, Validators.required)
     });
-    
-    this.fnLoadDataForm();
-    
-    
+    this.fnCargarFormulario(this.productoId);
+
   }
 
 
-  fnLoadDataForm(){
-    this.productoService.get(this.productoId).subscribe
+  fnCargarFormulario(id:number){
+    this.productoService.get(id).subscribe
     (
-      response=>{
-        console.log("Producto leido: "+ response);
-        this.productoSelected = response;
+      r=>{
+        console.log("Response: "+ JSON.stringify(r));
+        this.productoSelected = r;
         var a = this.itemPedidoForm.get("productoId");
         
         console.log(a?.value);
-        this.pedidoFindByUserEmpresaRequestDto.empresaId =this.productoSelected.empresa.id;
-        this.pedidoFindByUserEmpresaRequestDto.userId = Number(localStorage.getItem("UserId"));
-        this.fnFindUltimoPedidoByEmpresaId(this.pedidoFindByUserEmpresaRequestDto);
+        
+        
     });
   }
 
-  fnFindUltimoPedidoByEmpresaId(item:PedidoFindByUserEmpresaRequestDto){
-    
-    this.pedidoService.findUltimoPendienteByUserIdAndEmpresaId(item).subscribe(r=>{
-      this.pedidoTmp   = r;
-    });
-
-  }
 
   fnAgregarAlCarrito(){ 
-    console.log(this.itemPedidoForm.value);
+    console.log("Formulario:"+ JSON.stringify(this.itemPedidoForm.value));
     
     if (Number(this.itemPedidoForm.get("cantidad")?.value) < 1 ) {
       this.presentAlert("Importante","", "Cantidad debe ser mayor a 0");
       return false;
     }
-    
-    this.itemPedido.pedido.id= this.pedidoTmp.id;
+    //Cargar datos al Item Pedido
+    this.itemPedido.pedido = {} as Pedido;
+    this.itemPedido.producto = {} as Producto;
+
+    this.pedidoFindByUserEmpresaRequestDto.empresaId = this.productoSelected.empresa.id;
+    this.pedidoFindByUserEmpresaRequestDto.userId = this.userId;
+
+    this.itemPedido.pedido.id = this.pedidoTmp.id;
     this.itemPedido.cantidad = this.itemPedidoForm.get("cantidad")?.value;
     this.itemPedido.producto.id = this.productoId;
-    this.pedidoTmp.usuario = {} as Usuario;
-    this.pedidoTmp.usuario.id = Number(localStorage.getItem("UserId"));
-
-    console.log("fnAgregarAlCarrito: "+ JSON.stringify(this.pedidoTmp));
-
-    //Si no existe un pedido en estado pendiente, se debe crear uno y leerlo
-    if (this.pedidoTmp){
-      this.fnAgregarItemPedido();
     
-    }else{
-      this.fnCrearNuevoPedido(this.pedidoTmp);
-    }
+    debugger;
+    this.pedidoService.findUltimoPendienteByUserIdAndEmpresaId(this.pedidoFindByUserEmpresaRequestDto).subscribe(r=>{
+      this.pedidoTmp   = r[0];
+      debugger;
+
+      console.log("Response: "+ JSON.stringify(r[0]));
+      console.log("Response: "+ r[0]);
+      
+      if(this.pedidoTmp){
+        //Agregar Item
+        this.itemPedido.pedido.id = this.pedidoTmp.id;
+        this.fnAgregarItemPedido(this.itemPedido);
+      }else{
+         //CREAR PEDIDO
+         debugger;
+        console.log("CrearPedido ");
+        this.pedidoTmp = {} as Pedido;
+        this.pedidoTmp.empresa = {} as Empresa;
+        this.pedidoTmp.usuario = {} as Usuario;
+        this.pedidoTmp.usuario.id = this.userId;
+        this.pedidoTmp.empresa.id = this.productoSelected.empresa.id;
+        
+        this.pedidoService.insert(this.pedidoTmp).subscribe(newId=>{
+            console.log("pedidoService.insert: "+ newId);
+            localStorage.setItem("UltimoPedidoId", String(newId));
+            this.itemPedido.pedido.id = newId;
+            this.fnAgregarItemPedido(this.itemPedido);
+        });
+      } 
+    });
     
+    console.log("PedidoTmp: "+ JSON.stringify(this.pedidoTmp));
+   
     return true;
   }
 
-  fnCrearNuevoPedido(item:Pedido){
-    this.pedidoService.insert(item).subscribe(pedidoid=>{
-      console.log("pedidoService.insert: "+ pedidoid);
-      localStorage.setItem("UltimoPedidoId", String(pedidoid));
-      this.fnAgregarItemPedido();
-  });
-  }
+  
 
-  fnAgregarItemPedido(){
+  fnAgregarItemPedido(item:PedidoItem){
+    console.log("fnAgregarItemPedido");
 
-    this.pedidoService.insertItemPedido(this.itemPedido)
+    this.pedidoService.insertItemPedido(item)
     .subscribe(response=>{
         console.log("Item Pedido Agregado Ok");
         console.log("item agregado: "+ JSON.stringify(this.itemPedido));

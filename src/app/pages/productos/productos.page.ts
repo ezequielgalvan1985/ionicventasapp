@@ -43,7 +43,10 @@ export class ProductosPage implements OnInit {
   }
 
   fnLoadProductosByEmpresa(empresaId:number){
+    console.log("empresaid "+ empresaId);
+
     this.productoService.findByEmpresa(empresaId).subscribe(r=> {
+      console.log("findbyempresa: "+ JSON.stringify(r));
       this.productosList = r;
     });
   }

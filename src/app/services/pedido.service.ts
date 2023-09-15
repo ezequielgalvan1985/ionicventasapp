@@ -24,8 +24,8 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
-    insert(pedido: Pedido): Observable<Pedido> {
-      return this.http.post<Pedido>(this.urlBase+'/pedidos', pedido, this.httpOptions).pipe(catchError(this.handleError));;  
+    insert(pedido: Pedido): Observable<number> {
+      return this.http.post<number>(this.urlBase+'/pedidos', pedido, this.httpOptions).pipe(catchError(this.handleError));;  
     }
 
     insertItemPedido(item:PedidoItemDto):Observable<PedidoItemDto>{
@@ -42,9 +42,9 @@ export class PedidoService {
     return this.http.get<Pedido>(uri).pipe(catchError(this.handleError));;
   }
 
-  getPedidosPendientes(userId:string):Observable<Pedido[]>{
+  findPendientesByUserId(userId:string):Observable<Pedido[]>{
     console.log("pedido.service.getPedidosPendientes");
-    const uri = this.urlBase+'/pedidos/consultas/getultimopendiente/'+ userId;
+    const uri = this.urlBase+'/pedidos/consultas/findpendientesbyuser/'+ userId;
     
     return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
@@ -56,11 +56,11 @@ export class PedidoService {
     return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
 
-  findUltimoPendienteByUserIdAndEmpresaId(item:PedidoFindByUserEmpresaRequestDto):Observable<Pedido>{
+  findUltimoPendienteByUserIdAndEmpresaId(item:PedidoFindByUserEmpresaRequestDto):Observable<Pedido[]>{
     console.log("pedido.service.findUltimoPendienteByUserIdAndEmpresaId");
     const uri = this.urlBase+'/pedidos/consultas/findultimopendientebyuserandempresa';
     
-    return this.http.post<Pedido>(uri,item).pipe(catchError(this.handleError));;
+    return this.http.post<Pedido[]>(uri,item).pipe(catchError(this.handleError));;
   }
   updateItemPedido(item:PedidoItem){
     console.log("pedido.service.getultimopedido");

@@ -1,0 +1,31 @@
+
+<ion-item-sliding *ngFor="let item of pedidoTmp.items" >
+      
+  <ion-card mode="ios">
+     <ion-item>
+     <ion-card-content>
+      <div class="item-img" >
+        <img src="../../assets/cart/cart1.png" />
+      </div>
+
+       <div class="item-info">
+         <p>{{ item.producto.nombre }}</p>
+         <p>Lotto.LTD</p>
+         <p>{{ item.producto.precio | number : '1.2-2'}}</p>
+
+         <div class="qty-selector">
+           <ion-button fill="clear" (click)="fnRestar(item)">-</ion-button>
+           <ion-label>{{ item.cantidad | number : '1.0-0'}}</ion-label>
+           <ion-button fill="clear" (click)="fnSumar(item)">+</ion-button>
+         </div>
+       </div>
+     </ion-card-content>
+   </ion-item>
+   <ion-item-options side="end">
+       
+     <ion-item-option color="danger" (click)="fnEliminarItem(item)">
+       <ion-icon slot="icon-only" name="trash"></ion-icon>
+     </ion-item-option>
+   </ion-item-options>
+   </ion-card>
+</ion-item-sliding>
