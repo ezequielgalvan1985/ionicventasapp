@@ -1,25 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { PedidoUpdEstadoDto } from 'src/app/dto/pedido-upd-estado-dto';
 import { Pedido } from 'src/app/models/pedido';
-import { PedidoService } from 'src/app/services/pedido.service';
-
-enum Estado {
-  Pendiente=0,
-  Pagado=1,
-  EnPreparacion=2,
-  EnCamino=3,
-  Entregado=4
-}
-
+import { ESTADOS, PedidoService } from 'src/app/services/pedido.service';
 
 @Component({
-  selector: 'app-check-pedido',
-  templateUrl: './check-pedido.page.html',
-  styleUrls: ['./check-pedido.page.scss'],
+  selector: 'app-pedido-detalle',
+  templateUrl: './pedido-detalle.page.html',
+  styleUrls: ['./pedido-detalle.page.scss'],
 })
-export class CheckPedidoPage implements OnInit {
-  pedido={} as Pedido;
+export class PedidoDetallePage implements OnInit {
+
+  pedidoEntity={} as Pedido;
   
   pedidoImporteTotal:number= 0 ;
   pedidoImporteDescuento:number= 0 ;
@@ -29,36 +22,35 @@ export class CheckPedidoPage implements OnInit {
   pedidoUpdEstadoDto={} as PedidoUpdEstadoDto;
   pedidoIdSelected = 0;
 
-  constructor(private pedidoService:PedidoService,private router: Router, private route: ActivatedRoute,) { }
+  constructor(private pedidoService:PedidoService,private router: Router, private route: ActivatedRoute, private navCtrl: NavController ) { }
 
   ngOnInit() {
     this.pedidoIdSelected = Number(this.route.snapshot.paramMap.get('id'));
     this.fnRefreshPedido();
   }
 
-  fnPedidoConfirmado(){
-    console.log("check-pedido.fnPedidoConfirmado.updatepedido.id: "+ this.pedido.id);
+  fnPedidoUpdEnCamino(){
+    console.log("check-pedido.fnPedidoConfirmado.updatepedido.id: "+ this.pedidoEntity.id);
 
-    this.pedidoUpdEstadoDto.id= this.pedido.id;
-    this.pedidoUpdEstadoDto.estado = String(Estado.Pagado);
+    this.pedidoUpdEstadoDto.id= this.pedidoEntity.id;
+    this.pedidoUpdEstadoDto.estado = String(ESTADOS.ENCAMINO);
 
     this.pedidoService.updEstadoPedido(this.pedidoUpdEstadoDto).subscribe(r=> {
-      console.log("check-pedido.fnPedidoConfirmado.updatepedido.ok");
-      this.router.navigate(['/confirmacion']);
+      console.log("check-pedido.fnPedidoUpdEnCamino.ok");
+      this.navCtrl.back();
     });
   }
 
 
   fnRefreshPedido(){
-    var userId = String(localStorage.getItem("UserId"));
     
     this.pedidoService.get(this.pedidoIdSelected)
     .subscribe(response=>{
-      console.log("carrito.fnrefreshpedido.response: "+ userId + " - " +response.id );
-        this.pedido = response;
+    
+        this.pedidoEntity = response;
         var total = 0;var cantidad = 0;
 
-        this.pedido.items.forEach(a => {
+        this.pedidoEntity.items.forEach(a => {
           this.pedidoImporteSubtotal += Number(a.cantidad) * Number(a.producto.precio);
             if( Number(a.producto.precioOferta) > 0 ) this.pedidoImporteDescuento += Number(a.cantidad) * (Number(a.producto.precio) - Number(a.producto.precioOferta));
             
@@ -73,4 +65,5 @@ export class CheckPedidoPage implements OnInit {
 
       })
   }
+
 }

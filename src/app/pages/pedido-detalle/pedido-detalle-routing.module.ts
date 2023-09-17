@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CheckPedidoPage } from './check-pedido.page';
+import { PedidoDetallePage } from './pedido-detalle.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CheckPedidoPage
+    component: PedidoDetallePage
   },
   {
     path: ':id',
-    component: CheckPedidoPage
+    component: PedidoDetallePage
   }
 ];
 
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CheckPedidoPageRoutingModule {}
+export class PedidoDetallePageRoutingModule {}

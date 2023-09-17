@@ -81,6 +81,10 @@ const routes: Routes = [
     path: 'publicidades',
     loadChildren: () => import('./pages/publicidad-listado/publicidad-listado.module').then( m => m.PublicidadListadoPageModule)
   },
+  {
+    path: 'pedido-detalle',
+    loadChildren: () => import('./pages/pedido-detalle/pedido-detalle.module').then( m => m.PedidoDetallePageModule)
+  },
   
 ];
 

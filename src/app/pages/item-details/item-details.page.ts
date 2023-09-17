@@ -60,8 +60,6 @@ export class ItemDetailsPage implements OnInit {
 
 
   ngOnInit() {
-
-    
     this.activeVariation = 'cantidad';
     this.productoId = Number(this.route.snapshot.paramMap.get('id'));
     this.userId = Number(localStorage.getItem("UserId"));
@@ -72,7 +70,6 @@ export class ItemDetailsPage implements OnInit {
       cantidad: new FormControl(1, Validators.required)
     });
     this.fnCargarFormulario(this.productoId);
-
   }
 
 

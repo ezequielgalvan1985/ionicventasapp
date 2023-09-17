@@ -10,6 +10,11 @@ import { PedidoItemDto } from '../dto/pedido-item-dto';
 import { PedidoItemUpdCantidadDto } from '../dto/pedido-item-upd-cantidad-dto';
 import { PedidoUpdEstadoDto } from '../dto/pedido-upd-estado-dto';
 import { PedidoFindByUserEmpresaRequestDto } from '../dto/request/PedidoFindByUserEmpresaRequestDto';
+import { PedidoFindByUserAndEstadoRequestDto } from '../dto/request/PedidoFindByUserAndEstadoRequestDto';
+
+export enum ESTADOS {
+  PENDIENTE,CONFIRMADO, ENPREPARACION, ENCAMINO, ENTREGADO
+}
 
 @Injectable({
   providedIn: 'root'
@@ -24,16 +29,20 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
-    insert(pedido: Pedido): Observable<number> {
-      return this.http.post<number>(this.urlBase+'/pedidos', pedido, this.httpOptions).pipe(catchError(this.handleError));;  
-    }
+  insert(pedido: Pedido): Observable<number> {
+    return this.http.post<number>(this.urlBase+'/pedidos', pedido, this.httpOptions).pipe(catchError(this.handleError));;  
+  }
 
-    insertItemPedido(item:PedidoItemDto):Observable<PedidoItemDto>{
-      var uri='http://localhost:8050/v1/pedidoitems'
-      console.log("insertItemPedido: "+ JSON.stringify(item));
-      return this.http.post<PedidoItemDto>(uri,item).pipe(catchError(this.handleError));;
-        
-    }
+  insertItemPedido(item:PedidoItemDto):Observable<PedidoItemDto>{
+    var uri='http://localhost:8050/v1/pedidoitems'
+    console.log("insertItemPedido: "+ JSON.stringify(item));
+    return this.http.post<PedidoItemDto>(uri,item).pipe(catchError(this.handleError));;
+      
+  }
+
+  get(id:number): Observable<Pedido>{
+    return this.http.get<Pedido>(this.urlBase+'/pedidos/'+id, this.httpOptions).pipe(catchError(this.handleError));;  
+  }
 
   getUltimoPedidoPendiente(userId:string):Observable<Pedido>{
     console.log("pedido.service.getultimopedido");
@@ -62,6 +71,7 @@ export class PedidoService {
     
     return this.http.post<Pedido[]>(uri,item).pipe(catchError(this.handleError));;
   }
+
   updateItemPedido(item:PedidoItem){
     console.log("pedido.service.getultimopedido");
     const uri = 'http://localhost:8050/v1/pedidoitems';
@@ -100,7 +110,14 @@ export class PedidoService {
     return this.http.post<Pedido>(uri,pedidoId).pipe(catchError(this.handleError));;
   }
   
- 
+  
+  findByUserAndEstado(dto:PedidoFindByUserAndEstadoRequestDto):Observable<Pedido[]>{
+
+    const uri = this.urlBase+'/pedidos/consultas/findbyuserandestado';
+    return this.http.post<Pedido[]>(uri,dto).pipe(catchError(this.handleError));;
+  }
+
+
   handleError(error:HttpErrorResponse){
     var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
     console.error(m);
