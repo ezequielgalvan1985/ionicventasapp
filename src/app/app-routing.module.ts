@@ -85,6 +85,10 @@ const routes: Routes = [
     path: 'pedido-detalle',
     loadChildren: () => import('./pages/pedido-detalle/pedido-detalle.module').then( m => m.PedidoDetallePageModule)
   },
+  {
+    path: 'panel-control',
+    loadChildren: () => import('./pages/panel-control/panel-control.module').then( m => m.PanelControlPageModule)
+  },
   
 ];
 
