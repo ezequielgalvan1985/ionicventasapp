@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { PanelControlPageRoutingModule } from './panel-control-routing.module';
 
 import { PanelControlPage } from './panel-control.page';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PanelControlPageRoutingModule
+    PanelControlPageRoutingModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   declarations: [PanelControlPage]
 })

@@ -19,7 +19,8 @@ export class AppComponent {
 
   public menuAdmin = [
     { title: 'Panel Control', url: '/panel-control', icon: 'bar-chart' },
-    { title: 'Pedido para Preparar', url: '/pedidos-preparar', icon: 'notifications' },
+    { title: 'Pedidos para Preparar', url: '/pedidos-preparar', icon: 'notifications' },
+    { title: 'Pedidos para Enviar', url: '/pedidos-enviar', icon: 'notifications' },
     { title: 'Mis Ventas', url: '/misventas', icon: 'bar-chart' },
     { title: 'Publicar Producto', url: '/productos-publicar', icon: 'cloud-upload' },
     { title: 'Mis Productos', url: '/productos', icon: 'file-tray-full' },

@@ -89,6 +89,10 @@ const routes: Routes = [
     path: 'panel-control',
     loadChildren: () => import('./pages/panel-control/panel-control.module').then( m => m.PanelControlPageModule)
   },
+  {
+    path: 'pedidos-enviar',
+    loadChildren: () => import('./pages/pedidos-enviar/pedidos-enviar.module').then( m => m.PedidosEnviarPageModule)
+  },
   
 ];
 
