@@ -34,7 +34,6 @@ export class PedidosPrepararPage implements OnInit {
       console.log("pedidos.fnFindAllPedidos.response.ok: " + JSON.stringify(result) );
       this.pedidosList = result;
     });
-
-
   }
+  
 }
