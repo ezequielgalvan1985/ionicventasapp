@@ -13,7 +13,7 @@ import { PedidoFindByUserEmpresaRequestDto } from '../dto/request/PedidoFindByUs
 import { PedidoFindByUserAndEstadoRequestDto } from '../dto/request/PedidoFindByUserAndEstadoRequestDto';
 
 export enum ESTADOS {
-  PENDIENTE,CONFIRMADO, ENPREPARACION, ENCAMINO, ENTREGADO
+  PENDIENTE,CONFIRMADO, ENPREPARACION, PREPARADO,ENCAMINO, ENTREGADO
 }
 
 @Injectable({

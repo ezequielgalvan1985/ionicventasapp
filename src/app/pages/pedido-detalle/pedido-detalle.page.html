@@ -20,7 +20,8 @@
       <ion-label>{{item.producto.nombre}} -  {{item.cantidad}}</ion-label>
     </ion-item>
   </ion-list>
-  <ion-button (click)="fnPedidoUpdEnCamino()" expand="block" shape="round" fill="outline">Preparado y En Camino <ion-icon name="bicycle-outline" slot="end"></ion-icon></ion-button>
+  <ion-button (click)="fnPedidoUpdEstado()" expand="block" shape="round" fill="outline">{{labelButtonAction}}
+  </ion-button>
 </ion-content>
 <ion-footer translucent="true" class="ion-no-border" mode="md">
   <ion-toolbar color="translucent">

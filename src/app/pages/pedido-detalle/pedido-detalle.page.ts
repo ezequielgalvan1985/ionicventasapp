@@ -22,6 +22,7 @@ export class PedidoDetallePage implements OnInit {
   pedidoUpdEstadoDto={} as PedidoUpdEstadoDto;
   pedidoIdSelected = 0;
 
+  labelButtonAction = '';
   constructor(private pedidoService:PedidoService,private router: Router, private route: ActivatedRoute, private navCtrl: NavController ) { }
 
   ngOnInit() {
@@ -29,12 +30,33 @@ export class PedidoDetallePage implements OnInit {
     this.fnRefreshPedido();
   }
 
-  fnPedidoUpdEnCamino(){
+  fnPedidoUpdEstado(){
     console.log("check-pedido.fnPedidoConfirmado.updatepedido.id: "+ this.pedidoEntity.id);
 
     this.pedidoUpdEstadoDto.id= this.pedidoEntity.id;
-    this.pedidoUpdEstadoDto.estado = String(ESTADOS.ENCAMINO);
+    switch(Number(this.pedidoEntity.estado)){
+      case ESTADOS.CONFIRMADO:
+        this.pedidoUpdEstadoDto.estado = String(ESTADOS.ENPREPARACION);
+        this.labelButtonAction = 'Comenzar a Preparar'
+        break;
 
+      case ESTADOS.ENPREPARACION:
+        this.pedidoUpdEstadoDto.estado = String(ESTADOS.PREPARADO);
+        this.labelButtonAction = 'Pedido Listo para Enviar'
+        break;
+      
+      case ESTADOS.PREPARADO:
+        this.pedidoUpdEstadoDto.estado = String(ESTADOS.ENCAMINO);
+        this.labelButtonAction = 'Llevare este Pedido'
+        break;
+      
+      case ESTADOS.ENCAMINO:
+        this.pedidoUpdEstadoDto.estado = String(ESTADOS.ENTREGADO);
+        this.labelButtonAction = 'Pedido Entregado'
+        break;
+    }
+    
+   
     this.pedidoService.updEstadoPedido(this.pedidoUpdEstadoDto).subscribe(r=> {
       console.log("check-pedido.fnPedidoUpdEnCamino.ok");
       this.navCtrl.back();
@@ -59,10 +81,27 @@ export class PedidoDetallePage implements OnInit {
         });
 
        
-          localStorage.setItem("UltimoPedidoCantidad", String(cantidad));
+        localStorage.setItem("UltimoPedidoCantidad", String(cantidad));
         
         this.pedidoImporteTotal = this.pedidoImporteSubtotal + this.pedidoImporteEnvio - this.pedidoImporteDescuento;
-
+        
+        switch(Number(this.pedidoEntity.estado)){
+          case ESTADOS.CONFIRMADO:
+            this.labelButtonAction = 'Comenzar a Preparar'
+            break;
+    
+          case ESTADOS.ENPREPARACION:
+            this.labelButtonAction = 'Pedido Listo para Enviar'
+            break;
+          
+          case ESTADOS.PREPARADO:
+            this.labelButtonAction = 'Llevare este Pedido'
+            break;
+          
+          case ESTADOS.ENCAMINO:
+            this.labelButtonAction = 'Pedido Entregado'
+            break;
+        }
       })
   }
 

@@ -1,13 +1,97 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>pedidos-enviar</ion-title>
+    <ion-buttons slot="start">
+      <ion-buttons class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-buttons>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pedidos-enviar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen="true">
+  
+  <ion-card>
+    <ion-card-header>   
+      <ion-card-subtitle>Para Enviar</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p *ngIf="pedidosEnviarList.length==0"> (Lista vacia) </p>
+      <ion-list>
+        <ion-item *ngFor="let pedido of pedidosEnviarList" >
+          <ion-label> Pedido:{{pedido.id}} - Negocio: {{pedido.empresa.nombre}} </ion-label>
+          
+          <ion-button routerLink="/pedido-detalle/{{pedido.id}}" routerDirection="forward" size="large">
+            <ion-icon name="eye-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="large" (click)="fnPedidoUpdEstado(pedido.id, 3)">
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Pendidos En Camino</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p *ngIf="pedidosEnCaminoList.length==0"> (Lista vacia)  </p>
+      <ion-list>
+        
+        <ion-item *ngFor="let pedido of pedidosEnCaminoList" >
+           
+          <ion-label> Pedido:{{pedido.id}} - Negocio: {{pedido.empresa.nombre}} </ion-label>
+          
+          <ion-button routerLink="/pedido-detalle/{{pedido.id}}" routerDirection="forward" size="large">
+            <ion-icon name="eye-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="large" (click)="fnPedidoUpdEstado(pedido.id, 4)">
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Pendidos Entregados</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p *ngIf="pedidosEntregadosList.length==0"> (Lista vacia) </p>
+      <ion-list>
+        <ion-item *ngFor="let pedido of pedidosEntregadosList" >
+          <ion-label> Pedido:{{pedido.id}} - Negocio: {{pedido.empresa.nombre}} </ion-label>
+          
+          <ion-button routerLink="/pedido-detalle/{{pedido.id}}" routerDirection="forward" size="large">
+            <ion-icon name="eye-outline"></ion-icon>
+          </ion-button>
+          
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+
+
+
+
 </ion-content>
+<ion-footer translucent="true" class="ion-no-border" mode="md">
+  <ion-toolbar color="translucent">
+  
+  </ion-toolbar>
+</ion-footer>
