@@ -11,7 +11,7 @@ import { Categoria } from '../models/categoria';
 export class CategoriaService {
 
   
-  private baseUrl:string = 'http://localhost:8050/v1/categorias';
+  private baseUrl:string = 'http://127.0.0.1:5000/api/v1.0/categorias';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ProductoService {
 
-  private productosUrl:string = 'http://localhost:8050/v1/productos';
+  private productosUrl:string = 'http://127.0.0.1:5000/api/v1.0/productos';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

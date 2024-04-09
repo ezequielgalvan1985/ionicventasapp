@@ -1,5 +1,5 @@
 export interface LoginResponseDto {
-    token:string;
+    access_token:string;
     login:string;
     userId:string;
 }

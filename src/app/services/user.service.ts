@@ -15,7 +15,7 @@ import { UsuarioDatosPersonalesDto } from '../dto/usuario-datos-personales-dto';
 })
 export class UserService {
 
-  private urlEndPoint:string = 'http://localhost:8050/';
+  private urlEndPoint:string = 'http://localhost:5000/api/v1.0/';
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
 
   constructor(private http:HttpClient) { }

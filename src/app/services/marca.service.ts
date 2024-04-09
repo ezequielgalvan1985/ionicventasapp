@@ -11,7 +11,7 @@ import { Marca } from '../models/marca';
 export class MarcaService {
 
   
-  private marcasUrl:string = 'http://localhost:8050/v1/marcas';
+  private marcasUrl:string = 'http://127.0.0.1:5000/api/v1.0/marcas';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

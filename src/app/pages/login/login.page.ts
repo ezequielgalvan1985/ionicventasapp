@@ -55,9 +55,9 @@ export class LoginPage implements OnInit {
       .subscribe(r=>{
         console.log("Resultado: "+ r);
         console.log("fnLogin - response subscribe");
-        console.log("Bienvenido: "+r.token);
+        console.log("Bienvenido: "+r.access_token);
 
-        localStorage.setItem("token",r.token);
+        localStorage.setItem("token",r.access_token);
         localStorage.setItem("login", r.login);
         localStorage.setItem("UserId", r.userId);
         console.log("Usuario Logueado: "+ r.login);

@@ -8,7 +8,7 @@ import { Publicidad } from '../models/publicidad';
 })
 export class PublicidadService {
 
-  private baseUrl:string = 'http://localhost:8050/v1/publicidades';
+  private baseUrl:string = 'http://127.0.0.1:5000/api/v1.0/publicidades';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

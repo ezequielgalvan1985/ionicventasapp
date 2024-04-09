@@ -11,7 +11,7 @@ import { Empresa } from '../models/empresa';
 })
 export class EmpresaService {
 
-  private urlBase:string = 'http://localhost:8050/v1/empresas';
+  private urlBase:string = 'http://127.0.0.1:5000/api/v1.0/empresas';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -9,7 +9,7 @@ import { VentasPorProductosRequestDto } from '../dto/request/VentasPorProductosR
 })
 export class VentasService {
 
-  private baseUrl:string = 'http://localhost:8050/v1/ventas';
+  private baseUrl:string = 'http://127.0.0.1:5000/api/v1.0/ventas';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

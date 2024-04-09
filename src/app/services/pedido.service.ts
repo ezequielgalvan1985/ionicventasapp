@@ -34,7 +34,7 @@ export class PedidoService {
   }
 
   insertItemPedido(item:PedidoItemDto):Observable<PedidoItemDto>{
-    var uri='http://localhost:8050/v1/pedidoitems'
+    var uri='http://127.0.0.1:5000/api/v1.0/pedidoitems'
     console.log("insertItemPedido: "+ JSON.stringify(item));
     return this.http.post<PedidoItemDto>(uri,item).pipe(catchError(this.handleError));;
       
@@ -74,18 +74,18 @@ export class PedidoService {
 
   updateItemPedido(item:PedidoItem){
     console.log("pedido.service.getultimopedido");
-    const uri = 'http://localhost:8050/v1/pedidoitems';
+    const uri = 'http://127.0.0.1:5000/api/v1.0/pedidoitems';
     return this.http.patch<any>(uri,item).pipe(catchError(this.handleError));;
   }
 
   updItemPedidoCantidad(item:PedidoItemUpdCantidadDto){
     console.log("pedido.service.updItemPedidoCantidad: "+ JSON.stringify(item));
-    const uri = 'http://localhost:8050/v1/pedidoitems/accion/upd/cantidad';
+    const uri = 'http://127.0.0.1:5000/api/v1.0/pedidoitems/accion/upd/cantidad';
     return this.http.post<any>(uri,item).pipe(catchError(this.handleError));;
   }
 
   eliminarPedidoItem(item:PedidoItem):Observable<any>{
-    const uri = 'http://localhost:8050/v1/pedidoitems/'+ item.id;
+    const uri = 'http://127.0.0.1:5000/api/v1.0/pedidoitems/'+ item.id;
     return this.http.delete(uri, this.httpOptions).pipe(catchError(this.handleError));;
     
   }
@@ -99,7 +99,7 @@ export class PedidoService {
 
   updEstadoPedido(pedido:PedidoUpdEstadoDto):Observable<any>{
     console.log("pedido.service.confirmarPedido");
-    const uri = 'http://localhost:8050/v1/pedidos/accion/upd/estado' ;
+    const uri = 'http://127.0.0.1:5000/api/v1.0/pedidos/accion/upd/estado' ;
 
     return this.http.patch(uri,pedido).pipe(catchError(this.handleError));;
   }
