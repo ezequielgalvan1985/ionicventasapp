@@ -34,7 +34,7 @@ export class ProductoService {
 
 
   update(producto: Producto): Observable<any> {
-    return this.http.patch(this.productosUrl, producto, this.httpOptions).pipe(catchError(this.handleError));
+    return this.http.put(this.productosUrl + "/"+producto.id, producto, this.httpOptions).pipe(catchError(this.handleError));
   }
 
 

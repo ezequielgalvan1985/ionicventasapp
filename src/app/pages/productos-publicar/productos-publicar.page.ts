@@ -90,7 +90,7 @@ export class ProductosPublicarPage implements OnInit {
 
       this.entityProducto = r;
       console.log(r);
-      debugger;
+      
       this.productoForm.patchValue({
         id:r.id,
         nombre: r.nombre,
