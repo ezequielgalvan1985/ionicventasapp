@@ -48,14 +48,13 @@ export class ProductosPublicarPage implements OnInit {
     this.fnLoadMarcas();
     
     this.productoForm = new FormGroup({
-      id: new FormControl("", Validators.required),
+      id: new FormControl(0, Validators.required),
       nombre: new FormControl("", Validators.required),
       descripcion: new FormControl("", Validators.required),
       precio: new FormControl("", Validators.required),
       categoria: new FormControl("", Validators.required),
       marca: new FormControl("", Validators.required),
       precio_oferta:new FormControl("", Validators.required),
-      oferta:new FormControl("", Validators.required)
     });
     
   
@@ -68,8 +67,6 @@ export class ProductosPublicarPage implements OnInit {
   fnFindCategoriasByRubroId(rubroId:string){
     console.log("fnFindCategoriasByRubroId: "+ rubroId);
     this.categoriaService.findByRubroId(rubroId).subscribe(r=> {
-      debugger;
-    
       this.categoriasList = r} )
   }
 
@@ -112,13 +109,20 @@ export class ProductosPublicarPage implements OnInit {
 
   fnGuardar(){
     this.entityProducto = this.productoForm.value;
+    /*
+    this.entityProducto.nombre = this.productoForm.get("nombre")?.value;
+    this.entityProducto.descripcion = this.productoForm.get("descripcion")?.value;
+    this.entityProducto.precio = this.productoForm.get("precio")?.value;
+    this.entityProducto.precio_oferta = this.productoForm.get("precio_oferta")?.value;
+    */
     this.entityProducto.empresa = {} as Empresa;
     this.entityProducto.categoria = {} as Categoria;
     this.entityProducto.marca = {} as Marca;
     this.entityProducto.empresa.id =Number(localStorage.getItem("EmpresaId"));
     this.entityProducto.categoria.id = this.productoForm.get("categoria")?.value;
     this.entityProducto.marca.id = this.productoForm.get("marca")?.value;
-    
+    this.entityProducto.precio_oferta = Number(this.productoForm.get("precio_oferta")?.value);
+
     console.log("ContenidoJson: "+ JSON.stringify(this.entityProducto));
     console.log("ContenidoForm: " + JSON.stringify(this.productoForm.value));
 
@@ -129,6 +133,7 @@ export class ProductosPublicarPage implements OnInit {
         this.isToastOpen = true;
       });
     }else{
+      this.entityProducto.id = this.productoId;
       this.productoService.update(this.entityProducto).subscribe(r=>{
         console.log("fnGuardarOK");
         this.mensajeToast = "Datos Actualizados Ok"

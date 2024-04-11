@@ -6,7 +6,7 @@ export interface Producto {
     id: number;
     nombre:string;
     descripcion?: string;
-    precio?: string;
+    precio: number;
     marcaId?: string;
     marca:Marca;
     categoria:Categoria;
