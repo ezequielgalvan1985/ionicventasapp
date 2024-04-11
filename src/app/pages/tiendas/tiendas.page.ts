@@ -42,7 +42,7 @@ export class TiendasPage implements OnInit {
 
 
   fnLoadFormData(){
-    this.empresaService.findEmpresaDatosByUserId(Number(localStorage.getItem("UserId"))).subscribe(r=>{
+    this.empresaService.findEmpresaDatosByUserId(Number(localStorage.getItem("user_id"))).subscribe(r=>{
       this.entityEmpresa = r;
       this.mitiendaForm.patchValue({
         id:r.id,
@@ -70,7 +70,7 @@ export class TiendasPage implements OnInit {
     this.entityEmpresa.rubro = {} as Rubro;
     this.entityEmpresa.rubro.id = Number(this.mitiendaForm.get("rubro")?.value);
     
-    this.entityEmpresa.usuario.id =Number(localStorage.getItem("UserId"));
+    this.entityEmpresa.usuario.id =Number(localStorage.getItem("user_id"));
 
     this.empresaService.update(this.mitiendaForm.value).subscribe(r=>{
       console.log("fnGuardarOK");

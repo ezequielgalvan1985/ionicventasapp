@@ -30,7 +30,7 @@ export class CarritoPage implements OnInit {
  
 
   fnRefreshPedidos(){
-    var userId = String(localStorage.getItem("UserId"));
+    var userId = String(localStorage.getItem("user_id"));
    
     this.pedidoService.findPendientesByUserId(userId)
     .subscribe(response=>{

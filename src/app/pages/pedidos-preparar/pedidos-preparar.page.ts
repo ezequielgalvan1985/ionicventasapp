@@ -31,7 +31,7 @@ export class PedidosPrepararPage implements OnInit {
 
   fnPedidosParaPreparar(){
     var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("UserId"));
+    parametros.userId = Number(localStorage.getItem("user_id"));
     parametros.estadoId = Number(ESTADOS.CONFIRMADO);
 
     this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
@@ -43,7 +43,7 @@ export class PedidosPrepararPage implements OnInit {
 
   fnPedidosEnPreparacion(){
     var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("UserId"));
+    parametros.userId = Number(localStorage.getItem("user_id"));
     parametros.estadoId = Number(ESTADOS.ENPREPARACION);
     this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
       console.log("pedidos.fnPedidosEnPreparacion.response.ok: " + JSON.stringify(result) );

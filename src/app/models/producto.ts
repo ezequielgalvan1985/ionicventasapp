@@ -11,7 +11,7 @@ export interface Producto {
     marca:Marca;
     categoria:Categoria;
     estado?: string;
-    precioOferta?: number;
+    precio_oferta?: number;
     fechaDesdeDescuento?:string;
     fechaHastaDescuento?:string;
     empresa:Empresa;

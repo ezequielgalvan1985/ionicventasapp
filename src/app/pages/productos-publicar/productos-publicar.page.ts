@@ -54,7 +54,7 @@ export class ProductosPublicarPage implements OnInit {
       precio: new FormControl("", Validators.required),
       categoria: new FormControl("", Validators.required),
       marca: new FormControl("", Validators.required),
-      precioOferta:new FormControl("", Validators.required),
+      precio_oferta:new FormControl("", Validators.required),
       oferta:new FormControl("", Validators.required)
     });
     
@@ -98,7 +98,7 @@ export class ProductosPublicarPage implements OnInit {
         precio: r.precio,
         categoria: r.categoria.id,
         marca:r.marca.id,
-        precioOferta:r.precioOferta
+        precio_oferta:r.precio_oferta
       });
        
     },

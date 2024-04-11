@@ -24,7 +24,7 @@ export class PedidosPage implements OnInit {
 
   ngOnInit() {
 
-    this.pedidoService.getByUserId(String(localStorage.getItem("UserId"))).subscribe(
+    this.pedidoService.getByUserId(String(localStorage.getItem("user_id"))).subscribe(
       r=>{
         console.log("pedidos.getbyuserid.response.ok");
         this.pedidosListado= r;

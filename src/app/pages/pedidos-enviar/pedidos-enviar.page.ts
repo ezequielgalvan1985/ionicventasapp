@@ -35,7 +35,7 @@ export class PedidosEnviarPage implements OnInit {
  
   fnPedidosParaEnviar(){
     var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("UserId"));
+    parametros.userId = Number(localStorage.getItem("user_id"));
     parametros.estadoId = Number(ESTADOS.PREPARADO);
 
     this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
@@ -46,7 +46,7 @@ export class PedidosEnviarPage implements OnInit {
 
   fnPedidosEntregados(){
     var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("UserId"));
+    parametros.userId = Number(localStorage.getItem("user_id"));
     parametros.estadoId = Number(ESTADOS.ENTREGADO);
 
     this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
@@ -57,7 +57,7 @@ export class PedidosEnviarPage implements OnInit {
 
   fnPedidosEnCamino(){
     var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("UserId"));
+    parametros.userId = Number(localStorage.getItem("user_id"));
     parametros.estadoId = Number(ESTADOS.ENCAMINO);
 
     this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {

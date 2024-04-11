@@ -59,11 +59,11 @@ export class LoginPage implements OnInit {
 
         localStorage.setItem("token",r.access_token);
         localStorage.setItem("login", r.login);
-        localStorage.setItem("UserId", r.userId);
+        localStorage.setItem("user_id", r.user_id);
         console.log("Usuario Logueado: "+ r.login);
         
-        this.fnCargarUltimoPedidoPendiente(r.userId);
-        this.fnFindEmpresaDatosByUserId(r.userId);
+        this.fnCargarUltimoPedidoPendiente(r.user_id);
+        this.fnFindEmpresaDatosByUserId(r.user_id);
         this.route.navigate(['/home']);
       }, 
       e=> {
@@ -84,7 +84,7 @@ export class LoginPage implements OnInit {
 */
   fnCargarUltimoPedidoPendiente(userId:string){
      
-    var userId= String(localStorage.getItem("UserId"));
+    var userId= String(localStorage.getItem("user_id"));
     localStorage.setItem("UltimoPedidoId", String(0));
 
     this.pedidoService.getUltimoPedidoPendiente(userId)

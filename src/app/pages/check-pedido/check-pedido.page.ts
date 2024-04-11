@@ -50,7 +50,7 @@ export class CheckPedidoPage implements OnInit {
 
 
   fnRefreshPedido(){
-    var userId = String(localStorage.getItem("UserId"));
+    var userId = String(localStorage.getItem("user_id"));
     
     this.pedidoService.get(this.pedidoIdSelected)
     .subscribe(response=>{
@@ -60,7 +60,7 @@ export class CheckPedidoPage implements OnInit {
 
         this.pedido.items.forEach(a => {
           this.pedidoImporteSubtotal += Number(a.cantidad) * Number(a.producto.precio);
-            if( Number(a.producto.precioOferta) > 0 ) this.pedidoImporteDescuento += Number(a.cantidad) * (Number(a.producto.precio) - Number(a.producto.precioOferta));
+            if( Number(a.producto.precio_oferta) > 0 ) this.pedidoImporteDescuento += Number(a.cantidad) * (Number(a.producto.precio) - Number(a.producto.precio_oferta));
             
             cantidad += Number(a.cantidad);
             console.log("carrito.fnrefreshpedido.sumatoria")

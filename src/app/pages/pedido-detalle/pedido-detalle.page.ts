@@ -74,7 +74,7 @@ export class PedidoDetallePage implements OnInit {
 
         this.pedidoEntity.items.forEach(a => {
           this.pedidoImporteSubtotal += Number(a.cantidad) * Number(a.producto.precio);
-            if( Number(a.producto.precioOferta) > 0 ) this.pedidoImporteDescuento += Number(a.cantidad) * (Number(a.producto.precio) - Number(a.producto.precioOferta));
+            if( Number(a.producto.precio_oferta) > 0 ) this.pedidoImporteDescuento += Number(a.cantidad) * (Number(a.producto.precio) - Number(a.producto.precio_oferta));
             
             cantidad += Number(a.cantidad);
             console.log("carrito.fnrefreshpedido.sumatoria")

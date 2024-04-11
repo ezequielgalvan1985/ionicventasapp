@@ -30,12 +30,12 @@
           <p>{{ item.producto.nombre }}</p>
           <p>Lotto.LTD </p>
         
-          <h4 class="price" *ngIf="item.producto.precioOferta">
-            ${{ item.producto.precioOferta  | number : '1.2-2'}}
+          <h4 class="price" *ngIf="item.producto.precio_oferta">
+            ${{ item.producto.precio_oferta  | number : '1.2-2'}}
             <span class="real-price" >${{item.producto.precio | number : '1.2-2'}}</span>
           </h4>
 
-          <h4 class="price" *ngIf="item.producto.precioOferta==0">
+          <h4 class="price" *ngIf="item.producto.precio_oferta==0">
             ${{ item.producto.precio  | number : '1.2-2'}}
           </h4>
 

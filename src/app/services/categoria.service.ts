@@ -25,7 +25,6 @@ export class CategoriaService {
 
 
   findByRubroId(id:string): Observable<Categoria[]> {
-    debugger;
     const url = `${this.baseUrl}/consultas/findbyrubro/${id}`;
     return this.http.get<Categoria[]>(url).pipe(catchError(this.handleError));;
   }

@@ -35,7 +35,7 @@ export class MicuentaPage implements OnInit {
   }
 
   fnGetDatosPersonales(){
-    this.userSrv.findDatosPersonalesByUserId(Number(localStorage.getItem("UserId"))).subscribe(r=>{
+    this.userSrv.findDatosPersonalesByUserId(Number(localStorage.getItem("user_id"))).subscribe(r=>{
       this.entityUsuarioDatosPersonalesDto = r;
       this.micuentaForm.patchValue({
         id:r.id,
@@ -58,7 +58,7 @@ export class MicuentaPage implements OnInit {
     
     this.entityUsuarioDatosPersonalesDto = this.micuentaForm.value;
     this.entityUsuarioDatosPersonalesDto.usuario = {} as Usuario;
-    this.entityUsuarioDatosPersonalesDto.usuario.id =Number(localStorage.getItem("UserId"));
+    this.entityUsuarioDatosPersonalesDto.usuario.id =Number(localStorage.getItem("user_id"));
     
 
     this.userSrv.updDatosPersonales(this.entityUsuarioDatosPersonalesDto).subscribe(r=>{
