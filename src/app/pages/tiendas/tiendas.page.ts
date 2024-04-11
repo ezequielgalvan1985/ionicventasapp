@@ -42,8 +42,11 @@ export class TiendasPage implements OnInit {
 
 
   fnLoadFormData(){
-    this.empresaService.findEmpresaDatosByUserId(Number(localStorage.getItem("user_id"))).subscribe(r=>{
+    this.empresaService.
+    findEmpresaDatosByUserId(Number(localStorage.getItem("user_id")))
+    .subscribe(r=>{
       this.entityEmpresa = r;
+      console.log(r);
       this.mitiendaForm.patchValue({
         id:r.id,
         nombre: r.nombre,
@@ -52,7 +55,8 @@ export class TiendasPage implements OnInit {
         descripcion:r.descripcion,
         direccion: r.direccion,
         telefono: r.telefono,
-        ciudad:r.ciudad
+        ciudad:r.ciudad,
+        usuario:r.usuario.id
       });
     });
 
@@ -69,10 +73,9 @@ export class TiendasPage implements OnInit {
     this.entityEmpresa.usuario = {} as Usuario;
     this.entityEmpresa.rubro = {} as Rubro;
     this.entityEmpresa.rubro.id = Number(this.mitiendaForm.get("rubro")?.value);
-    
     this.entityEmpresa.usuario.id =Number(localStorage.getItem("user_id"));
 
-    this.empresaService.update(this.mitiendaForm.value).subscribe(r=>{
+    this.empresaService.update(this.entityEmpresa).subscribe(r=>{
       console.log("fnGuardarOK");
       this.mensajeToast = "Datos Actualizados Ok"
       this.isToastOpen = true;

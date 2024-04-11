@@ -31,7 +31,7 @@ export class EmpresaService {
   }
 
   update(data:Empresa){
-    return this.http.put<Empresa>(this.urlBase,data);
+    return this.http.put<Empresa>(this.urlBase+"/"+ data.id,data);
   }
   
   
