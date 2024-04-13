@@ -1,4 +1,5 @@
 import { Usuario } from "../models/usuario";
+import { UserResponseDto } from "./response/user-response-dto";
 
 export interface UsuarioDatosPersonalesDto {
     id:number;
@@ -7,5 +8,5 @@ export interface UsuarioDatosPersonalesDto {
     direccion:string;
     ciudad:string;
     telefono:string;
-    usuario:Usuario;
+    user:UserResponseDto;
 }

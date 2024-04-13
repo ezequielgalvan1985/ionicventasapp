@@ -5,5 +5,6 @@ export interface Usuario {
     roles?: string;
     permissions?: string;
     active?: string;
+    email?:string;
     
 }

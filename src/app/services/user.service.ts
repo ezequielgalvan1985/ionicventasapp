@@ -33,19 +33,19 @@ export class UserService {
 
 
   addDatosPersonales(data:UsuarioDatosPersonalesDto){
-    return this.http.post<LoginResponseDto>(this.urlEndPoint+'v1/datospersonales',data);
+    return this.http.post<LoginResponseDto>(this.urlEndPoint+'datospersonales',data);
   }
 
   updDatosPersonales(data:UsuarioDatosPersonalesDto){
-    return this.http.put<LoginResponseDto>(this.urlEndPoint+'v1/datospersonales',data);
+    return this.http.put<LoginResponseDto>(this.urlEndPoint+'datospersonales/'+data.id,data);
   }
 
   findDatosPersonalesById(id:number){
-    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'v1/datospersonales/'+id);  
+    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'datospersonales/'+id);  
   }
 
   findDatosPersonalesByUserId(userid:Number){
-    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'v1/datospersonales/consultas/findbyuser/'+userid).pipe(catchError(this.handleError));
+    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'datospersonales/consultas/findbyuser/'+userid).pipe(catchError(this.handleError));
   }
 
 

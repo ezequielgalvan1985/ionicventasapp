@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExceptionResponseDto } from 'src/app/dto/exception-response-dto';
+import { UserResponseDto } from 'src/app/dto/response/user-response-dto';
 import { UsuarioDatosPersonalesDto } from 'src/app/dto/usuario-datos-personales-dto';
 import { Usuario } from 'src/app/models/usuario';
 import { UserService } from 'src/app/services/user.service';
@@ -28,13 +29,13 @@ export class MicuentaPage implements OnInit {
       apellido: new FormControl("", Validators.required),
       direccion: new FormControl("", Validators.required),
       telefono: new FormControl("", Validators.required),
-      ciudad: new FormControl("", Validators.required),
-      
+      ciudad: new FormControl("", Validators.required)    
     });
     this.fnGetDatosPersonales();
   }
 
   fnGetDatosPersonales(){
+    console.log("usuarioID: " + localStorage.getItem("user_id"));
     this.userSrv.findDatosPersonalesByUserId(Number(localStorage.getItem("user_id"))).subscribe(r=>{
       this.entityUsuarioDatosPersonalesDto = r;
       this.micuentaForm.patchValue({
@@ -48,6 +49,8 @@ export class MicuentaPage implements OnInit {
     },
     e=>{
      debugger; 
+      console.log(e);
+      console.log(e.message);
       this.mensajeToast =e.message,
       this.isToastOpen = true;
     });
@@ -57,15 +60,12 @@ export class MicuentaPage implements OnInit {
   fnGuardar(){
     
     this.entityUsuarioDatosPersonalesDto = this.micuentaForm.value;
-    this.entityUsuarioDatosPersonalesDto.usuario = {} as Usuario;
-    this.entityUsuarioDatosPersonalesDto.usuario.id =Number(localStorage.getItem("user_id"));
-    
-
+    this.entityUsuarioDatosPersonalesDto.user = {} as UserResponseDto;
+    this.entityUsuarioDatosPersonalesDto.user.id =Number(localStorage.getItem("user_id"));
     this.userSrv.updDatosPersonales(this.entityUsuarioDatosPersonalesDto).subscribe(r=>{
       console.log("fnGuardarOK");
       this.mensajeToast = "Datos Actualizados Ok"
       this.isToastOpen = true;
-     
     });
 
   }
