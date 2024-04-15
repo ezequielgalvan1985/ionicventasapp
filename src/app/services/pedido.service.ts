@@ -21,7 +21,7 @@ export enum ESTADOS {
 })
 export class PedidoService {
   
-  private urlBase:string = 'http://localhost:8050/v1';
+  private urlBase:string = 'http://127.0.0.1:5000/api/v1.0';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
