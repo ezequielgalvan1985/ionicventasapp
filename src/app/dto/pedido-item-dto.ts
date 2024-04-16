@@ -6,4 +6,5 @@ export interface PedidoItemDto {
     cantidad:number;
     pedido:Pedido;
     producto:Producto;
+    
 }

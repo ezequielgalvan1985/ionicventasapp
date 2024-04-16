@@ -36,8 +36,7 @@ export class PedidoService {
   insertItemPedido(item:PedidoItemDto):Observable<PedidoItemDto>{
     var uri='http://127.0.0.1:5000/api/v1.0/pedidoitems'
     console.log("insertItemPedido: "+ JSON.stringify(item));
-    return this.http.post<PedidoItemDto>(uri,item).pipe(catchError(this.handleError));;
-      
+    return this.http.post<PedidoItemDto>(uri,item).pipe(catchError(this.handleError));
   }
 
   get(id:number): Observable<Pedido>{
