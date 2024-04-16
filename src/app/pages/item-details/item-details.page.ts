@@ -99,20 +99,19 @@ export class ItemDetailsPage implements OnInit {
     this.itemPedido.pedido = {} as Pedido;
     this.itemPedido.producto = {} as Producto;
 
-    this.pedidoFindByUserEmpresaRequestDto.empresaId = this.productoSelected.empresa.id;
-    this.pedidoFindByUserEmpresaRequestDto.userId = this.userId;
+    this.pedidoFindByUserEmpresaRequestDto.empresa_id = this.productoSelected.empresa.id;
+    this.pedidoFindByUserEmpresaRequestDto.user_id = this.userId;
 
     this.itemPedido.pedido.id = this.pedidoTmp.id;
     this.itemPedido.cantidad = this.itemPedidoForm.get("cantidad")?.value;
     this.itemPedido.producto.id = this.productoId;
     
-    debugger;
+    console.log("requestDto:"+ JSON.stringify(this.pedidoFindByUserEmpresaRequestDto));
+
     this.pedidoService.findUltimoPendienteByUserIdAndEmpresaId(this.pedidoFindByUserEmpresaRequestDto).subscribe(r=>{
       this.pedidoTmp   = r[0];
-      debugger;
-
-      console.log("Response: "+ JSON.stringify(r[0]));
-      console.log("Response: "+ r[0]);
+      
+      console.log("responseDto:"+ JSON.stringify(this.pedidoTmp));
       
       if(this.pedidoTmp){
         //Agregar Item

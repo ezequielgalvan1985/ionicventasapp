@@ -67,7 +67,7 @@ export class PedidoService {
 
   findUltimoPendienteByUserIdAndEmpresaId(item:PedidoFindByUserEmpresaRequestDto):Observable<Pedido[]>{
     console.log("pedido.service.findUltimoPendienteByUserIdAndEmpresaId");
-    const uri = this.urlBase+'/pedidos/consultas/findultimopendientebyuserandempresa';
+    const uri = this.urlBase+'/pedidos/consultas/findultpendbyuserandempresa';
     
     return this.http.post<Pedido[]>(uri,item).pipe(catchError(this.handleError));;
   }

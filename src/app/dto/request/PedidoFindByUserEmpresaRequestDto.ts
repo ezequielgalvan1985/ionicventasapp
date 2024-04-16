@@ -1,4 +1,4 @@
 export interface PedidoFindByUserEmpresaRequestDto{
-    userId:number;
-    empresaId:number;
+    user_id:number;
+    empresa_id:number;
 }
