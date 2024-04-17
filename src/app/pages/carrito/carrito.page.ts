@@ -46,9 +46,7 @@ export class CarritoPage implements OnInit {
     this.dtoPedidoUpdate.estado = String(ESTADOS.CONFIRMADO);
     this.pedidoService.updEstadoPedido(value).subscribe(res=>{
       console.log("pedido.estado.modificado.ok"+ JSON.stringify(this.dtoPedidoUpdate)) ;
-
       this.fnRefreshPedidos();
-      
     });
 
   }

@@ -46,14 +46,12 @@ export class PedidoService {
   getUltimoPedidoPendiente(userId:string):Observable<Pedido>{
     console.log("pedido.service.getultimopedido");
     const uri = this.urlBase+'/pedidos/consultas/getultimopendiente/'+ userId;
-    
     return this.http.get<Pedido>(uri).pipe(catchError(this.handleError));;
   }
 
   findPendientesByUserId(userId:string):Observable<Pedido[]>{
     console.log("pedido.service.getPedidosPendientes");
     const uri = this.urlBase+'/pedidos/consultas/findpendientesbyuser/'+ userId;
-    
     return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
 
