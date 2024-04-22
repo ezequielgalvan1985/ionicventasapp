@@ -18,7 +18,7 @@ export class VentasService {
   
 
   ventasPorProductos(param:VentasPorProductosRequestDto): Observable<VentasPorProductos[]> {
-    return this.http.post<VentasPorProductos[]>(this.baseUrl+"/consultas/ventasporproductos", param).pipe(catchError(this.handleError));
+    return this.http.post<VentasPorProductos[]>(this.baseUrl+"/consultas/productos", param).pipe(catchError(this.handleError));
   }
 
 

@@ -8,6 +8,7 @@ export interface Pedido {
     fecha:Date;
     items:PedidoItem[];
     estado:string;
-    importeEnvio:number;
+    importeenvio:number;
     empresa:Empresa;
+    direccion:string;
 }

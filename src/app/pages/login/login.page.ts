@@ -75,13 +75,6 @@ export class LoginPage implements OnInit {
   }
 
 
-/*
-  fnGetDatosPersonalesId(userid:number){
-    this.userService.findIdDatosPersonalesByUserId(userid).subscribe(r=>{
-      localStorage.setItem("datos_personales_id",String(r));
-    });
-  }
-*/
   fnCargarUltimoPedidoPendiente(userId:string){
      
     var userId= String(localStorage.getItem("user_id"));
@@ -89,21 +82,18 @@ export class LoginPage implements OnInit {
 
     this.pedidoService.getUltimoPedidoPendiente(userId)
     .subscribe(response=>{
-      console.log("fnCargarUltimoPedidoPendiente: "+ response);
-      if (response!=null){
+      console.log("getUltimoPedidoPendiente:"+JSON.stringify(response))
+      if (response.id>0){
         localStorage.setItem("UltimoPedidoId", String(response.id));
-        console.log("login.fnCargarUltimoPedidoPendiente.response"+ response.id);
         var total = 0;
-        console.log("fnCargarUltimoPedidoPendiente - response subscribe");
         this.pedido = response;
-        this.pedido.items.forEach(a=>{
-          
-            total += Number(a.cantidad) ;
-            console.log("fnCargarUltimoPedidoPendiente - response totalizador");
-            
-          });
-          localStorage.setItem("UltimoPedidoCantidad", String(total));
-      }
+        if(this.pedido!=null){
+          this.pedido.items.forEach(a=>{      
+              total += Number(a.cantidad) ;
+            });
+            localStorage.setItem("UltimoPedidoCantidad", String(total));
+          }
+        }
       
       
       this.route.navigate(['/home']);

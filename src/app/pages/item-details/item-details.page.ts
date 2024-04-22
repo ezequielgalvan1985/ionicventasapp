@@ -7,7 +7,7 @@ import { PedidoItemDto } from 'src/app/dto/pedido-item-dto';
 import { Pedido } from 'src/app/models/pedido';
 import { PedidoItem } from 'src/app/models/pedido-item';
 import { Producto } from 'src/app/models/producto';
-import { PedidoService } from 'src/app/services/pedido.service';
+import { ESTADOS, PedidoService } from 'src/app/services/pedido.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
@@ -119,13 +119,18 @@ export class ItemDetailsPage implements OnInit {
         this.fnAgregarItemPedido(this.itemPedido);
       }else{
          //CREAR PEDIDO
-         debugger;
-        console.log("CrearPedido ");
+        debugger;
+        const d = new Date();
         this.pedidoTmp = {} as Pedido;
         this.pedidoTmp.empresa = {} as Empresa;
         this.pedidoTmp.usuario = {} as Usuario;
         this.pedidoTmp.usuario.id = this.userId;
         this.pedidoTmp.empresa.id = this.productoSelected.empresa.id;
+        this.pedidoTmp.estado=String(ESTADOS.PENDIENTE);
+        this.pedidoTmp.fecha =d;
+        this.pedidoTmp.importeenvio = 0.0;
+        this.pedidoTmp.direccion = "";
+        console.log("CrearPedido: " + JSON.stringify(this.pedidoTmp));
         
         this.pedidoService.insert(this.pedidoTmp).subscribe(newId=>{
             console.log("pedidoService.insert: "+ newId);
@@ -135,9 +140,7 @@ export class ItemDetailsPage implements OnInit {
         });
       } 
     });
-    
-    console.log("PedidoTmp: "+ JSON.stringify(this.pedidoTmp));
-   
+    console.log("PedidoTmp: "+ JSON.stringify(this.pedidoTmp));   
     return true;
   }
 

@@ -63,14 +63,11 @@ export class PanelControlPage implements OnInit {
 
   fnFindVentasPorProductos(){
     this.ventasPorProductosRequestDto.anio= (new Date()).getFullYear();
-    this.ventasPorProductosRequestDto.empresaId = Number(localStorage.getItem("EmpresaId"));
+    this.ventasPorProductosRequestDto.empresa_id = Number(localStorage.getItem("EmpresaId"));
 
     this.ventaService.ventasPorProductos(this.ventasPorProductosRequestDto).subscribe(r=> {
       this.ventasPorProductosList = r;
       console.log(JSON.stringify(this.ventasPorProductosList));
-
-
-
       // crear un array con los nombres de productos
       r.forEach(element => {
         this.productosDistinct.push(element.producto)

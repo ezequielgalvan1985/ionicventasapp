@@ -41,7 +41,6 @@ export class CarritoPage implements OnInit {
 
 
   fnConfirmarPedido(value:Pedido){
-    
     this.dtoPedidoUpdate.id = value.id;
     this.dtoPedidoUpdate.estado = String(ESTADOS.CONFIRMADO);
     this.pedidoService.updEstadoPedido(value).subscribe(res=>{

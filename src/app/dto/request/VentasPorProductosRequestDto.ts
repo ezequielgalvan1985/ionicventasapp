@@ -1,4 +1,4 @@
 export interface VentasPorProductosRequestDto{
-    empresaId:number;
+    empresa_id:number;
     anio:number;
 }

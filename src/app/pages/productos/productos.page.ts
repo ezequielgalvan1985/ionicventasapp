@@ -39,12 +39,10 @@ export class ProductosPage implements OnInit {
   
   fnRefresh(){
     this.fnLoadProductosByEmpresa(Number(localStorage.getItem("EmpresaId")));
-
   }
 
   fnLoadProductosByEmpresa(empresaId:number){
     console.log("empresaid "+ empresaId);
-
     this.productoService.findByEmpresa(empresaId).subscribe(r=> {
       console.log("findbyempresa: "+ JSON.stringify(r));
       this.productosList = r;
