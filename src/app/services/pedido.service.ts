@@ -10,7 +10,8 @@ import { PedidoItemDto } from '../dto/pedido-item-dto';
 import { PedidoItemUpdCantidadDto } from '../dto/pedido-item-upd-cantidad-dto';
 import { PedidoUpdEstadoDto } from '../dto/pedido-upd-estado-dto';
 import { PedidoFindByUserEmpresaRequestDto } from '../dto/request/PedidoFindByUserEmpresaRequestDto';
-import { PedidoFindByUserAndEstadoRequestDto } from '../dto/request/PedidoFindByUserAndEstadoRequestDto';
+import { PedidoFindByEmpresaAndEstadoRequestDto } from '../dto/request/PedidoFindByEmpresaAndEstadoRequestDto';
+import { Router } from '@angular/router';
 
 export enum ESTADOS {
   PENDIENTE,CONFIRMADO, ENPREPARACION, PREPARADO,ENCAMINO, ENTREGADO
@@ -27,7 +28,9 @@ export class PedidoService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router   
+  ) { }
 
   insert(pedido: Pedido): Observable<number> {
     return this.http.post<number>(this.urlBase+'/pedidos', pedido, this.httpOptions).pipe(catchError(this.handleError));;  
@@ -58,7 +61,7 @@ export class PedidoService {
   }
 
   getByUserId(userId:string):Observable<Pedido[]>{
-    const uri = this.urlBase+'/pedidos/consultas/getbyuser/'+ userId;
+    const uri = this.urlBase+'/pedidos/consultas/usuario/'+ userId;
     console.log(uri);
     return this.http.get<Pedido[]>(uri).pipe(catchError(this.handleError));;
   }
@@ -107,8 +110,8 @@ export class PedidoService {
   }
   
   
-  findByUserAndEstado(dto:PedidoFindByUserAndEstadoRequestDto):Observable<Pedido[]>{
-    var uri = this.urlBase+'/pedidos/consultas/findbyuserandestado';
+  findByEmpresaAndEstado(dto:PedidoFindByEmpresaAndEstadoRequestDto):Observable<Pedido[]>{
+    var uri = this.urlBase+'/pedidos/consultas/empresa/estado';
     console.log(uri);
     return this.http.post<Pedido[]>(uri,dto).pipe(catchError(this.handleError));;
   }
@@ -117,7 +120,6 @@ export class PedidoService {
 
   handleError(error:HttpErrorResponse){
     var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
-    console.error(m);
     return throwError(()=>new Error(error.error.message));
   }
 }

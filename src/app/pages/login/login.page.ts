@@ -56,12 +56,10 @@ export class LoginPage implements OnInit {
         console.log("Resultado: "+ r);
         console.log("fnLogin - response subscribe");
         console.log("Bienvenido: "+r.access_token);
-
         localStorage.setItem("token",r.access_token);
         localStorage.setItem("login", r.login);
         localStorage.setItem("user_id", r.user_id);
         console.log("Usuario Logueado: "+ r.login);
-        
         this.fnCargarUltimoPedidoPendiente(r.user_id);
         this.fnFindEmpresaDatosByUserId(r.user_id);
         this.route.navigate(['/home']);
@@ -70,16 +68,13 @@ export class LoginPage implements OnInit {
         this.isToastOpen = true;
         console.log("Error al Ingresar")
         this.presentToast();
-      }
-      );
+      });
   }
 
 
   fnCargarUltimoPedidoPendiente(userId:string){
-     
     var userId= String(localStorage.getItem("user_id"));
     localStorage.setItem("UltimoPedidoId", String(0));
-
     this.pedidoService.getUltimoPedidoPendiente(userId)
     .subscribe(response=>{
       console.log("getUltimoPedidoPendiente:"+JSON.stringify(response))

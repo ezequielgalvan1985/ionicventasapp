@@ -80,10 +80,7 @@ export class ItemDetailsPage implements OnInit {
         console.log("Response: "+ JSON.stringify(r));
         this.productoSelected = r;
         var a = this.itemPedidoForm.get("productoId");
-        
-        console.log(a?.value);
-        
-        
+        console.log(a?.value);      
     });
   }
 
@@ -108,41 +105,44 @@ export class ItemDetailsPage implements OnInit {
     
     console.log("requestDto:"+ JSON.stringify(this.pedidoFindByUserEmpresaRequestDto));
 
-    this.pedidoService.findUltimoPendienteByUserIdAndEmpresaId(this.pedidoFindByUserEmpresaRequestDto).subscribe(r=>{
-      this.pedidoTmp   = r[0];
-      
-      console.log("responseDto:"+ JSON.stringify(this.pedidoTmp));
-      
-      if(this.pedidoTmp){
-        //Agregar Item
-        this.itemPedido.pedido.id = this.pedidoTmp.id;
-        this.fnAgregarItemPedido(this.itemPedido);
-      }else{
-         //CREAR PEDIDO
-        debugger;
-        const d = new Date();
-        this.pedidoTmp = {} as Pedido;
-        this.pedidoTmp.empresa = {} as Empresa;
-        this.pedidoTmp.usuario = {} as Usuario;
-        this.pedidoTmp.usuario.id = this.userId;
-        this.pedidoTmp.empresa.id = this.productoSelected.empresa.id;
-        this.pedidoTmp.estado=String(ESTADOS.PENDIENTE);
-        this.pedidoTmp.fecha =d;
-        this.pedidoTmp.importeenvio = 0.0;
-        this.pedidoTmp.direccion = "";
-        console.log("CrearPedido: " + JSON.stringify(this.pedidoTmp));
+    this.pedidoService
+        .findUltimoPendienteByUserIdAndEmpresaId(this.pedidoFindByUserEmpresaRequestDto)
+        .subscribe(r=>{
+        this.pedidoTmp = r[0];
         
-        this.pedidoService.insert(this.pedidoTmp).subscribe(newId=>{
-            console.log("pedidoService.insert: "+ newId);
-            localStorage.setItem("UltimoPedidoId", String(newId));
-            this.itemPedido.pedido.id = newId;
-            this.fnAgregarItemPedido(this.itemPedido);
-        });
-      } 
-    });
-    console.log("PedidoTmp: "+ JSON.stringify(this.pedidoTmp));   
-    return true;
-  }
+        console.log("responseDto:"+ JSON.stringify(this.pedidoTmp));
+        
+        if(this.pedidoTmp){
+          //Agregar Item
+          this.itemPedido.pedido.id = this.pedidoTmp.id;
+          this.fnAgregarItemPedido(this.itemPedido);
+        }else{
+          //CREAR PEDIDO
+          debugger;
+          const d = new Date();
+          this.pedidoTmp = {} as Pedido;
+          this.pedidoTmp.empresa = {} as Empresa;
+          this.pedidoTmp.usuario = {} as Usuario;
+          this.pedidoTmp.usuario.id = this.userId;
+          this.pedidoTmp.empresa.id = this.productoSelected.empresa.id;
+          this.pedidoTmp.estado=String(ESTADOS.PENDIENTE);
+          this.pedidoTmp.fecha =d;
+          this.pedidoTmp.importeenvio = 0.0;
+          this.pedidoTmp.direccion = "";
+          console.log("CrearPedido: " + JSON.stringify(this.pedidoTmp));
+          
+          this.pedidoService.insert(this.pedidoTmp).subscribe(newId=>{
+              console.log("pedidoService.insert: "+ newId);
+              localStorage.setItem("UltimoPedidoId", String(newId));
+              this.itemPedido.pedido.id = newId;
+              this.fnAgregarItemPedido(this.itemPedido);
+          });
+        } 
+      }
+    );
+      console.log("PedidoTmp: "+ JSON.stringify(this.pedidoTmp));   
+      return true;
+    }
 
   
 

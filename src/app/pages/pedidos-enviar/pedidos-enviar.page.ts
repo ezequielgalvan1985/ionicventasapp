@@ -1,7 +1,7 @@
 import { PlatformLocation } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PedidoUpdEstadoDto } from 'src/app/dto/pedido-upd-estado-dto';
-import { PedidoFindByUserAndEstadoRequestDto } from 'src/app/dto/request/PedidoFindByUserAndEstadoRequestDto';
+import { PedidoFindByEmpresaAndEstadoRequestDto } from 'src/app/dto/request/PedidoFindByEmpresaAndEstadoRequestDto';
 import { Pedido } from 'src/app/models/pedido';
 import { ESTADOS, PedidoService } from 'src/app/services/pedido.service';
 
@@ -34,33 +34,33 @@ export class PedidosEnviarPage implements OnInit {
   }
  
   fnPedidosParaEnviar(){
-    var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("user_id"));
-    parametros.estadoId = Number(ESTADOS.PREPARADO);
+    var parametros= {}as PedidoFindByEmpresaAndEstadoRequestDto;
+    parametros.usuario_id = Number(localStorage.getItem("user_id"));
+    parametros.estado_id = Number(ESTADOS.PREPARADO);
 
-    this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
+    this.pedidoService.findByEmpresaAndEstado(parametros).subscribe(result=> {
       console.log("pedidos.fnPedidosParaEnviar.response.ok: " + JSON.stringify(result) );
       this.pedidosEnviarList = result;
     });
   }
 
   fnPedidosEntregados(){
-    var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("user_id"));
-    parametros.estadoId = Number(ESTADOS.ENTREGADO);
+    var parametros= {}as PedidoFindByEmpresaAndEstadoRequestDto;
+    parametros.usuario_id = Number(localStorage.getItem("user_id"));
+    parametros.estado_id = Number(ESTADOS.ENTREGADO);
 
-    this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
+    this.pedidoService.findByEmpresaAndEstado(parametros).subscribe(result=> {
       console.log("pedidos.fnPedidosEntregados.response.ok: " + JSON.stringify(result) );
       this.pedidosEntregadosList = result;
     });
   }
 
   fnPedidosEnCamino(){
-    var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("user_id"));
-    parametros.estadoId = Number(ESTADOS.ENCAMINO);
+    var parametros= {}as PedidoFindByEmpresaAndEstadoRequestDto;
+    parametros.usuario_id = Number(localStorage.getItem("user_id"));
+    parametros.estado_id = Number(ESTADOS.ENCAMINO);
 
-    this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
+    this.pedidoService.findByEmpresaAndEstado(parametros).subscribe(result=> {
       console.log("pedidos.fnPedidosEnCamino.response.ok: " + JSON.stringify(result) );
       this.pedidosEnCaminoList = result;
     });

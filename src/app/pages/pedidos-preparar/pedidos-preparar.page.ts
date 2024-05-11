@@ -2,7 +2,7 @@ import { PlatformLocation } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { PedidoUpdEstadoDto } from 'src/app/dto/pedido-upd-estado-dto';
-import { PedidoFindByUserAndEstadoRequestDto } from 'src/app/dto/request/PedidoFindByUserAndEstadoRequestDto';
+import { PedidoFindByEmpresaAndEstadoRequestDto } from 'src/app/dto/request/PedidoFindByEmpresaAndEstadoRequestDto';
 import { Pedido } from 'src/app/models/pedido';
 import { ESTADOS, PedidoService } from 'src/app/services/pedido.service';
 
@@ -30,11 +30,10 @@ export class PedidosPrepararPage implements OnInit {
   }
 
   fnPedidosParaPreparar(){
-    var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("user_id"));
-    parametros.estadoId = Number(ESTADOS.CONFIRMADO);
-
-    this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
+    var parametros= {}as PedidoFindByEmpresaAndEstadoRequestDto;
+    parametros.usuario_id = Number(localStorage.getItem("user_id"));
+    parametros.estado_id = Number(ESTADOS.CONFIRMADO);
+    this.pedidoService.findByEmpresaAndEstado(parametros).subscribe(result=> {
       console.log("pedidos.fnFindAllPedidos.response.ok: " + JSON.stringify(result) );
       this.pedidosPrepararList = result;
     });
@@ -42,10 +41,10 @@ export class PedidosPrepararPage implements OnInit {
 
 
   fnPedidosEnPreparacion(){
-    var parametros= {}as PedidoFindByUserAndEstadoRequestDto;
-    parametros.userId = Number(localStorage.getItem("user_id"));
-    parametros.estadoId = Number(ESTADOS.ENPREPARACION);
-    this.pedidoService.findByUserAndEstado(parametros).subscribe(result=> {
+    var parametros= {}as PedidoFindByEmpresaAndEstadoRequestDto;
+    parametros.usuario_id = Number(localStorage.getItem("user_id"));
+    parametros.estado_id = Number(ESTADOS.ENPREPARACION);
+    this.pedidoService.findByEmpresaAndEstado(parametros).subscribe(result=> {
       console.log("pedidos.fnPedidosEnPreparacion.response.ok: " + JSON.stringify(result) );
       this.pedidosEnPreparacionList = result;
     });
