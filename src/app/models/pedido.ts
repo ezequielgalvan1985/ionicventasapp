@@ -11,4 +11,6 @@ export interface Pedido {
     importeenvio:number;
     empresa:Empresa;
     direccion:string;
+    importe:number;
+    descuento:number;
 }

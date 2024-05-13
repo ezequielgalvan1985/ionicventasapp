@@ -130,7 +130,7 @@ export class ItemDetailsPage implements OnInit {
           this.pedidoTmp.importeenvio = 0.0;
           this.pedidoTmp.direccion = "";
           console.log("CrearPedido: " + JSON.stringify(this.pedidoTmp));
-          
+          this.pedidoTmp.importe = 0.0;
           this.pedidoService.insert(this.pedidoTmp).subscribe(newId=>{
               console.log("pedidoService.insert: "+ newId);
               localStorage.setItem("UltimoPedidoId", String(newId));
