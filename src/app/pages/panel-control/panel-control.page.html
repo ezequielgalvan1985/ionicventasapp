@@ -20,29 +20,28 @@
   
   <ion-card color="primary">
     <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>PENDIENTES</ion-card-title>
+      <ion-card-subtitle>Pedidos</ion-card-subtitle>
     </ion-card-header>
-  
-    <ion-card-content> Card Content </ion-card-content>
+    <ion-card-content> {{resumenPedidos[estados.CONFIRMADO]}} </ion-card-content>
   </ion-card>
+  
   
   <ion-card color="secondary">
     <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>ENTREGADO</ion-card-title>
+      <ion-card-subtitle>Pedidos</ion-card-subtitle>
     </ion-card-header>
-  
-    <ion-card-content> Card Content </ion-card-content>
+    <ion-card-content> {{resumenPedidos[estados.ENTREGADO]}} </ion-card-content>
   </ion-card>
   
   <ion-card color="tertiary">
     <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>EN PREPARACION Title</ion-card-title>
+      <ion-card-subtitle>Pedidos</ion-card-subtitle>
     </ion-card-header>
   
-    <ion-card-content> Card Content </ion-card-content>
+    <ion-card-content> {{resumenPedidos[estados.ENPREPARACION]}}  </ion-card-content>
   </ion-card>
   
   <ion-card color="success">
