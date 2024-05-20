@@ -132,6 +132,18 @@ const routes: Routes = [
     path: 'products-list-c',
     loadChildren: () => import('./pages/products-list-c/products-list-c.module').then( m => m.ProductsListCPageModule)
   },
+  {
+    path: 'dashboard-b',
+    loadChildren: () => import('./pages/dashboard-b/dashboard-b.module').then( m => m.DashboardBPageModule)
+  },
+  {
+    path: 'dashboard-c',
+    loadChildren: () => import('./pages/dashboard-c/dashboard-c.module').then( m => m.DashboardCPageModule)
+  },
+  {
+    path: 'dashboard-d',
+    loadChildren: () => import('./pages/dashboard-d/dashboard-d.module').then( m => m.DashboardDPageModule)
+  },
 
   
 ];

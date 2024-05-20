@@ -1,0 +1,179 @@
+
+<!-- page header -->
+<ion-header mode="ios">
+  <ion-toolbar>
+    <!-- menu button -->
+    <ion-button slot="start" fill="clear">
+      <ion-icon name="menu"></ion-icon>
+    </ion-button>
+
+    <!-- avatar -->
+    <div slot="end" class="avatar-container">
+      <ion-avatar>
+        <ion-img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2342&q=80"></ion-img>
+      </ion-avatar>
+      <div class="online-indicator"></div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+  
+    <!-- hero -->
+    <div class="hero-container">
+
+      <!-- earnings -->
+      <div class="text-container">
+        <ion-text class="caption">Total Earning</ion-text>
+        <ion-text class="amount">$2,874.45</ion-text>
+        <ion-text class="last-updated">Updated today at 8pm</ion-text>
+      </div>
+
+      <!-- percentage -->
+      <div class="percentage-container">
+        <ion-text>+ 0.86%</ion-text>        
+      </div>
+    </div>
+
+    <!-- main content -->
+    <div class="main-content-container">
+
+      <!-- weekly stats -->
+      <div class="stats-container">
+        <ion-text class="section-header">
+          <h2>
+            Weekly Stats
+          </h2>
+        </ion-text>
+
+        <!-- stats list -->
+        <div class="stats-list-container">
+
+          <!-- followers -->
+          <ion-card>
+            <div class="stat-container purple">
+              <div class="icon-container">
+                <ion-icon name="people-outline"></ion-icon>
+              </div>
+              <ion-text class="percentage">+ 4.56%</ion-text>
+              <ion-text class="total">12.5K</ion-text>
+              <ion-text class="caption">Followers</ion-text>
+            </div>
+          </ion-card>
+
+          <!-- views -->
+          <ion-card>
+            <div class="stat-container green">
+              <div class="icon-container">
+                <ion-icon name="eye-outline"></ion-icon>
+              </div>
+              <ion-text class="percentage">+ 2.86%</ion-text>
+              <ion-text class="total">18.5M</ion-text>
+              <ion-text class="caption">Views</ion-text>
+            </div>
+          </ion-card>
+
+          <!-- growth -->
+          <ion-card>
+            <div class="stat-container blue">
+              <div class="icon-container">
+                <ion-icon name="magnet-outline"></ion-icon>
+              </div>
+              <ion-text class="percentage">+ 4.12%</ion-text>
+              <ion-text class="total">20%</ion-text>
+              <ion-text class="caption">Growth</ion-text>
+            </div>
+          </ion-card>
+        </div>
+      </div>
+
+      <!-- daily updates -->
+      <div class="updates-container">
+        <ion-text class="section-header">
+          <h2>
+            Daily Updates
+          </h2>
+        </ion-text>
+
+        <!-- updates list -->
+        <div class="updates-list-container">
+          <ion-list class="ion-no-padding">
+            
+            <!-- youtube -->
+            <ion-item lines="none" mode="ios">
+              <div slot="start" class="icon-container red">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </div>
+              <div slot="start" class="text-container">
+                <ion-text class="source">Youtube Earnings</ion-text>
+                <ion-text class="date">Jan 2, 2020</ion-text>
+              </div>
+              <ion-text slot="end" class="amount">
+                $457
+              </ion-text>
+            </ion-item>
+
+            <!-- github -->
+            <ion-item lines="none" mode="ios">
+              <div slot="start" class="icon-container dark-blue">
+                <ion-icon name="logo-github"></ion-icon>
+              </div>
+              <div slot="start" class="text-container">
+                <ion-text class="source">Github Earnings</ion-text>
+                <ion-text class="date">Jan 2, 2020</ion-text>
+              </div>
+              <ion-text slot="end" class="amount">
+                $200
+              </ion-text>
+            </ion-item>
+
+            <!-- apple -->
+            <ion-item lines="none" mode="ios">
+              <div slot="start" class="icon-container purple">
+                <ion-icon name="logo-apple"></ion-icon>
+              </div>
+              <div slot="start" class="text-container">
+                <ion-text class="source">Apple Earnings</ion-text>
+                <ion-text class="date">Jan 2, 2020</ion-text>
+              </div>
+              <ion-text slot="end" class="amount">
+                $1,020
+              </ion-text>
+            </ion-item>
+
+             <!-- paypal -->
+             <ion-item lines="none" mode="ios">
+              <div slot="start" class="icon-container blue">
+                <ion-icon name="logo-paypal"></ion-icon>
+              </div>
+              <div slot="start" class="text-container">
+                <ion-text class="source">Paypal Earnings</ion-text>
+                <ion-text class="date">Jan 2, 2020</ion-text>
+              </div>
+              <ion-text slot="end" class="amount">
+                $620
+              </ion-text>
+            </ion-item>
+
+             <!-- google -->
+             <ion-item lines="none" mode="ios">
+              <div slot="start" class="icon-container green">
+                <ion-icon name="logo-google"></ion-icon>
+              </div>
+              <div slot="start" class="text-container">
+                <ion-text class="source">Google Earnings</ion-text>
+                <ion-text class="date">Jan 2, 2020</ion-text>
+              </div>
+              <ion-text slot="end" class="amount">
+                $405
+              </ion-text>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+  

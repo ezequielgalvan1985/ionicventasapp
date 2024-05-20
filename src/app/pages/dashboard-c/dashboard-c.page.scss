@@ -1,0 +1,278 @@
+ion-content {
+    --background: #f4f4f6;
+    --color: #6a6a6a;
+  
+    // header
+    .header-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+      margin-top: env(safe-area-inset-top);
+      background-color: #fff;
+  
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        ion-text {
+          &.greeting {
+            font-size: 1.2rem;
+            color: #a5a5a5;
+            font-weight: 600;
+          }
+          &.name {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #010101;
+          }
+        }
+      }
+      ion-button {
+        height: 50px;
+        width: 50px;
+        --border-radius: 25px;
+        --padding-start: 0p;
+        --padding-end: 0;
+        --border-color: #ebebeb;
+        ion-icon {
+          color: #3b464e;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  
+    // calendar
+    .calendar-container {
+      background-color: #1b2125;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // emojis
+      .emojis-container {
+        padding: 20px 0;
+        .emoji-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr;
+          justify-items: center;
+          align-items: center;
+          border-radius: 20px;
+          height: 100px;
+          width: 100px;
+          border: 1px solid #3a4045;
+          margin: 0 5px;
+          &.selected {
+            background-color: #3a4045;
+            .indicator {
+              grid-row-start: 1;
+              grid-row-end: 2;
+              grid-column-start: 1;
+              grid-column-end: 2;
+              align-self: end;
+              width: 70%;
+              height: 5px;
+              border-radius: 2.5px;
+              background-color: #92d7e1;
+            }
+          }
+          ion-text {
+            grid-row-start: 1;
+            grid-row-end: 2;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            font-size: 3rem;
+          }
+        }
+      }
+  
+      // dates
+      .dates-container {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        .date-container {
+          flex-shrink: 0;
+          flex-grow: 0;
+          margin: 0 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 5px 5px 0 0;
+          padding: 10px 10px 0 10px;
+          border-bottom: 3px solid transparent;
+          &.selected {
+            background-color: #3a4045;
+            border-bottom-color: #92d7e1;
+          }
+          ion-text {
+            &.day {
+              color: #7f8a93;
+              font-size: 0.7rem;
+            }
+            &.date {
+              color: #d9dadd;
+              font-size: 1.2rem;
+              font-weight: 600;
+              margin: 5px 0;
+            }
+          }
+        }
+      }
+    }
+  
+    // stats
+    .stats-container {
+      padding: 20px 15px;
+      ion-card {
+        --background: #fff;
+        margin: 0;
+        padding: 20px;
+        height: 100%;
+        border-radius: 20px;
+        .stat-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: 100%;
+          ion-text {
+            &.title {
+              color: #3a4045;
+              font-size: 1.2rem;
+              font-weight: 700;
+              ion-icon {
+                color: #7f8a93;
+                font-size: 1.3rem;
+                margin-right: 5px;
+              }
+            }
+          }
+  
+          // avg. speed
+          &.speed {
+            .speed-stat-container {
+              margin-top: 20px;
+              border-radius: 50%;
+              height: 130px;
+              width: 130px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #e5e6eb #92d7e1 #92d7e1 #92d7e1; // create partial border
+              display: grid;
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr auto auto 1fr;
+              justify-items: center;
+              ion-text {
+                &.value {
+                  grid-row-start: 2;
+                  grid-row-end: 3;
+                  grid-column-start: 1;
+                  grid-column-end: 2;
+                  font-size: 2.3rem;
+                  font-weight: 700;
+                  color: #3a4045;
+                }
+                &.description {
+                  grid-row-start: 3;
+                  grid-row-end: 4;
+                  grid-column-start: 1;
+                  grid-column-end: 2;
+                  color: #7f8a93;
+                  font-size: 1.1rem;
+                }
+              }
+            }
+          }
+  
+          // distance
+          &.distance {
+            .distance-stat-container {
+              display: grid;
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr auto auto 1fr;
+              justify-items: center;
+              height: 100%;
+              ion-text {
+                &.value {
+                  grid-row-start: 2;
+                  grid-row-end: 3;
+                  grid-column-start: 1;
+                  grid-column-end: 2;
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  color: #3a4045;
+                }
+                &.description {
+                  grid-row-start: 3;
+                  grid-row-end: 4;
+                  grid-column-start: 1;
+                  grid-column-end: 2;
+                  margin-top: 10px;
+                  color: #7f8a93;
+                  font-size: 1.1rem;
+                }
+              }
+            }
+          }
+  
+          // heart rate
+          &.heart-rate {
+            .heart-rate-stat-container {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              ion-icon {
+                align-self: center;
+                font-size: 5rem;
+                color: #92d7e1;
+                margin: 15px 0;
+              }
+  
+              ion-text {
+                justify-self: flex-start;
+                .value {
+                  font-size: 2rem;
+                  font-weight: 700;
+                  color: #3a4045;
+                }
+                .description {
+                  color: #7f8a93;
+                  font-size: 1rem;
+                  margin-left: 5px;
+                }
+              }
+            }
+          }
+  
+          // calories
+          &.calories {
+            .calories-stat-container {
+              display: flex;
+              flex-direction: column;
+              width: 100%;
+              align-items: center;
+              ion-icon {
+                font-size: 5rem;
+                color: #92d7e1;
+                margin: 15px 0;
+              }
+  
+              ion-text {
+                &.value {
+                  font-size: 1.5rem;
+                  font-weight: 700;
+                  color: #3a4045;
+                }
+                &.description {
+                  color: #7f8a93;
+                  font-size: 0.8rem;
+                  margin-left: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

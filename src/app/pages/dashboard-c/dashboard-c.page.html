@@ -1,0 +1,153 @@
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <!-- header -->
+    <div class="header-container">
+      <div class="text-container">
+        <ion-text class="greeting">Good Morning,</ion-text>
+        <ion-text class="name">Max 👋🏻</ion-text>
+      </div>
+      <ion-button fill="outline">
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- calendar -->
+    <div class="calendar-container">
+      <!-- emojis -->
+      <div class="emojis-container">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <div class="emoji-container selected">
+                <ion-text>😀</ion-text>
+                <div class="indicator"></div>
+              </div>
+            </ion-col>
+
+            <ion-col size="4">
+              <div class="emoji-container">
+                <ion-text>😐</ion-text>
+              </div>
+            </ion-col>
+
+            <ion-col size="4">
+              <div class="emoji-container">
+                <ion-text>😥</ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <!-- dates -->
+      <div class="dates-container">
+        <div class="date-container">
+          <ion-text class="day">WED</ion-text>
+          <ion-text class="date">15</ion-text>
+        </div>
+        <div class="date-container">
+          <ion-text class="day">THU</ion-text>
+          <ion-text class="date">16</ion-text>
+        </div>
+        <div class="date-container selected">
+          <ion-text class="day">FRI</ion-text>
+          <ion-text class="date">17</ion-text>
+        </div>
+        <div class="date-container">
+          <ion-text class="day">SAT</ion-text>
+          <ion-text class="date">18</ion-text>
+        </div>
+        <div class="date-container">
+          <ion-text class="day">SUN</ion-text>
+          <ion-text class="date">19</ion-text>
+        </div>
+        <div class="date-container">
+          <ion-text class="day">MON</ion-text>
+          <ion-text class="date">20</ion-text>
+        </div>
+        <div class="date-container">
+          <ion-text class="day">TUE</ion-text>
+          <ion-text class="date">21</ion-text>
+        </div>
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div class="stats-container">
+      <ion-grid>
+        <ion-row>
+          <!-- avg. speed -->
+          <ion-col size="6">
+            <ion-card>
+              <div class="stat-container speed">
+                <ion-text class="title">
+                  <ion-icon name="walk-outline"></ion-icon>
+                  Avg. Speed
+                </ion-text>
+                <div class="speed-stat-container">
+                  <ion-text class="value"> 10 </ion-text>
+                  <ion-text class="description"> Km/H </ion-text>
+                </div>
+              </div>
+            </ion-card>
+          </ion-col>
+
+          <!-- distance -->
+          <ion-col size="6">
+            <ion-card>
+              <div class="stat-container distance">
+                <ion-text class="title">
+                  <ion-icon name="flag-outline"></ion-icon>
+                  Distance
+                </ion-text>
+                <div class="distance-stat-container">
+                  <ion-text class="value"> 12.8 </ion-text>
+                  <ion-text class="description"> Km </ion-text>
+                </div>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+        <!-- heart rate -->
+        <ion-row>
+          <ion-col size="6">
+            <ion-card>
+              <div class="stat-container heart-rate">
+                <ion-text class="title">
+                  <ion-icon name="pulse-outline"></ion-icon>
+                  Heart Rate
+                </ion-text>
+
+                <div class="heart-rate-stat-container">
+                  <ion-icon name="pulse-outline"></ion-icon>
+                  <ion-text>
+                    <span class="value">110</span>
+                    <span class="description">bpm</span>
+                  </ion-text>
+                </div>
+              </div>
+            </ion-card>
+          </ion-col>
+
+          <!-- calories -->
+          <ion-col size="6">
+            <ion-card>
+              <div class="stat-container calories">
+                <ion-text class="title">
+                  <ion-icon name="flame-outline"></ion-icon>
+                  Calories
+                </ion-text>
+                <div class="calories-stat-container">
+                  <ion-icon name="speedometer-outline"></ion-icon>
+                  <ion-text class="value"> 450.68 </ion-text>
+                  <ion-text class="description"> K.Cal </ion-text>
+                </div>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,205 @@
+<!-- page header -->
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-title size="large"> TheKitchen </ion-title>
+    <ion-button slot="end" fill="solid">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>2</ion-label>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<!-- content -->
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <!-- searchbar -->
+    <div class="searchbar-container">
+      <div class="searchbar-container-inner">
+        <ion-searchbar></ion-searchbar>
+      </div>
+    </div>
+
+    <!-- quicklinks -->
+    <div class="quicklinks-container">
+      <div class="quicklinks-inner-container">
+        <ion-list>
+          <ion-item mode="ios" lines="full">
+            <ion-icon slot="start" name="repeat-outline"></ion-icon>
+            <ion-label>Repeat last order</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="full">
+            <ion-icon slot="start" name="help-outline"></ion-icon>
+            <ion-label>Help me choose</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon slot="start" name="bulb-outline"></ion-icon>
+            <ion-label>Surprise me</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+    <!-- categories -->
+    <div class="categories-container">
+      <!-- section header -->
+      <div class="section-header">
+        <ion-text>
+          <h2>Top Categories</h2>
+        </ion-text>
+        <ion-button fill="clear" class="ion-no-padding">
+          <ion-label>View all</ion-label>
+          <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- filters -->
+      <div class="filters-container">
+        <ion-chip>
+          <ion-icon name="leaf" class="green"></ion-icon>
+          <ion-label>Vegan</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="cafe" class="brown"></ion-icon>
+          <ion-label>Coffee</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="pizza" class="red"></ion-icon>
+          <ion-label>Pizza</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="beer" class="yellow"></ion-icon>
+          <ion-label>Beer</ion-label>
+        </ion-chip>
+        <ion-chip>
+          <ion-icon name="fast-food" class="pink"></ion-icon>
+          <ion-label>Burger</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+
+    <!-- recommendations -->
+    <div class="recommendations-container">
+      <!-- section header -->
+      <div class="section-header">
+        <ion-text>
+          <h2>Recommended for you</h2>
+        </ion-text>
+        <ion-button fill="clear" class="ion-no-padding">
+          <ion-label>View all</ion-label>
+          <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- food cards -->
+      <div class="food-cards-container">
+        <ion-grid>
+          <!-- first row -->
+          <ion-row>
+            <!-- quinoa -->
+            <ion-col size="6">
+              <ion-card>
+                <div class="food-card-container">
+                  <ion-img
+                    src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                  ></ion-img>
+                  <div class="text-container">
+                    <ion-text class="name">TheKitchen~ Quinoa</ion-text>
+                    <ion-text class="price">$20</ion-text>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+
+            <!-- burger -->
+            <ion-col size="6">
+              <ion-card>
+                <div class="food-card-container">
+                  <ion-img
+                    src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1022&q=80"
+                  ></ion-img>
+                  <div class="text-container">
+                    <ion-text class="name">TheKitchen~ Burger</ion-text>
+                    <ion-text class="price">$25</ion-text>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <!-- second row -->
+          <ion-row>
+            <!-- dumplings -->
+            <ion-col size="6">
+              <ion-card>
+                <div class="food-card-container">
+                  <ion-img
+                    src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
+                  ></ion-img>
+                  <div class="text-container">
+                    <ion-text class="name">TheKitchen~ Dumplings</ion-text>
+                    <ion-text class="price">$20</ion-text>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+
+            <!-- panini -->
+            <ion-col size="6">
+              <ion-card>
+                <div class="food-card-container">
+                  <ion-img
+                    src="https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3132&q=80"
+                  ></ion-img>
+                  <div class="text-container">
+                    <ion-text class="name">TheKitchen~ Panini</ion-text>
+                    <ion-text class="price">$15</ion-text>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <!-- third row -->
+          <ion-row>
+            <!-- salad -->
+            <ion-col size="6">
+              <ion-card>
+                <div class="food-card-container">
+                  <ion-img
+                    src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
+                  ></ion-img>
+                  <div class="text-container">
+                    <ion-text class="name">TheKitchen~ Salad</ion-text>
+                    <ion-text class="price">$15</ion-text>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+
+            <!-- ramen -->
+            <ion-col size="6">
+              <ion-card>
+                <div class="food-card-container">
+                  <ion-img
+                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                  ></ion-img>
+                  <div class="text-container">
+                    <ion-text class="name">TheKitchen~ Ramen</ion-text>
+                    <ion-text class="price">$20</ion-text>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+    <!-- cart -->
+    <div class="cart-button-container">
+      <ion-button fill="solid" expand="block">
+        Check out 2 products
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

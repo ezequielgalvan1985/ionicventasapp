@@ -49,7 +49,7 @@
         <div class="menu-items-container">
           <!-- app name -->
           <ion-text>
-            <h2>Ionic Blocks</h2>
+            <h2>VentasWeb</h2>
           </ion-text>
   
           <ion-list inset="false">
@@ -62,41 +62,17 @@
                       src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
                     />
                   </ion-avatar>
-                  <ion-text>Jane Foster</ion-text>
+                  <ion-text>Nombre de usuario</ion-text>
                 </div>
               </div>
             </ion-item>
   
-            
-            
-            <!-- dashboard -->
-            <ion-item>
-              <div class="option-container">
-                <div class="option-name">
-                  <ion-icon name="pie-chart-outline"></ion-icon>
-                  <ion-text>Dashboard</ion-text>
-                </div>
-              </div>
-            </ion-item>
-
-
-            <!-- dashboard -->
-            <ion-item>
-              <div class="option-container">
-                <div class="option-name">
-                  <ion-icon name="pie-chart-outline"></ion-icon>
-                  <ion-text>Dashboard</ion-text>
-                </div>
-              </div>
-            </ion-item>
-
 
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
               <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" 
                     routerLinkActive="selected">
                     <div class="option-container">
                       <div class="option-name">
-                        
                         <ion-icon name="{{p.icon}}"></ion-icon>
                         <ion-text>{{ p.title }}</ion-text>
                       </div>
@@ -105,50 +81,19 @@
             </ion-menu-toggle>
            
   
-            <!-- gorrion book -->
-            <ion-item>
-              <div class="option-container">
-                <div class="option-name">
-                  <ion-icon name="book-outline"></ion-icon>
-                  <ion-text>Gorrion Book</ion-text>
-                </div>
-  
-                <div class="option-value">
-                  <ion-icon name="open-outline"></ion-icon>
-                </div>
-              </div>
-            </ion-item>
-  
-            <!-- projects -->
-            <ion-item>
-              <div class="option-container">
-                <div class="option-name">
-                  <ion-icon name="time-outline"></ion-icon>
-                  <ion-text>Projects</ion-text>
-                </div>
-              </div>
-            </ion-item>
-  
-            <!-- employees -->
-            <ion-item>
-              <div class="option-container">
-                <div class="option-name">
-                  <ion-icon name="person-outline"></ion-icon>
-                  <ion-text>Employees</ion-text>
-                </div>
-              </div>
-            </ion-item>
-  
-            <!-- ok system -->
-            <ion-item>
-              <div class="option-container">
-                <div class="option-name">
-                  <ion-icon name="heart-outline"></ion-icon>
-                  <ion-text>OK System</ion-text>
-                </div>
-              </div>
-            </ion-item>
-  
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of menuAdmin; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" 
+                    routerLinkActive="selected">
+                    <div class="option-container">
+                      <div class="option-name">
+                        <ion-icon name="{{p.icon}}"></ion-icon>
+                        <ion-text>{{ p.title }}</ion-text>
+                      </div>
+                    </div>
+              </ion-item>
+            </ion-menu-toggle>
+           
+           
             <!-- logout -->
             <ion-item>
               <div class="option-container">
