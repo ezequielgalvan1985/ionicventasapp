@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
 
-    { title: 'Inicio', url: '/home', icon: 'desktop' },
+    { title: 'Inicio', url: '/home', icon: 'pie-chart-outline' },
     { title: 'Mi Carrito', url: '/carrito', icon: 'cart' },
     { title: 'Mis Pedidos', url: '/pedidos', icon: 'archive' },
     //{ title: 'Favoritos', url: '/folder/favorites', icon: 'heart' },

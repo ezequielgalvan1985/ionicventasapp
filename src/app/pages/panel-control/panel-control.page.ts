@@ -30,8 +30,10 @@ export class PanelControlPage implements OnInit {
 
     this.current_user = Number(localStorage.getItem("user_id"));
    
+    this.fnPedidosPorEstado(this.current_user,ESTADOS.PENDIENTE);
     this.fnPedidosPorEstado(this.current_user,ESTADOS.CONFIRMADO);
     this.fnPedidosPorEstado(this.current_user,ESTADOS.ENPREPARACION);
+    this.fnPedidosPorEstado(this.current_user,ESTADOS.PREPARADO);
     this.fnPedidosPorEstado(this.current_user,ESTADOS.ENCAMINO);
     this.fnPedidosPorEstado(this.current_user,ESTADOS.ENTREGADO);
 

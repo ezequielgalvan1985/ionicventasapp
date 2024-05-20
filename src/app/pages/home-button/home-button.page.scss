@@ -1,0 +1,33 @@
+ion-content {
+    --background: #161C25;
+
+    ion-tabs {
+        ion-tab-bar {
+            --background: #fff;
+            --color: #aaa;
+            --color-selected: #8577F7;
+            padding: 5px 0;
+            ion-tab-button {
+                ion-icon {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+
+    ion-fab {
+        margin-bottom: 20px;
+        ion-fab-button {
+            --background: #8577F7;
+            --background-activated: #8577F7;
+            --background-focused: #8577F7;
+            --border-radius: 50%;
+            --box-shadow: 0 0 10px rgba(133, 119, 247, 0.8);
+            &.main-fab {
+                --border-color: #fff;
+                --border-width: 3px;
+                --border-style: solid;
+            }
+        }
+    }
+}

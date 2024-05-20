@@ -1,5 +1,7 @@
 <ion-app>
+<!--  
   <ion-split-pane contentId="main-content">
+
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
@@ -28,6 +30,153 @@
         </ion-list>
       </ion-content>
     </ion-menu>
+  
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+-->
+
+  <ion-content [fullscreen]="true">
+    <!-- side menu -->
+    <ion-menu side="start" menuId="first" contentId="mainContent">
+      <ion-content>
+        <!-- close button -->
+        <ion-menu-toggle>
+          <ion-button fill="clear" size="large" color="light">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+  
+        <div class="menu-items-container">
+          <!-- app name -->
+          <ion-text>
+            <h2>Ionic Blocks</h2>
+          </ion-text>
+  
+          <ion-list inset="false">
+            <!-- account -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-avatar>
+                    <img
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+                    />
+                  </ion-avatar>
+                  <ion-text>Jane Foster</ion-text>
+                </div>
+              </div>
+            </ion-item>
+  
+            
+            
+            <!-- dashboard -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="pie-chart-outline"></ion-icon>
+                  <ion-text>Dashboard</ion-text>
+                </div>
+              </div>
+            </ion-item>
+
+
+            <!-- dashboard -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="pie-chart-outline"></ion-icon>
+                  <ion-text>Dashboard</ion-text>
+                </div>
+              </div>
+            </ion-item>
+
+
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" 
+                    routerLinkActive="selected">
+                    <div class="option-container">
+                      <div class="option-name">
+                        
+                        <ion-icon name="{{p.icon}}"></ion-icon>
+                        <ion-text>{{ p.title }}</ion-text>
+                      </div>
+                    </div>
+              </ion-item>
+            </ion-menu-toggle>
+           
+  
+            <!-- gorrion book -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="book-outline"></ion-icon>
+                  <ion-text>Gorrion Book</ion-text>
+                </div>
+  
+                <div class="option-value">
+                  <ion-icon name="open-outline"></ion-icon>
+                </div>
+              </div>
+            </ion-item>
+  
+            <!-- projects -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="time-outline"></ion-icon>
+                  <ion-text>Projects</ion-text>
+                </div>
+              </div>
+            </ion-item>
+  
+            <!-- employees -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="person-outline"></ion-icon>
+                  <ion-text>Employees</ion-text>
+                </div>
+              </div>
+            </ion-item>
+  
+            <!-- ok system -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="heart-outline"></ion-icon>
+                  <ion-text>OK System</ion-text>
+                </div>
+              </div>
+            </ion-item>
+  
+            <!-- logout -->
+            <ion-item>
+              <div class="option-container">
+                <div class="option-name">
+                  <ion-icon name="exit-outline"></ion-icon>
+                  <ion-text>logout</ion-text>
+                </div>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-content>
+    </ion-menu>
+
+    <!-- page contents -->
+    <div class="ion-page" id="mainContent" main>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title color="light"> Side Menu </ion-title>
+        </ion-toolbar>
+      </ion-header>
+    </div>
+    
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  </ion-content>
+  
 </ion-app>

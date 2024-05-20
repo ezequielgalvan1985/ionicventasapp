@@ -44,14 +44,15 @@
               <ion-select-option *ngFor="let c of categoriasList" [value]="c.id" >{{c.nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
-
           <ion-item>
             <ion-select label="Marca" label-placement="floating" formControlName="marca" >
               <ion-select-option *ngFor="let r of marcasList" [value]="r.id" >{{r.nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
-
-          
+          <ion-item>
+            <ion-input label="Imagen" labelPlacement="floating"  formControlName="nombre"></ion-input>
+          </ion-item>
+        
         </ion-list>
       </ion-list>
       <ion-button (click)="fnGuardar()">Guardar</ion-button>

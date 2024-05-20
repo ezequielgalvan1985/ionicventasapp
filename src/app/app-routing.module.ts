@@ -92,7 +92,47 @@ const routes: Routes = [
   {
     path: 'pedidos-enviar',
     loadChildren: () => import('./pages/pedidos-enviar/pedidos-enviar.module').then( m => m.PedidosEnviarPageModule)
+  },  {
+    path: 'item-details2',
+    loadChildren: () => import('./pages/item-details2/item-details2.module').then( m => m.ItemDetails2PageModule)
   },
+  {
+    path: 'carrito2',
+    loadChildren: () => import('./pages/carrito2/carrito2.module').then( m => m.Carrito2PageModule)
+  },
+  {
+    path: 'home-button',
+    loadChildren: () => import('./pages/home-button/home-button.module').then( m => m.HomeButtonPageModule)
+  },
+  {
+    path: 'products-list-a',
+    loadChildren: () => import('./pages/products-list-a/products-list-a.module').then( m => m.ProductsListAPageModule)
+  },
+  {
+    path: 'products-list-b',
+    loadChildren: () => import('./pages/products-list-b/products-list-b.module').then( m => m.ProductsListBPageModule)
+  },
+  {
+    path: 'registrarse',
+    loadChildren: () => import('./pages/registrarse/registrarse.module').then( m => m.RegistrarsePageModule)
+  },
+  {
+    path: 'login-a',
+    loadChildren: () => import('./pages/login-a/login-a.module').then( m => m.LoginAPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'dashboard-a',
+    loadChildren: () => import('./pages/dashboard-a/dashboard-a.module').then( m => m.DashboardAPageModule)
+  },
+  {
+    path: 'products-list-c',
+    loadChildren: () => import('./pages/products-list-c/products-list-c.module').then( m => m.ProductsListCPageModule)
+  },
+
   
 ];
 

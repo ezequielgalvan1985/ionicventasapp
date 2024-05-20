@@ -1,0 +1,185 @@
+ion-header {
+    ion-toolbar {
+        --background: #fff;
+        --border-color: #B4B6B8;
+        ion-button {
+            ion-icon {
+                color: #101518;
+            }
+        }
+    }
+}
+ion-content {
+    --background: #fff;
+    --color: #363A3D;
+    .page-container {
+
+        // section header
+        .title-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            ion-text {
+                h2 {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                }
+            }
+            ion-button {
+                --color: #363A3D;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+        }
+
+        // dashboard
+        .dashboard-container {
+            background-color: #F6F6EB;
+            padding-bottom: 30px;
+            ion-list {
+                margin: 0 20px;
+                border-radius: 20px;
+                background-color: #fff;
+                ion-item {
+                    --background: #fff;
+                    --border-color: #F6F6EB;
+                    .dashboard-item-container {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 20px 15px;
+                        width: 100%;
+                        .icon-container {
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 25px;
+                            background-color: #FDF6F4;
+                            display: grid;
+                            justify-items: center;
+                            align-content: center;
+                            ion-icon {
+                                color: #3C3C3C;
+                                font-size: 1.5rem;
+                            }
+                        }
+                        .forward-icon-container {
+                            height: 25px;
+                            width: 25px;
+                            border-radius: 12.5px;
+                            background-color: #F6F6EB;
+                            display: grid;
+                            justify-items: center;
+                            align-content: center;
+                            ion-icon {
+                                color: #3C3C3C;
+                                font-size: 1rem;
+                            }
+                        }
+                        ion-text {
+                            flex-grow: 1;
+                            color: #3C3C3C;
+                            font-size: 1rem;
+                            margin: 0 10px;
+                            .emphasis {
+                                font-size: 1.5rem;
+                                font-weight: 700;
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // job statistics
+        .job-statistics-container {
+            background-color: #fff;
+
+            // tags
+            .tags-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0 15px;
+                ion-chip {
+                    --background: transparent;
+                    --color: #778393;
+                    &.active {
+                        --background: #3C3C3C;
+                        --color: #fff;
+                    } 
+                    .tag-container {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        margin-right: 5px;
+                        .indicator {
+                            height: 4px;
+                            width: 4px;
+                            border-radius: 2px;
+                            background-color: #F09979;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+
+            // stats
+            .stats-container {
+                padding: 10px;
+                .stat-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border: 1px dashed #EDEFF3;
+                    border-radius: 10px;
+                    padding: 20px 10px;
+
+                    .indicator {
+                        width: 60px;
+                        height: 5px;
+                        border-radius: 2.5px;
+                        background-color: #EDEFF3;
+                        &.orange {
+                            background-color: #F09979;
+                        }
+                    }
+                    ion-text {
+                        color: #3C3C3C;
+                        &.title {
+                            margin-top: 15px;
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                        }
+                        &.stat {
+                            margin-top: 20px;
+                            font-size: 2rem;
+                            font-weight: 700;
+                        }
+                        &.time-span {
+                            margin-top: 15px;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            color: #98A0AC;
+                        }
+                    }
+                    ion-chip {
+                        margin-top: 10px;
+                        --color: #fff;
+                        &.green {
+                            --background: #61C1A2;
+                        }
+                        &.red {
+                            --background: #DB6B67;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    
+}

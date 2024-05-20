@@ -1,0 +1,194 @@
+<ion-content [fullscreen]="true">
+
+  <!-- greeting -->
+  <div class="greeting">
+    <ion-text>
+      <span class="main-greeting">Hi, Mark!</span>
+    </ion-text>
+    <ion-text>
+      <p class="prompt">Explore new furnitures</p>
+    </ion-text>
+  </div>
+
+  <!-- searchbar -->
+  <ion-searchbar mode="ios" placeholder="Search for furniture"></ion-searchbar>
+
+  <!-- announcement -->
+  <ion-card mode="ios" class="announcement-card">
+    <div class="announcement-content-container">
+      <ion-img src="https://images.unsplash.com/photo-1588471980726-8346cb477a33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1970&q=80"></ion-img>
+      <ion-text class="title"><span class="emphasis">Makavel furniture</span><br/>coming soon</ion-text>
+      
+      <!-- countdown -->
+      <div class="countdown-container">
+
+        <!-- days -->
+        <div class="section-container">
+          <div class="numbers-container">
+            <div class="number-container">
+              <ion-text>0</ion-text>
+            </div>
+            <div class="number-container">
+              <ion-text>9</ion-text>
+            </div>
+          </div>
+          <ion-text class="description">Days</ion-text>
+        </div>
+
+        <!-- divider -->
+        <div class="divider">
+          <ion-text>:</ion-text>
+        </div>
+
+        <!-- hours -->
+        <div class="section-container">
+          <div class="numbers-container">
+            <div class="number-container">
+              <ion-text>2</ion-text>
+            </div>
+            <div class="number-container">
+              <ion-text>1</ion-text>
+            </div>
+          </div>
+          <ion-text class="description">Hours</ion-text>
+        </div>
+
+        <!-- divider -->
+        <div class="divider">
+          <ion-text>:</ion-text>
+        </div>
+
+        <!-- minutes -->
+        <div class="section-container">
+          <div class="numbers-container">
+            <div class="number-container">
+              <ion-text>3</ion-text>
+            </div>
+            <div class="number-container">
+              <ion-text>4</ion-text>
+            </div>
+          </div>
+          <ion-text class="description">Minutes</ion-text>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <!-- categories-->
+  <div class="categories-container">
+    <ion-text class="section-header">Select Category</ion-text>
+    <div class="chips-container">
+      <ion-chip class="selected">
+        <ion-label>All</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-icon name="bed-outline"></ion-icon>
+        <ion-label>Bedroom</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-icon name="ice-cream-outline"></ion-icon>
+        <ion-label>Kitchen</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-icon name="briefcase-outline"></ion-icon>
+        <ion-label>Office</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-icon name="ice-cream-outline"></ion-icon>
+        <ion-label>Outdoor</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
+  <!-- product list -->
+  <div class="products-container">
+    <div class="section-header">
+      <ion-text class="title">Seen Before</ion-text>
+      <ion-button mode="ios" fill="clear" class="ion-no-padding">
+        <ion-text class="alt-option">See All</ion-text>
+      </ion-button>
+    </div>
+    <div class="product-list-container">
+      <ion-list mode="ios" inset="false">
+
+          <!-- first product-->
+          <ion-item mode="ios" lines="none" class="ion-no-padding">
+            <div class="product-container">
+              <ion-img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1992&q=80"></ion-img>
+
+              <div class="product-text-container">
+                <ion-text class="name">Stylish modern living room with Seyfha</ion-text>
+                <!-- stats -->
+                <div class="stats-container">
+                  <!-- seen -->
+                  <div class="stat-container">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <ion-text>341 seen</ion-text>
+                  </div>
+
+                  <!-- liked -->
+                  <div class="stat-container">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-text>294 liked</ion-text>
+                  </div>
+                </div>
+
+                <!-- rating and price -->
+                <div class="rating-price-container">
+                  <div class="rating-container">
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <ion-text class="price">$ 430</ion-text>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+
+          <!-- second product-->
+          <ion-item mode="ios" lines="none" class="ion-no-padding">
+            <div class="product-container">
+              <ion-img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"></ion-img>
+
+              <div class="product-text-container">
+                <ion-text class="name">Modern style kitchen design with Seyfha</ion-text>
+                <!-- stats -->
+                <div class="stats-container">
+                  <!-- seen -->
+                  <div class="stat-container">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <ion-text>342 seen</ion-text>
+                  </div>
+
+                  <!-- liked -->
+                  <div class="stat-container">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-text>456 liked</ion-text>
+                  </div>
+                </div>
+
+                <!-- rating and price -->
+                <div class="rating-price-container">
+                  <div class="rating-container">
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                    <ion-icon class="filled" name="star"></ion-icon>
+                  </div>
+
+                  <ion-text class="price">$ 570</ion-text>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+
+      </ion-list>
+    </div>
+  </div>
+  
+</ion-content>

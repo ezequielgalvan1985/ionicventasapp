@@ -1,0 +1,104 @@
+ion-content {
+    --background: #fff;
+    .page-container {
+        padding: 20px;
+    
+        .form-container {
+            padding-top: 20px;
+            h1 {
+                color: #444;
+                font-size: 2.5rem;
+                font-weight: 600;
+            }
+            .input-container {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                ion-icon {
+                    color: #666;
+                    font-size: 1.5rem;
+                    margin-right: 10px;
+                }
+                ion-input {
+                    margin: 10px 0;
+                    border-bottom: 1px solid #666;
+                    --color: #666;
+                    --padding-top: 15px;
+                    --padding-bottom: 15px;
+                    --padding-start: 5px;
+                    --padding-end: 15px;
+                }
+            }
+            ion-button {
+                margin: 20px 0;
+                text-transform: capitalize;
+                --box-shadow: none;
+                --background: #2467f6;
+                --background-activated: #427cf8;
+                --background-focussed: #427cf8;
+                --border-radius: 10px;
+                --padding-top: 25px;
+                --padding-bottom: 25px;
+            }
+            .forgot-password-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                ion-text {
+                    color: #2467f6;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    
+        .alternate-container {
+            text-align: center;
+            padding-top: 10px;
+            .or-container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                .horizontal-line {
+                    background-color: #888;
+                    height: 0.3px;
+                    opacity: 0.5;
+                    flex-grow: 1;
+                }
+                .divider {
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    color: #666;
+                    font-size: 0.9rem;
+                    margin: 0 10px;
+                }
+            }
+            ion-button {
+                text-transform: capitalize;
+                --box-shadow: none;
+                --background: #ececf5;
+                --background-activated: #b8b8ba;
+                --background-focussed: #b8b8ba;
+                --border-color: #fff;
+                --border-style: solid;
+                --color: #666;
+                --border-width: 1px;
+                --border-radius: 10px;
+                --padding-top: 25px;
+                --padding-bottom: 25px;
+                ion-icon {
+                    font-size: 1.7rem;
+                }
+            }
+            .register-prompt {
+                color: #666;
+                font-size: 0.95rem;
+                padding-top: 20px;
+                .link {
+                    color: #2467f6;
+                    font-weight: 600;
+                }
+            }
+        }
+    }   
+}

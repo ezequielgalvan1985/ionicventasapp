@@ -1,0 +1,220 @@
+<!-- page header -->
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="clear">
+      <div class="button-content-container">
+        <div class="indicator">
+          <ion-text>3</ion-text>
+        </div>
+        <ion-icon name="bag-outline"></ion-icon>
+      </div>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<!-- content -->
+<ion-content [fullscreen]="true">
+  <!-- for you -->
+
+  <!-- section header -->
+  <div class="section-header">
+    <div class="title-container">
+      <ion-text>
+        <h2 class="ion-no-margin">For You</h2>
+      </ion-text>
+    </div>
+    <ion-button mode="ios" fill="clear" class="ion-no-padding">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- for you products -->
+  <div class="foryou-products-container">
+    <!-- first card -->
+    <ion-card mode="ios" class="product-card">
+      <div class="product-card-container">
+        <div class="image-container">
+          <ion-img
+            src="https://ionicblocks.com/assets/block-examples/sofa-klippan.png"
+          ></ion-img>
+        </div>
+        <div class="product-description-container">
+          <div class="texts-container">
+            <ion-text class="product-name">Big Sofa</ion-text>
+            <div class="price-container">
+              <ion-text class="price-description"> from </ion-text>
+              <ion-text class="product-price"> $537.80 </ion-text>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- second card -->
+    <ion-card mode="ios" class="product-card">
+      <div class="product-card-container">
+        <div class="image-container">
+          <ion-img
+            src="https://ionicblocks.com/assets/block-examples/sofa-hemlingby.png"
+          ></ion-img>
+        </div>
+        <div class="product-description-container">
+          <div class="texts-container">
+            <ion-text class="product-name">Couch</ion-text>
+            <div class="price-container">
+              <ion-text class="price-description"> from </ion-text>
+              <ion-text class="product-price"> $249.80 </ion-text>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- third card -->
+    <ion-card mode="ios" class="product-card">
+      <div class="product-card-container">
+        <div class="image-container">
+          <ion-img
+            src="https://ionicblocks.com/assets/block-examples/sofa-klippan.png"
+          ></ion-img>
+        </div>
+        <div class="product-description-container">
+          <div class="texts-container">
+            <ion-text class="product-name">Big Sofa</ion-text>
+            <div class="price-container">
+              <ion-text class="price-description"> from </ion-text>
+              <ion-text class="product-price"> $537.80 </ion-text>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <!-- ad banner -->
+  <ion-card mode="ios" class="ad-banner">
+    <div class="content-container">
+      <div class="texts-container">
+        <ion-text class="product-name"> Really huge sofa </ion-text>
+        <ion-text class="product-price"> $78.00 </ion-text>
+        <ion-text class="discounted-price"> $60.80 </ion-text>
+        <ion-button
+          mode="ios"
+          fill="clear"
+          class="ion-no-margin ion-no-padding"
+        >
+          <ion-label>Buy Now</ion-label>
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="image-container">
+        <ion-img
+          src="https://ionicblocks.com/assets/block-examples/sofa-klippan.png"
+        ></ion-img>
+      </div>
+    </div>
+  </ion-card>
+
+  <!-- hot deals -->
+
+  <!-- section header -->
+  <div class="section-header">
+    <div class="title-container">
+      <ion-text>
+        <h2 class="ion-no-margin">Hot Deals</h2>
+      </ion-text>
+      <ion-text>
+        <span class="countdown">1</span>
+        <span class="countdown">8</span>
+        <span class="break countdown">5</span>
+        <span class="countdown">6</span>
+        <span class="break countdown">2</span>
+        <span class="countdown">6</span>
+      </ion-text>
+    </div>
+    <ion-button mode="ios" fill="clear" class="ion-no-padding">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- hot deals products -->
+  <div class="hotdeals-products-container">
+    <!-- first card -->
+    <ion-card mode="ios" class="product-card">
+      <div class="product-card-container">
+        <div class="image-container">
+          <ion-img
+            src="https://ionicblocks.com/assets/block-examples/sofa-klippan.png"
+          ></ion-img>
+          <div class="discount-tag">
+            <ion-text>30%</ion-text>
+          </div>
+        </div>
+        <div class="product-description-container">
+          <div class="texts-container">
+            <ion-text class="product-name">Big Sofa</ion-text>
+            <div class="price-container">
+              <ion-text class="product-price"> $78.00 </ion-text>
+              <ion-text class="discounted-price"> $60.80 </ion-text>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- second card -->
+    <ion-card mode="ios" class="product-card">
+      <div class="product-card-container">
+        <div class="image-container">
+          <ion-img
+            src="https://ionicblocks.com/assets/block-examples/sofa-hemlingby.png"
+          ></ion-img>
+          <div class="discount-tag">
+            <ion-text>45%</ion-text>
+          </div>
+        </div>
+        <div class="product-description-container">
+          <div class="texts-container">
+            <ion-text class="product-name">Couch</ion-text>
+            <div class="price-container">
+              <ion-text class="product-price"> $78.00 </ion-text>
+              <ion-text class="discounted-price"> $60.80 </ion-text>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+
+    <!-- third card -->
+    <ion-card mode="ios" class="product-card">
+      <div class="product-card-container">
+        <div class="image-container">
+          <ion-img
+            src="https://ionicblocks.com/assets/block-examples/sofa-klippan.png"
+          ></ion-img>
+          <div class="discount-tag">
+            <ion-text>35%</ion-text>
+          </div>
+        </div>
+        <div class="product-description-container">
+          <div class="texts-container">
+            <ion-text class="product-name">Big Sofa</ion-text>
+            <div class="price-container">
+              <ion-text class="product-price"> $78.00 </ion-text>
+              <ion-text class="discounted-price"> $60.80 </ion-text>
+            </div>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

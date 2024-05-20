@@ -1,0 +1,145 @@
+<!--
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>item-details2</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">item-details2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+-->
+<!-- page header -->
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <!-- back button -->
+    <ion-button mode="ios" slot="start" fill="clear" class="ion-no-padding">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+
+    <!-- cart button -->
+    <ion-button mode="ios" slot="end" fill="clear" class="ion-no-padding">
+      <div class="button-container">
+        <ion-icon name="bag-outline"></ion-icon>
+        <div class="indicator"></div>
+      </div>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-template
+    #productDetails
+    [ngTemplateOutlet]="productDetails"
+    let-product="product"
+    [ngTemplateOutletContext]="{ product: { count: 1 } }"
+  >
+    <!-- product image -->
+    <div class="product-image-container">
+      <ng-template
+        #productImage
+        [ngTemplateOutlet]="productImage"
+        let-product="product"
+        [ngTemplateOutletContext]="{ product: { color: 'white' } }"
+      >
+        <div class="image-container">
+          <ng-container *ngIf="product.color === 'brown'">
+            <ion-img
+              src="https://ionicblocks.com/assets/block-examples/desk-brown.jpeg"
+            ></ion-img>
+          </ng-container>
+          <ng-container *ngIf="product.color === 'white'">
+            <ion-img
+              src="https://ionicblocks.com/assets/block-examples/desk-white.jpeg"
+            ></ion-img>
+          </ng-container>
+        </div>
+
+        <!-- dimmer -->
+        <div class="dim-overlay"></div>
+
+        <!-- color selector -->
+        <div class="color-selector-container">
+          <ion-text>Color</ion-text>
+          <ion-button
+            fill="clear"
+            class="brown ion-no-padding"
+            [class.selected]="product.color === 'brown'"
+            (click)="product.color = 'brown'"
+          ></ion-button>
+          <ion-button
+            fill="clear"
+            class="white ion-no-padding"
+            [class.selected]="product.color === 'white'"
+            (click)="product.color = 'white'"
+          ></ion-button>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- product details -->
+    <div class="product-details-container">
+      <div class="product-header-container">
+        <ion-text class="product-header"> Hallingdal Desk </ion-text>
+
+        <!-- count -->
+        <div class="count-container">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button
+                  fill="clear"
+                  (click)="product.count > 0 && product.count = product.count - 1"
+                >
+                  <ion-icon name="remove-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-text class="count-value">{{ product.count }}</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-button
+                  fill="clear"
+                  (click)="product.count = product.count + 1"
+                >
+                  <ion-icon name="add-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+
+      <!-- description -->
+      <ion-text>
+        <h2>Description</h2>
+      </ion-text>
+      <ion-text>
+        <p>
+          By using fibreboard with a particle board frame and honeycomb paper as
+          filler in this product, we use less wood per product. That way, we can
+          take better care of our resources.
+        </p>
+      </ion-text>
+    </div>
+
+    <!-- cta -->
+    <div class="cta-container">
+      <ion-button mode="ios" expand="block" size="large" class="cta">
+        <div class="button-container">
+          <div class="icon-container">
+            <ion-icon name="bag"></ion-icon>
+          </div>
+          <ion-text class="button-text"> Add to cart </ion-text>
+          <ion-text class="amount">
+            ${{ 400 * (product.count || 0) }}
+          </ion-text>
+        </div>
+      </ion-button>
+    </div>
+  </ng-template>
+</ion-content>

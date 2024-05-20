@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true">
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" selected="true">
+        <ion-icon name="journal-outline"></ion-icon>
+        <ion-label>Journal</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="pulse-outline"></ion-icon>
+        <ion-label>Mesures</ion-label>
+      </ion-tab-button>
+
+      <!-- to leave space in the center for the fab button -->
+      <ion-tab-button>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="medkit-outline"></ion-icon>
+        <ion-label>Traitement</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Profil</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <!-- big button at the center of the tab bar -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+
+    <!-- floating button -->
+    <ion-fab-button class="main-fab">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+
+    <!-- button that show up when you tap on the main fab button -->
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="thermometer-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="id-card-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="footsteps-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  
+  </ion-fab>
+</ion-content>
+  
