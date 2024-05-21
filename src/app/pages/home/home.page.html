@@ -174,113 +174,29 @@
           <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </div>
-
-
-
-
-
-
-      
       <!-- food cards -->
       <div class="food-cards-container">
         <ion-grid>
           <!-- first row -->
           <ion-row>
-            <!-- quinoa -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Quinoa</ion-text>
-                    <ion-text class="price">$20</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
-
-            <!-- burger -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1022&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Burger</ion-text>
-                    <ion-text class="price">$25</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-
-          <!-- second row -->
-          <ion-row>
-            <!-- dumplings -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Dumplings</ion-text>
-                    <ion-text class="price">$20</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
-
-            <!-- panini -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3132&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Panini</ion-text>
-                    <ion-text class="price">$15</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-
-          <!-- third row -->
-          <ion-row>
-            <!-- salad -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Salad</ion-text>
-                    <ion-text class="price">$15</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
-
-            <!-- ramen -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Ramen</ion-text>
-                    <ion-text class="price">$20</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
+                <ion-col *ngFor="let product of productosResult"
+                size="6" 
+                routerLink="/item-details/{{ product.id}}" 
+                routerDirection="forward">
+      
+                  <ion-card>
+                    <div class="food-card-container">
+                      <ion-img
+                        src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                      ></ion-img>
+                      <div class="text-container">
+                        <ion-text class="name">{{ product.nombre }}</ion-text>
+                        <ion-text class="price">${{ product.precio }}</ion-text>
+                      </div>
+                    </div>
+                  </ion-card>                
+                </ion-col>
+          
           </ion-row>
         </ion-grid>
       </div>
@@ -294,7 +210,7 @@
 
 
 
-    
+
     <!-- recommendations -->
     <div class="recommendations-container">
       <!-- section header -->
@@ -314,20 +230,24 @@
           <!-- first row -->
           <ion-row>
             <!-- quinoa -->
-            <ion-col size="6">
-              <ion-card>
-                <div class="food-card-container">
-                  <ion-img
-                    src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                  ></ion-img>
-                  <div class="text-container">
-                    <ion-text class="name">TheKitchen~ Quinoa</ion-text>
-                    <ion-text class="price">$20</ion-text>
-                  </div>
-                </div>
-              </ion-card>
-            </ion-col>
-
+            <ion-col *ngFor="let product of productosResult"
+                size="6" 
+                routerLink="/item-details/{{ product.id}}" 
+                routerDirection="forward">
+      
+                  <ion-card>
+                    <div class="food-card-container">
+                      <ion-img
+                        src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                      ></ion-img>
+                      <div class="text-container">
+                        <ion-text class="name">{{ product.nombre }}</ion-text>
+                        <ion-text class="price">${{ product.precio }}</ion-text>
+                      </div>
+                    </div>
+                  </ion-card>                
+                </ion-col>
+          
             <!-- burger -->
             <ion-col size="6">
               <ion-card>
