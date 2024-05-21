@@ -1,6 +1,5 @@
 
 <ion-item-sliding *ngFor="let item of pedidoTmp.items" >
-      
   <ion-card mode="ios">
      <ion-item>
      <ion-card-content>
@@ -29,3 +28,54 @@
    </ion-item-options>
    </ion-card>
 </ion-item-sliding>
+
+
+
+
+    <!-- product list -->
+    <div class="product-list-container">
+      <ion-list mode="ios" inset="false">
+
+        <!-- first product -->
+        <ion-item lines="none" class="ion-no-padding" *ngFor="let item of pedidoTmp.items">
+          <div class="product-item-container">
+            <!-- product image -->
+            <ion-img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"></ion-img>
+
+            <!-- product details -->
+            <div class="product-details-container">
+              <div class="product-info-container">
+                <ion-text class="product-name">{{ item.producto.nombre }}</ion-text>
+                <ion-text class="product-description">{{ item.producto.descripcion }}</ion-text>
+              </div>
+
+              <div class="product-price-count-container">
+                <ion-text class="price">${{ item.producto.precio * item.cantidad | number : '1.2-2'}}</ion-text>
+                 <!-- count -->
+                <div class="count-container">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        <ion-button fill="clear" (click)="fnRestar(item)">
+                          <ion-icon name="remove-outline"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                      <ion-col>
+                        <ion-text class="count-value">{{ item.cantidad }}</ion-text>
+                      </ion-col>
+                      <ion-col>
+                        <ion-button fill="clear" (click)="fnSumar(item)">
+                          <ion-icon name="add-outline"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-item>
+
+      </ion-list>
+
+    </div>

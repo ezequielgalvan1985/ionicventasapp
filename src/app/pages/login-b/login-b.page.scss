@@ -1,0 +1,96 @@
+ion-content {
+    --background: #ececf5;
+    .page-container {
+        padding: 20px;
+    
+        .welcome-container {
+            text-align: center;
+            margin: 30px;
+            h1 {
+                color: #444;
+                font-size: 2.5rem;
+                font-weight: 600;
+            }
+            h2 {
+                color: #666;
+                font-weight: 400;
+            }
+        }
+    
+        .form-container {
+            padding-top: 20px;
+            ion-input {
+                margin: 10px 0;
+                border-radius: 10px;
+                --background: #fff;
+                --color: #666;
+                --padding-top: 15px;
+                --padding-bottom: 15px;
+                --padding-start: 15px;
+                --padding-end: 15px;
+            }
+            ion-button {
+                margin: 20px 0;
+                --background: #e2716d;
+                --background-activated: #c67d7b;
+                --background-focussed: #c67d7b;
+                --border-radius: 10px;
+                --padding-top: 25px;
+                --padding-bottom: 25px;
+            }
+            .forgot-password-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                ion-text {
+                    color: #666;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    
+        .alternate-container {
+            text-align: center;
+            padding-top: 30px;
+            .or-container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                .horizontal-line {
+                    background-color: #888;
+                    height: 0.3px;
+                    opacity: 0.5;
+                    flex-grow: 1;
+                }
+                .divider {
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    color: #666;
+                    font-size: 0.9rem;
+                    margin: 0 10px;
+                }
+            }
+            ion-button {
+                --box-shadow: none;
+                --background: #ececf5;
+                --background-activated: #cbcbd2;
+                --background-focussed: #cbcbd2;
+                --border-color: #fff;
+                --border-style: solid;
+                --color: #666;
+                --border-width: 1px;
+                --border-radius: 10px;
+                --padding-top: 25px;
+                --padding-bottom: 25px;
+                ion-icon {
+                    font-size: 1.7rem;
+                }
+            }
+            .register-prompt {
+                color: #666;
+                font-size: 0.95rem;
+                margin-top: 20px;
+            }
+        }
+    }   
+}

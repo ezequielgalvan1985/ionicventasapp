@@ -26,7 +26,7 @@ export class ItemDetailsPage implements OnInit {
 
   productoSelected={}as Producto;
   itemPedidoForm={}as FormGroup;
-  cantidad = 0 as number;
+  cantidad = 1 as number;
   
   productoId = 0 as number;
   userId = 0 as number;
@@ -88,7 +88,7 @@ export class ItemDetailsPage implements OnInit {
   fnAgregarAlCarrito(){ 
     console.log("Formulario:"+ JSON.stringify(this.itemPedidoForm.value));
     
-    if (Number(this.itemPedidoForm.get("cantidad")?.value) < 1 ) {
+    if (Number(this.cantidad) < 1 ) {
       this.presentAlert("Importante","", "Cantidad debe ser mayor a 0");
       return false;
     }
@@ -100,7 +100,7 @@ export class ItemDetailsPage implements OnInit {
     this.pedidoFindByUserEmpresaRequestDto.user_id = this.userId;
 
     this.itemPedido.pedido.id = this.pedidoTmp.id;
-    this.itemPedido.cantidad = this.itemPedidoForm.get("cantidad")?.value;
+    this.itemPedido.cantidad = this.cantidad;
     this.itemPedido.producto.id = this.productoId;
     
     console.log("requestDto:"+ JSON.stringify(this.pedidoFindByUserEmpresaRequestDto));
@@ -110,7 +110,7 @@ export class ItemDetailsPage implements OnInit {
         .subscribe(r=>{
         this.pedidoTmp = r[0];
         
-        console.log("responseDto:"+ JSON.stringify(this.pedidoTmp));
+        //console.log("responseDto:"+ JSON.stringify(this.pedidoTmp));
         
         if(this.pedidoTmp){
           //Agregar Item

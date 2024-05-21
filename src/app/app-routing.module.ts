@@ -92,7 +92,8 @@ const routes: Routes = [
   {
     path: 'pedidos-enviar',
     loadChildren: () => import('./pages/pedidos-enviar/pedidos-enviar.module').then( m => m.PedidosEnviarPageModule)
-  },  {
+  },
+  {
     path: 'item-details2',
     loadChildren: () => import('./pages/item-details2/item-details2.module').then( m => m.ItemDetails2PageModule)
   },
@@ -144,6 +145,26 @@ const routes: Routes = [
     path: 'dashboard-d',
     loadChildren: () => import('./pages/dashboard-d/dashboard-d.module').then( m => m.DashboardDPageModule)
   },
+  {
+    path: 'item-details3',
+    loadChildren: () => import('./pages/item-details3/item-details3.module').then( m => m.ItemDetails3PageModule)
+  },
+  {
+    path: 'login-b',
+    loadChildren: () => import('./pages/login-b/login-b.module').then( m => m.LoginBPageModule)
+  },
+  {
+    path: 'login-c',
+    loadChildren: () => import('./pages/login-c/login-c.module').then( m => m.LoginCPageModule)
+  },
+  {
+    path: 'carrito3',
+    loadChildren: () => import('./pages/carrito3/carrito3.module').then( m => m.Carrito3PageModule)
+  },  {
+    path: 'carrito4',
+    loadChildren: () => import('./pages/carrito4/carrito4.module').then( m => m.Carrito4PageModule)
+  },
+
 
   
 ];

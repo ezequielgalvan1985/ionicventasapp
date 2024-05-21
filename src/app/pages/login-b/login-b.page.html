@@ -1,0 +1,68 @@
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <!-- welcome text-->
+    <div class="welcome-container">
+      <ion-text>
+        <h1>
+          Hello Again!
+        </h1>
+      </ion-text>
+      <ion-text>
+        <h2>
+          Welcome back you've been missed
+        </h2>
+      </ion-text>
+    </div>
+
+    <!-- form -->
+    <div class="form-container">
+      <ion-input placeholder="Username" clearInput="true" required="true"></ion-input>
+      <ion-input placeholder="Password" type="password" required="true"></ion-input>
+      <div class="forgot-password-container">
+        <ion-text>
+          <span>Forgot password</span>
+        </ion-text>
+      </div>
+      <ion-button type="submit" strong="true" expand="block" mode="ios">Sign In</ion-button>
+    </div>
+
+    <!-- alternate login options -->
+    <div class="alternate-container">
+      <div class="or-container">
+        <div class="horizontal-line"></div>
+        <ion-text color="dark" class="divider">
+          <p>or continue with</p>
+        </ion-text>
+        <div class="horizontal-line"></div>
+      </div>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" mode="ios">
+              <ion-icon name="logo-apple"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" mode="ios">
+              <ion-icon name="logo-google"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" mode="ios">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+      <ion-text>
+        <p class="register-prompt">
+          Not a member? <ion-text color="primary"><span>Register now</span></ion-text>
+        </p>
+      </ion-text>
+    </div>
+
+  </div>
+</ion-content>
+  

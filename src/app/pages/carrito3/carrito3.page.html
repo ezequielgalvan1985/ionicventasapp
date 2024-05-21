@@ -1,0 +1,193 @@
+<!-- page header -->
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <!-- back button -->
+    <ion-button mode="ios" slot="start" fill="clear" class="ion-no-padding">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+
+    <ion-title>My Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-template
+    #productDetails
+    [ngTemplateOutlet]="productDetails"
+    let-products="products"
+    [ngTemplateOutletContext]="{ products: { product1: { count: 1, price: 320, selected: false }, product2: { count: 1, price: 450, selected: true } } }">
+  
+    <div class="product-list-container">
+
+      <!-- product list -->
+      <ion-list mode="ios" inset="false">
+
+        <!-- first product -->
+        <ion-item-sliding>
+          <ion-item lines="none" class="ion-no-padding">
+            <div class="product-item-container" [class.selected]="products.product1.selected">
+              <!-- checkbox -->
+              <ion-checkbox mode="md" [checked]="products.product1.selected" (ionChange)="products.product1.selected = $event.detail.checked"></ion-checkbox>
+  
+              <!-- product image -->
+              <ion-img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"></ion-img>
+  
+              <!-- product details -->
+              <div class="product-details-container">
+                <div class="product-info-container">
+                  <ion-text class="product-name">Huge couch</ion-text>
+                  <ion-text class="product-description">Dark green</ion-text>
+                </div>
+  
+                <div class="product-price-count-container">
+                  <ion-text class="price">${{ products.product1.price * products.product1.count }}</ion-text>
+                   <!-- count -->
+                  <div class="count-container">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <ion-button fill="clear" class="remove" (click)="products.product1.count > 1 && products.product1.count = products.product1.count - 1">
+                            <ion-icon name="remove-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-text class="count-value">{{ products.product1.count }}</ion-text>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button fill="clear" class="add" (click)="products.product1.count = products.product1.count + 1">
+                            <ion-icon name="add-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+
+          <!-- slide options -->
+          <ion-item-options side="end">
+            <ion-item-option>
+              <div slot="icon-only" class="icon-container">
+                <div class="icon-inner-container">
+                  <ion-icon name="trash"></ion-icon>
+                </div>
+              </div>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <!-- second product -->
+        <ion-item-sliding>
+          <ion-item lines="none" class="ion-no-padding">
+            <div class="product-item-container" [class.selected]="products.product2.selected">
+              <!-- checkbox -->
+              <ion-checkbox mode="md" [checked]="products.product2.selected" (ionChange)="products.product2.selected = $event.detail.checked"></ion-checkbox>
+  
+              <!-- product image -->
+              <ion-img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"></ion-img>
+  
+              <!-- product details -->
+              <div class="product-details-container">
+                <div class="product-info-container">
+                  <ion-text class="product-name">Brown couch</ion-text>
+                  <ion-text class="product-description">Dark brown</ion-text>
+                </div>
+  
+                <div class="product-price-count-container">
+                  <ion-text class="price">${{ products.product2.price * products.product2.count}}</ion-text>
+                   <!-- count -->
+                  <div class="count-container">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <ion-button fill="clear" class="remove" (click)="products.product2.count > 1 && products.product2.count = products.product2.count - 1">
+                            <ion-icon name="remove-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-text class="count-value">{{ products.product2.count }}</ion-text>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button fill="clear" class="add" (click)="products.product2.count = products.product2.count + 1">
+                            <ion-icon name="add-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+
+          <!-- slide options -->
+          <ion-item-options side="end">
+            <ion-item-option>
+              <div slot="icon-only" class="icon-container">
+                <div class="icon-inner-container">
+                  <ion-icon name="trash"></ion-icon>
+                </div>
+              </div>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+    </div>
+
+    <!-- cta -->
+    <div class="cta-container">
+      <div class="inner-container">
+
+        <!-- promo button -->
+        <ion-button mode="ios" expand="block" fill="clear" size="large" class="promo ion-no-padding">
+          <div class="button-contents-container">
+            <div class="left-container">
+              <div class="promo-icon-container">
+                <ion-icon name="pricetags"></ion-icon>
+              </div>
+              <ion-text class="promo-prompt">Choose Voucher</ion-text>
+            </div>
+            <div class="right-container">
+              <ion-text class="promo-applied">1 voucher applied</ion-text>
+              <ion-icon name="chevron-forward"></ion-icon>
+            </div>
+          </div>
+        </ion-button>
+
+
+        <div class="price-container">
+          <ion-text class="description">
+            Sub Total
+          </ion-text>
+          <ion-text class="amount">
+            ${{ ((products.product1.selected ? products.product1.count : 0) * products.product1.price) + ((products.product2.selected ? products.product2.count : 0) * products.product2.price) }}
+          </ion-text>
+        </div>
+        <div class="price-container">
+          <ion-text class="description">
+            Discount
+          </ion-text>
+          <ion-text class="amount">
+            $10
+          </ion-text>
+        </div>
+        <div class="price-container total">
+          <ion-text class="description">
+            Total
+          </ion-text>
+          <ion-text class="amount">
+            ${{ ((products.product1.selected ? products.product1.count : 0) * products.product1.price) + ((products.product2.selected ? products.product2.count : 0) * products.product2.price) - 10 }}
+          </ion-text>
+        </div>
+        <ion-button mode="ios" expand="block" shape="round" size="large" class="cta">
+          <ion-text>
+            Checkout
+          </ion-text>
+        </ion-button>
+      </div>
+    </div>
+  </ng-template>
+</ion-content>
