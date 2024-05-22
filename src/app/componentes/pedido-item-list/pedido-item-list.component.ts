@@ -59,7 +59,7 @@ export class PedidoItemListComponent  implements OnInit {
     });
   }
 
-  fnUpdatePedidoItem(item:PedidoItem){
+  fnUpdatePedidoItem(item:PedidoItem, ){
     console.log("carrito.fnUpdatePedidoItem.pre: "+ item.id + " - "+ item.cantidad);
     this.pedidoItemUpdCantidadDto.id = item.id;
     this.pedidoItemUpdCantidadDto.cantidad = item.cantidad;

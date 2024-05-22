@@ -1,8 +1,3 @@
-
-
-
-
-
 <!-- page header -->
 <ion-header mode="ios">
   <ion-toolbar mode="ios">
@@ -11,7 +6,7 @@
       <ion-icon name="arrow-back"></ion-icon>
     </ion-button>
 
-    <ion-title>Cart</ion-title>
+    <ion-title>Carrito</ion-title>
 
     <!-- delete button -->
     <ion-button mode="ios" slot="end" fill="clear" class="ion-no-padding">
@@ -23,13 +18,13 @@
 <ion-content [fullscreen]="true">
   
   
-  
   <ng-template
     #productDetails
     [ngTemplateOutlet]="productDetails"
     let-products="products"
     [ngTemplateOutletContext]="{ products: { product1: { count: 1, price: 320 }, product2: { count: 1, price: 450 } } }">
-  
+
+    <!--
     <b *ngIf="!pedidosList"> El carrito esta vacio.</b>
     <ion-list>
       <div class="cart-items" *ngFor="let pedido of pedidosList">
@@ -44,13 +39,13 @@
       </ion-item-group>
       </div>
     </ion-list>
-
+    -->
     <!-- product list -->
     <div class="product-list-container">
-      <ion-list mode="ios" inset="false">
-
+      <ion-list mode="ios" inset="false" *ngFor="let pedido of pedidosList">
+        
         <!-- first product -->
-        <ion-item lines="none" class="ion-no-padding">
+        <ion-item lines="none" class="ion-no-padding" *ngFor="let item of pedido.items">
           <div class="product-item-container">
             <!-- product image -->
             <ion-img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"></ion-img>
@@ -58,26 +53,26 @@
             <!-- product details -->
             <div class="product-details-container">
               <div class="product-info-container">
-                <ion-text class="product-name">Huge couch</ion-text>
-                <ion-text class="product-description">Dark green</ion-text>
+                <ion-text class="product-name">{{ item.producto.nombre }}</ion-text>
+                <ion-text class="product-description">{{ item.producto.descripcion }}</ion-text>
               </div>
 
               <div class="product-price-count-container">
-                <ion-text class="price">${{ products.product1.price * products.product1.count }}</ion-text>
+                <ion-text class="price">${{  item.producto.precio * item.cantidad | number : '1.2-2' }}</ion-text>
                  <!-- count -->
                 <div class="count-container">
                   <ion-grid>
                     <ion-row>
                       <ion-col>
-                        <ion-button fill="clear" (click)="products.product1.count > 1 && products.product1.count = products.product1.count - 1">
+                        <ion-button fill="clear" (click)="fnUpdatePedidoItem(item,-1)">
                           <ion-icon name="remove-outline"></ion-icon>
                         </ion-button>
                       </ion-col>
                       <ion-col>
-                        <ion-text class="count-value">{{ products.product1.count }}</ion-text>
+                        <ion-text class="count-value">{{ item.cantidad }}</ion-text>
                       </ion-col>
                       <ion-col>
-                        <ion-button fill="clear" (click)="products.product1.count = products.product1.count + 1">
+                        <ion-button fill="clear" (click)="fnUpdatePedidoItem(item,1)">
                           <ion-icon name="add-outline"></ion-icon>
                         </ion-button>
                       </ion-col>
@@ -89,45 +84,6 @@
           </div>
         </ion-item>
 
-        <!-- second product -->
-        <ion-item lines="none" class="ion-no-padding">
-          <div class="product-item-container">
-            <!-- product image -->
-            <ion-img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"></ion-img>
-
-            <!-- product details -->
-            <div class="product-details-container">
-              <div class="product-info-container">
-                <ion-text class="product-name">Brown couch</ion-text>
-                <ion-text class="product-description">Dark brown</ion-text>
-              </div>
-
-              <div class="product-price-count-container">
-                <ion-text class="price">${{ products.product2.price * products.product2.count}}</ion-text>
-                 <!-- count -->
-                <div class="count-container">
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col>
-                        <ion-button fill="clear" (click)="products.product2.count > 1 && products.product2.count = products.product2.count - 1">
-                          <ion-icon name="remove-outline"></ion-icon>
-                        </ion-button>
-                      </ion-col>
-                      <ion-col>
-                        <ion-text class="count-value">{{ products.product2.count }}</ion-text>
-                      </ion-col>
-                      <ion-col>
-                        <ion-button fill="clear" (click)="products.product2.count = products.product2.count + 1">
-                          <ion-icon name="add-outline"></ion-icon>
-                        </ion-button>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ion-item>
       </ion-list>
 
     </div>
@@ -136,21 +92,21 @@
     <div class="cta-container">
       <div class="total-container">
         <ion-text class="description">
-          Total ({{ products.product1.count + products.product2.count }} items):
+          Total ({{ cantidadTotal }} items):
         </ion-text>
         <div class="amount-container">
           <ion-text class="currency">
             $
           </ion-text>
           <ion-text class="amount">
-            {{ (products.product1.price * products.product1.count) + (products.product2.price * products.product2.count) }}
+            {{ importeTotal }}
           </ion-text>
         </div>
       </div>
       <ion-button mode="ios" expand="block" size="large" class="cta">
         <div class="button-container">
           <ion-text class="button-text">
-            Proceed to checkout
+            Confirmar Pedido
           </ion-text>
           <div class="icon-container">
             <ion-icon name="arrow-forward"></ion-icon>

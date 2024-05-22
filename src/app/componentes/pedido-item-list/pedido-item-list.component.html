@@ -1,4 +1,4 @@
-
+<!--
 <ion-item-sliding *ngFor="let item of pedidoTmp.items" >
   <ion-card mode="ios">
      <ion-item>
@@ -28,7 +28,7 @@
    </ion-item-options>
    </ion-card>
 </ion-item-sliding>
-
+-->
 
 
 
@@ -56,7 +56,7 @@
                   <ion-grid>
                     <ion-row>
                       <ion-col>
-                        <ion-button fill="clear" (click)="fnRestar(item)">
+                        <ion-button fill="clear" (click)="item.cantidad=item.cantidad-1">
                           <ion-icon name="remove-outline"></ion-icon>
                         </ion-button>
                       </ion-col>

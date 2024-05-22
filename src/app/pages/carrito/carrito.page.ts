@@ -18,6 +18,9 @@ export class CarritoPage implements OnInit {
   importeTotalPedido:number= 0 ;
   pedidoItemUpdCantidadDto = {} as PedidoItemUpdCantidadDto;
   dtoPedidoUpdate = {} as PedidoUpdEstadoDto;
+  importeTotal:number=0;
+  cantidadTotal:number=0;
+
 
   constructor(private pedidoService:PedidoService,) { 
 
@@ -36,7 +39,9 @@ export class CarritoPage implements OnInit {
     .subscribe(response=>{
       console.log("carrito.fnrefreshpedido.response: "+ userId + " - " + JSON.stringify(response) );
         this.pedidosList = response;
+        this.fnCalcularTotales();
       })
+
   }
 
 
@@ -49,5 +54,27 @@ export class CarritoPage implements OnInit {
     });
 
   }
+  
 
+  
+  fnUpdatePedidoItem(item:PedidoItem, incremento:number){
+    item.cantidad=item.cantidad + incremento; 
+    console.log("carrito.fnUpdatePedidoItem.pre: "+ item.id + " - "+ item.cantidad);
+    this.pedidoItemUpdCantidadDto.id = item.id;
+    this.pedidoItemUpdCantidadDto.cantidad = item.cantidad;
+    this.pedidoService.updItemPedidoCantidad(this.pedidoItemUpdCantidadDto).subscribe(r=> {
+      console.log("carrito.fnUpdatePedidoItem.responseOk");
+      this.fnCalcularTotales();
+    })
+  }
+
+  fnCalcularTotales(){
+    this.pedidosList.forEach(pedido => {
+      pedido.items.forEach(item => {
+        this.cantidadTotal = this.cantidadTotal+item.cantidad;
+        this.importeTotal = this.importeTotal+item.producto.precio;
+      });
+      
+    });
+  }
 }
