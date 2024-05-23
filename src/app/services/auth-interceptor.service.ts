@@ -26,10 +26,12 @@ export class AuthInterceptorService {
         return next.handle(req1).pipe( tap(() => {},
         (err: any) => {
         if (err instanceof HttpErrorResponse) {
+          
           if (err.status !== 401) {
             this.router.navigate(['/']);
            return;
           }
+
          
         }
       }));;

@@ -4,9 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: '',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
+ 
   {
     path: 'welcome',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
@@ -160,7 +161,8 @@ const routes: Routes = [
   {
     path: 'carrito3',
     loadChildren: () => import('./pages/carrito3/carrito3.module').then( m => m.Carrito3PageModule)
-  },  {
+  },
+  {
     path: 'carrito4',
     loadChildren: () => import('./pages/carrito4/carrito4.module').then( m => m.Carrito4PageModule)
   },

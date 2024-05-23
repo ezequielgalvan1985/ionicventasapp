@@ -29,7 +29,9 @@ export class CheckPedidoPage implements OnInit {
   pedidoUpdEstadoDto={} as PedidoUpdEstadoDto;
   pedidoIdSelected = 0;
 
-  constructor(private pedidoService:PedidoService,private router: Router, private route: ActivatedRoute,) { }
+  constructor(private pedidoService:PedidoService,
+              private router: Router, 
+              private route: ActivatedRoute,) { }
 
   ngOnInit() {
     this.pedidoIdSelected = Number(this.route.snapshot.paramMap.get('id'));

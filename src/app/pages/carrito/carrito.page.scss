@@ -28,6 +28,7 @@ ion-header {
     // product details
     .product-list-container {
       padding: 10px 10px 120px 10px; // factor in the height of the floating cta button
+      margin:0px 0px 50px 0px;
       ion-list {
         background: transparent;
         ion-item {
@@ -136,9 +137,8 @@ ion-header {
       position: fixed;
       bottom: 0;
       width: 100%;
-      padding: 10px 20px;
+      padding: 5px 20px;
       margin-bottom: env(safe-area-inset-bottom, 30px);
-  
       background: #fff;
       display: flex;
       flex-direction: column;

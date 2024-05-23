@@ -13,7 +13,6 @@ import { PedidoFindByUserEmpresaRequestDto } from '../dto/request/PedidoFindByUs
 import { PedidoFindByEmpresaAndEstadoRequestDto } from '../dto/request/PedidoFindByEmpresaAndEstadoRequestDto';
 import { Router } from '@angular/router';
 import { ErrorResponseDto } from '../dto/response/error-response-dto';
-import { MessageResponseDto } from '../dto/response/message-response-dto';
 
 export enum ESTADOS {
   PENDIENTE,CONFIRMADO, ENPREPARACION, PREPARADO,ENCAMINO, ENTREGADO
@@ -119,10 +118,10 @@ export class PedidoService {
   }
 
 
-  updConfirmarPendientes(user_id:string):Observable<MessageResponseDto>{
-    const uri = this.urlBase+'/pedidos/comandos/confirmar/pendientes/'+user_id;
+  updConfirmarPendientes(user_id:string):Observable<boolean>{
+    const uri = this.urlBase+'/pedidos/comandos/confirmar/pendientes';
     console.log(uri);
-    return this.http.post<MessageResponseDto>(uri,user_id).pipe(catchError(this.handleError));;
+    return this.http.post<boolean>(uri,user_id).pipe(catchError(this.handleError));;
   }
 
   handleError(error:HttpErrorResponse){

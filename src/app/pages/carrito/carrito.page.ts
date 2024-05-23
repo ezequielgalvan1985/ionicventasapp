@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PedidoItemUpdCantidadDto } from 'src/app/dto/pedido-item-upd-cantidad-dto';
 import { PedidoUpdEstadoDto } from 'src/app/dto/pedido-upd-estado-dto';
 
@@ -20,59 +21,57 @@ export class CarritoPage implements OnInit {
   dtoPedidoUpdate = {} as PedidoUpdEstadoDto;
   importeTotal:number=0;
   cantidadTotal:number=0;
+  userId:string='';
 
-
-  constructor(private pedidoService:PedidoService,) { 
-
-  }
+  constructor(private pedidoService:PedidoService,private router: Router) { }
 
 
   ngOnInit() {
+    this.userId = String(localStorage.getItem("user_id"));
     this.fnRefreshPedidos();
   }
  
 
-  fnRefreshPedidos(){
-    var userId = String(localStorage.getItem("user_id"));
-   
-    this.pedidoService.findPendientesByUserId(userId)
+  fnRefreshPedidos(){ 
+    this.pedidoService.findPendientesByUserId(this.userId)
     .subscribe(response=>{
-      console.log("carrito.fnrefreshpedido.response: "+ userId + " - " + JSON.stringify(response) );
+      console.log("carrito.fnrefreshpedido.response: "+ this.userId + " - " + JSON.stringify(response) );
         this.pedidosList = response;
-        this.fnCalcularTotales();
+        this.fnCalcularTotales();    
       })
 
   }
 
 
-  fnConfirmarPedido(value:Pedido){
-    this.dtoPedidoUpdate.id = value.id;
-    this.dtoPedidoUpdate.estado = String(ESTADOS.CONFIRMADO);
-    this.pedidoService.updEstadoPedido(value).subscribe(res=>{
-      console.log("pedido.estado.modificado.ok"+ JSON.stringify(this.dtoPedidoUpdate)) ;
-      this.fnRefreshPedidos();
+  fnConfirmarPendientes(){
+    this.pedidoService.updConfirmarPendientes(this.userId).subscribe(res=>{
+      console.log("pedido.estado.modificado.ok"+ JSON.stringify(res)) ;
+      this.router.navigate(['/home']);
     });
-
   }
   
 
   
   fnUpdatePedidoItem(item:PedidoItem, incremento:number){
+    console.log("cantidad: "+item.cantidad)
+    if (item.cantidad + incremento ==0) return; 
     item.cantidad=item.cantidad + incremento; 
     console.log("carrito.fnUpdatePedidoItem.pre: "+ item.id + " - "+ item.cantidad);
     this.pedidoItemUpdCantidadDto.id = item.id;
     this.pedidoItemUpdCantidadDto.cantidad = item.cantidad;
     this.pedidoService.updItemPedidoCantidad(this.pedidoItemUpdCantidadDto).subscribe(r=> {
       console.log("carrito.fnUpdatePedidoItem.responseOk");
-      this.fnCalcularTotales();
+      this.fnRefreshPedidos();
     })
   }
 
   fnCalcularTotales(){
+    this.cantidadTotal=0;
+    this.importeTotal = 0;
     this.pedidosList.forEach(pedido => {
       pedido.items.forEach(item => {
         this.cantidadTotal = this.cantidadTotal+item.cantidad;
-        this.importeTotal = this.importeTotal+item.producto.precio;
+        this.importeTotal = this.importeTotal + (item.producto.precio* item.cantidad);
       });
       
     });

@@ -85,9 +85,8 @@ export class ItemDetailsPage implements OnInit {
   }
 
 
-  fnAgregarAlCarrito(){ 
+  fnAgregarAlCarrito(){
     console.log("Formulario:"+ JSON.stringify(this.itemPedidoForm.value));
-    
     if (Number(this.cantidad) < 1 ) {
       this.presentAlert("Importante","", "Cantidad debe ser mayor a 0");
       return false;
@@ -154,7 +153,8 @@ export class ItemDetailsPage implements OnInit {
         console.log("Item Pedido Agregado Ok");
         console.log("item agregado: "+ JSON.stringify(this.itemPedido));
         this.router.navigate(['/carrito']);
-    });
+    }
+    );
 
 
   }
