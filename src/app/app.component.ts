@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-
+    { title: 'Salir', url: '/logout', icon: 'exit-outline' },
     { title: 'Inicio', url: '/home', icon: 'pie-chart-outline' },
     { title: 'Mi Carrito', url: '/carrito', icon: 'cart' },
     { title: 'Mis Pedidos', url: '/pedidos', icon: 'archive' },
@@ -27,4 +27,11 @@ export class AppComponent {
     { title: 'Contratar Publicidad', url: '/publicidad', icon: 'file-tray-full' },
   ];
   constructor() {}
+
+  fnLogout(){
+    console.log("logout");
+    localStorage.setItem("user_id","");
+
+  }
+
 }

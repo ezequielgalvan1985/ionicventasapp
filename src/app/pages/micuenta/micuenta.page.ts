@@ -50,7 +50,7 @@ export class MicuentaPage implements OnInit {
     e=>{
      debugger; 
       console.log(e);
-      console.log(e.message);
+      console.log(e.error.message);
       this.mensajeToast =e.message,
       this.isToastOpen = true;
     });

@@ -95,7 +95,9 @@
            
            
             <!-- logout -->
-            <ion-item>
+            <ion-item (click)="fnLogout()" routerDirection="root" 
+            routerLink="/" lines="none" detail="false" 
+            routerLinkActive="selected">
               <div class="option-container">
                 <div class="option-name">
                   <ion-icon name="exit-outline"></ion-icon>

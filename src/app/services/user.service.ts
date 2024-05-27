@@ -45,7 +45,7 @@ export class UserService {
   }
 
   findDatosPersonalesByUserId(userid:Number){
-    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'datospersonales/consultas/findbyuser/'+userid).pipe(catchError(this.handleError));
+    return this.http.get<UsuarioDatosPersonalesDto>(this.urlEndPoint+'datospersonales/consultas/findbyuser/'+userid);
   }
 
 

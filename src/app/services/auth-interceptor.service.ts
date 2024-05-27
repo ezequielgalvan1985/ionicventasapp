@@ -18,15 +18,16 @@ export class AuthInterceptorService {
     
         const token = localStorage.getItem("token"); 
       
-       
         const req1 = req.clone({
             headers: req.headers.set('Authorization', `Bearer ${token}`),
         });
 
         return next.handle(req1).pipe( tap(() => {},
         (err: any) => {
+                 
+
         if (err instanceof HttpErrorResponse) {
-          
+          debugger;
           if (err.status !== 401) {
             this.router.navigate(['/']);
            return;
