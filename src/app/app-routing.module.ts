@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { GuardAuthGuard } from './services/guard-auth.guard';
 
 const routes: Routes = [
   
@@ -30,6 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'carrito',
+    canActivate:[GuardAuthGuard],
     loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
   },
   {

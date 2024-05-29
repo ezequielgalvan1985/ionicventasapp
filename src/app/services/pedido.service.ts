@@ -71,7 +71,7 @@ export class PedidoService {
   findUltimoPendienteByUserIdAndEmpresaId(item:PedidoFindByUserEmpresaRequestDto):Observable<Pedido[]>{
     const uri = this.urlBase+'/pedidos/consultas/findultpendbyuserandempresa';
     console.log(uri);
-    return this.http.post<Pedido[]>(uri,item).pipe(catchError(this.handleError));;
+    return this.http.post<Pedido[]>(uri,item).pipe(catchError(this.handleError));
   }
 
   updateItemPedido(item:PedidoItem){
@@ -126,11 +126,12 @@ export class PedidoService {
   }
 
   handleError(error:HttpErrorResponse){
-    var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
+    var m = "status ("+error.status+ ") - message ("+  error.message+")" ;
     var r = {}as ErrorResponseDto;
     console.error(m);
     r.status = error.status; 
-    r.message = error.error.message;
+    r.message = error.message;
+    
     return throwError(()=>r);
   }
 }

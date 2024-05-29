@@ -26,6 +26,19 @@ export class UserService {
     return this.http.post<LoginResponseDto>(this.urlEndPoint+'auth/login',data);
   }
 
+  async isLogin(){
+    //check valid token
+    var token = localStorage.getItem("token");
+    debugger;
+    var r = await this.http.get<LoginResponseDto>(this.urlEndPoint+'auth/check-token').toPromise().then(a=>{a?.access_token}).catch(e=>{});
+      
+    debugger;
+    if (r==null) return false;
+    if (token ===null) return false;
+    return true;   
+
+  }
+
   register(data:RegisterDto):Observable<any>{
     return this.http.post<LoginResponseDto>(this.urlEndPoint+'auth/register',data);
   }
