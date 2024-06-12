@@ -14,11 +14,12 @@ export class GuardAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       debugger;
-      var r = this.userService.isLogin();
-      if (!r) {
-
-      return this.router.navigate(['/login']).then(()=>false);
-    }
+      var r = this.userService.checkToken().then(r=>{
+        return true
+      }).catch(e=>{
+        this.router.navigate(['/login']);
+      });
+       
     return true;
   }
   

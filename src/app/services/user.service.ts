@@ -7,6 +7,7 @@ import { LoginRequestDto } from '../dto/login-request-dto';
 import { LoginResponseDto } from '../dto/login-response-dto';
 import { RegisterDto } from '../dto/register-dto';
 import { UsuarioDatosPersonalesDto } from '../dto/usuario-datos-personales-dto';
+import { ErrorResponseDto } from '../dto/response/error-response-dto';
 
 
 
@@ -26,17 +27,11 @@ export class UserService {
     return this.http.post<LoginResponseDto>(this.urlEndPoint+'auth/login',data);
   }
 
-  async isLogin(){
+  async checkToken(){
     //check valid token
     var token = localStorage.getItem("token");
     debugger;
-    var r = await this.http.get<LoginResponseDto>(this.urlEndPoint+'auth/check-token').toPromise().then(a=>{a?.access_token}).catch(e=>{});
-      
-    debugger;
-    if (r==null) return false;
-    if (token ===null) return false;
-    return true;   
-
+    await this.http.get<LoginResponseDto>(this.urlEndPoint+'auth/check-token').pipe(catchError(this.handleError));
   }
 
   register(data:RegisterDto):Observable<any>{
@@ -62,11 +57,15 @@ export class UserService {
   }
 
 
-  handleError(error:HttpErrorResponse){
-    
-    var m = "status ("+error.status+ ") - message ("+  error.error.message+")" ;
+  handleError(error:HttpErrorResponse){    
+    var m = "status ("+error.status+ ") - message ("+  error.message+")" ;
+    var r = {}as ErrorResponseDto;
+    debugger;
     console.error(m);
-    
-    return throwError(()=>new Error(error.error.message));
+    r.status = error.status; 
+    r.message = error.message;
+    if (r.status ==401) localStorage.setItem("user_id","");   
+    return throwError(()=>r);
+
   }
 }

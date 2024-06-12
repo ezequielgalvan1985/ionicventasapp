@@ -131,7 +131,8 @@ export class PedidoService {
     console.error(m);
     r.status = error.status; 
     r.message = error.message;
-    
+    if (r.status ==401) localStorage.setItem("user_id","");
+   
     return throwError(()=>r);
   }
 }
